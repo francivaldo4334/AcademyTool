@@ -18,6 +18,13 @@ instalando o gerenciador de pacotes [SDKMAN](https://sdkman.io/install)
 ```bash
 curl -s "https://get.sdkman.io" | bash && source "$HOME/.sdkman/bin/sdkman-init.sh
 ```
+```bash
+sdk version       
+
+SDKMAN!
+script: 5.18.2
+native: 0.4.6
+```
 instalando o kotlin
 ```bash
 sdk install kotlin
@@ -25,3 +32,16 @@ sdk install kotlin
 instalando o gradle
 ```bash
 sdk install gradle
+´´´
+Construção o projeto
+```bash
+gradle init --type kotlin-application
+```
+##### java version: 21
+##### project name: AcademyTool
+##### select application structure:
+ * 2: Application and library projet
+##### select build script DSL:
+ * 1: Kotlin<p>
+##### generate buld using new APIs and behavior:
+  * no<p>
