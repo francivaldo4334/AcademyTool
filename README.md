@@ -45,3 +45,17 @@ gradle init --type kotlin-application
  * 1: Kotlin<p>
 ##### generate buld using new APIs and behavior:
   * no<p>
+#### Configuraçoes do AstroVim (Gradle)
+```:LspInstall gradle```
+```:TSInstall groovy```
+##### edit ~/.config/nivm/init.lua
+```lua
+...
+
+required'nvim-treesitter.configs'.setup{
+  highlight = {
+    enable = true,
+    disable = { "kotlin" }
+  }
+}
+```
