@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "AcademyTool"
-include("app", "list", "utilities")
+include("app")

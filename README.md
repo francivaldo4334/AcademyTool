@@ -40,7 +40,7 @@ gradle init --type kotlin-application
 ##### java version: 21
 ##### project name: AcademyTool
 ##### select application structure:
- * 2: Application and library projet
+ * 1: Sinble aplication
 ##### select build script DSL:
  * 1: Kotlin<p>
 ##### generate buld using new APIs and behavior:
