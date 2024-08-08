@@ -12,3 +12,16 @@ Sistema de de gestao para academias
  - Capacidade de identificar novas atualizações e atualizar automaticamente/opcinal caso o usuario queira.
  - Capacidade de customização de interface como cores e logo da academia.
  - Flexibilidae /criar perfis adicionais e customizados alem dos perfis predefinidos
+
+## Configurando o ambiente
+instalando o gerenciador de pacotes [SDKMAN](https://sdkman.io/install)
+```bash
+curl -s "https://get.sdkman.io" | bash && source "$HOME/.sdkman/bin/sdkman-init.sh
+```
+instalando o kotlin
+```bash
+sdk install kotlin
+```
+instalando o gradle
+```bash
+sdk install gradle
