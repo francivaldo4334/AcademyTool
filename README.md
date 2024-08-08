@@ -40,7 +40,7 @@ gradle init --type kotlin-application
 ##### java version: 21
 ##### project name: AcademyTool
 ##### select application structure:
- * 1: Sinble aplication
+ * 1: Single aplication
 ##### select build script DSL:
  * 1: Kotlin<p>
 ##### generate buld using new APIs and behavior:
@@ -48,6 +48,9 @@ gradle init --type kotlin-application
 #### Configuraçoes do AstroVim (Gradle)
 ```:LspInstall gradle```
 ```:TSInstall groovy```
+#### Configuraçoes do AstroVim (koltin)
+```:LspInstall kotlin```
+```:LspInstall kotlin_language_server```
 ##### edit ~/.config/nivm/init.lua
 ```lua
 ...
