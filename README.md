@@ -2,6 +2,8 @@
 Sistema de de gestao para academias
 ## Fontes:
 [Documentação do projeto](https://github.com/francivaldo4334/AcademyTool/blob/main/plano.pdf)
+## Links:
+[UML](https://drive.google.com/open?id=1j39q4t9gAX8f0s3p4H_uaaiA-ZDBCr3I&usp=drive_copy)
 ### Ajustes: 
  - linquagem-utilizada: kotlin
  - banco-de-dados: postgresql
