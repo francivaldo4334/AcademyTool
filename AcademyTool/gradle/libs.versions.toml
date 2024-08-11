@@ -4,6 +4,8 @@
 [versions]
 guava = "33.1.0-jre"
 junit-jupiter = "5.10.2"
+compose-plugin = "1.6.11"
+kotlin = "2.0.0"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
@@ -11,3 +13,5 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.23" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
