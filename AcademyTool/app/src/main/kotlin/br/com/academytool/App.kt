@@ -6,16 +6,34 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.Window
 import androidx.compose.material.Text
+import androidx.compose.runtime.LaunchedEffect
+import br.com.academytool.utils.getDatabasePath
+import br.com.academytool.utils.StringResources
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.SchemaUtils.create
+
+object User: IntIdTable() {
+    val name = varchar(name="name", length=255)
+}
 
 @Composable
 fun App() {
+    LaunchedEffect(Unit) {
+        val databaseUrl = getDatabasePath()
+        Database.connect("jdbc:sqlite:$databaseUrl", "org.sqlite.JDBC")
+        transaction {
+            create(User)
+        }
+    }
     Text("FRAN")
 }
 
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "Academy Tool"
+        title = StringResources.getString("app_name")
     ) {
         App()
     }

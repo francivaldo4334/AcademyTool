@@ -17,6 +17,10 @@ repositories {
 dependencies {
     implementation(libs.guava)
     implementation(compose.desktop.currentOs)
+    implementation(libs.exposed.core)
+    implementation(libs.exposed.jdbc)
+    implementation(libs.exposed.dao)
+    implementation(libs.sqlite.jdbc)
 }
 
 java {
@@ -32,6 +36,7 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     manifest {
         attributes["Main-Class"] = application.mainClass.get()
+        attributes["App-Name"] = "AcademyTool"
     }
     from(configurations.runtimeClasspath.get().map{ if (it.isDirectory()) it else zipTree(it)})
 }
