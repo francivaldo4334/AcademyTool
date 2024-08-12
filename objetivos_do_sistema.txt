@@ -1,0 +1,102 @@
+Principais objetivos do sistema.
+1 - Auxiliar os professores de educação física quanto as informações e availações do aluno.
+2 - Monitorar, quardar e organizar informações para o aluno.
+3 - Controlar matriculas dos alunos da academia.
+4 - controle de frequencia de alunos.
+5 - integração como whatsapp.
+6 - controle de estoque e venda de produtos
+7 - controle de turmas
+
+Plublico alvo.
+1 - academias de medio e pequeno porte. (academias de bairro)
+
+Beneficios que academias teram ao usar o sistema.
+1 - facilitara o controle de alunos e avaliações.
+2 - facilidade de acesso as aulas para os alunos
+3 - consultar agendamentos (horios marcados para treino). fisualizar horarios de pico.
+4 - analizar melhores horarios para encaixar os alunos.
+5 - facilidade para os alunos pagarem suas mensalidades.
+6 - interface intuitivo
+7 - Relatorios de (alunos, funcionarios, matriculas em dia, matricula vencidas, horirios mais ativos, frequencia de alunos, pagamentos)
+8 - Avaliaçoes de qualidade por parte do aluno.
+9 - Não obrigatoriedade de hardwares como catraca, scanedor de digital.
+10 - Visualização de aniversariantes.
+
+Problemas que o sistema visa solucionar.
+1 - Uso de fixas manuais
+2 - Uso de sistemas que não atenda aos requisitos
+3 - Falta de organização com horarios de pico.
+4 - Controlar periodicamente treinos especificos para cada aluno.
+5 - Controlar pagamentos.
+6 - Registrar entradas e saidas da academia.
+
+Entradas esperadas no Sistema.
+1 - login no sistema.
+2 - Cadastrar alunos.
+3 - Matricular alunos
+4 - Realizar pagamentos
+5 - Cadastrar funcionarios
+6 - Avaliação e Reavaliação fisica
+
+Ciclo de vida do sistema.
+1 - tela de login.
+  - Nome do usuario
+  - senha
+  - Entrar
+2 - Menu principal
+  - Controle de Clientes/ Alunos
+    - Cadastrar Cliente
+      - Nome
+      - Email
+      - Telefone 1
+      - Telefone 2
+      - Sexo
+      - Modalidade
+      - Data de Matricula
+      - Professor Responsavel
+      - CPF
+      - RG
+      - Endereço
+      - Telefone whatsapp
+      - Data de nacimento
+    - Clientes com mensalidades pagas no mes
+    - Clientes com mensalidade pendente.
+  - Controle de Treinos
+    - Criar Treino
+      - Aluno
+      - data de inicio
+      - data de vencimento
+      - [Treino *]
+        - [Exercicio: n]
+          - Nome do treino
+          - quantidade de series
+          - quantidade de repetiçoes
+          - Carga
+          - campo de observação
+      - Cadastrar Trieno
+      - Imprimir (impresora/impressora termica)
+      - Enviar pelo whatsapp
+  - Controle de Pagamentos
+    - Adicionar pagamento
+      - Data de pagamento
+      - Nome (dropdown de alunos)
+      - Valido Até
+      - Valor total com desconto
+      - Atividade matricular
+      - numero da parcela
+  - Controle de Modalidades
+  - Controle de Despesas
+    - Adicionar Despesa
+      - Data da despesa
+      - Nome da despesa
+      - Valor
+      - tipo
+        - funcionarios
+        - investimento
+        - custo fixo
+        - custo variavel
+        - campo de observação
+  - Graficos de Dashboard
+    - Pagamentos
+    - Atividade de Alunos
+    - Faturamento
