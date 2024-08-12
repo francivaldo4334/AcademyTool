@@ -1,0 +1,7 @@
+- modulos:
+  - app(Principal)
+  - financeiro
+  - equipamentos
+  - clientes
+  - funcionarios
+  - Agendamentos (controle de horarios)
