@@ -6,11 +6,7 @@ plugins {
 }
 
 repositories {
-    google {
-        mavenContent {
-            includeGroupAndSubgroups("androidx")
-        }
-    }
+    google { mavenContent { includeGroupAndSubgroups("androidx") } }
     mavenCentral()
 }
 
@@ -21,22 +17,18 @@ dependencies {
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.dao)
     implementation(libs.sqlite.jdbc)
+    implementation(project(":client-manager"))
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
-application {
-    mainClass = "br.com.academytool.AppKt"
-}
+application { mainClass = "br.com.academytool.AppKt" }
+
 tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     manifest {
         attributes["Main-Class"] = application.mainClass.get()
         attributes["App-Name"] = "AcademyTool"
     }
-    from(configurations.runtimeClasspath.get().map{ if (it.isDirectory()) it else zipTree(it)})
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
 }
