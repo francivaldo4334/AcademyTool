@@ -22,13 +22,13 @@ dependencies {
 
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
-application { mainClass = "br.com.academytool.AppKt" }
+application { mainClass = "br.com.powerfitcontrol.AppKt" }
 
 tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     manifest {
         attributes["Main-Class"] = application.mainClass.get()
-        attributes["App-Name"] = "AcademyTool"
+        attributes["App-Name"] = "PowerFitControl"
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory()) it else zipTree(it) })
 }

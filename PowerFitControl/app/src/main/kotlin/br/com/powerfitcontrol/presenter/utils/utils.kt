@@ -1,4 +1,4 @@
-package br.com.academytool.utils
+package br.com.powerfitcontrol.utils
 import java.nio.file.Paths
 import java.util.jar.Manifest
 import java.util.ResourceBundle
