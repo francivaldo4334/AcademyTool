@@ -17,7 +17,8 @@ dependencies {
     implementation(libs.exposed.jdbc)
     implementation(libs.exposed.dao)
     implementation(libs.sqlite.jdbc)
-    implementation(project(":client-manager"))
+    implementation(project(":core"))
+    implementation(project(":client"))
 }
 
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
