@@ -6,19 +6,23 @@ plugins {
 }
 
 repositories {
-    google()
+    google {
+        mavenContent {
+            includeGroupAndSubgroups('androidx')
+        }
+    }
     mavenCentral()
 }
 
 dependencies {
     testImplementation libs.junit.jupiter
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation libs.guava
+    //implementation libs.guava
     implementation compose.desktop.currentOs
-    implementation libs.exposed.core
-    implementation libs.exposed.jdbc
-    implementation libs.exposed.dao
-    implementation libs.sqlite.jdbc
+    //implementation libs.exposed.core
+    //implementation libs.exposed.jdbc
+    //implementation libs.exposed.dao
+    //implementation libs.sqlite.jdbc
     implementation project(":core")
     implementation project(":clients")
 }

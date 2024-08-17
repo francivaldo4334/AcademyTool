@@ -7,22 +7,22 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import br.com.powerfitctrl.app.utils.StringResources
 import br.com.powerfitctrl.app.utils.getDatabasePath
-import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils.create
-import org.jetbrains.exposed.sql.transactions.transaction
+// import org.jetbrains.exposed.dao.id.IntIdTable
+// import org.jetbrains.exposed.sql.Database
+// import org.jetbrains.exposed.sql.SchemaUtils.create
+// import org.jetbrains.exposed.sql.transactions.transaction
 
-object User : IntIdTable() {
-    val name = varchar(name = "name", length = 255)
-}
+// object User : IntIdTable() {
+//     val name = varchar(name = "name", length = 255)
+// }
 
 @Composable
 fun App() {
-    LaunchedEffect(Unit) {
-        val databaseUrl = getDatabasePath()
-        Database.connect("jdbc:sqlite:$databaseUrl", "org.sqlite.JDBC")
-        transaction { create(User) }
-    }
+    // LaunchedEffect(Unit) {
+    //     val databaseUrl = getDatabasePath()
+    //     Database.connect("jdbc:sqlite:$databaseUrl", "org.sqlite.JDBC")
+    //     transaction { create(User) }
+    // }
     Text("FRAN")
 }
 
