@@ -1,3 +1,5 @@
+package br.com.powerfitctrl.core.presenter.ui
+
 import androidx.compose.ui.graphics.Color
 
 val white = Color(0xFFFFFFFF)
