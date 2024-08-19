@@ -2,28 +2,13 @@ package br.com.powerfitctrl.app
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import br.com.powerfitctrl.app.utils.StringResources
-import br.com.powerfitctrl.app.utils.getDatabasePath
-// import org.jetbrains.exposed.dao.id.IntIdTable
-// import org.jetbrains.exposed.sql.Database
-// import org.jetbrains.exposed.sql.SchemaUtils.create
-// import org.jetbrains.exposed.sql.transactions.transaction
-
-// object User : IntIdTable() {
-//     val name = varchar(name = "name", length = 255)
-// }
+import br.com.powerfitctrl.core.utils.StringResources
 
 @Composable
 fun App() {
-    // LaunchedEffect(Unit) {
-    //     val databaseUrl = getDatabasePath()
-    //     Database.connect("jdbc:sqlite:$databaseUrl", "org.sqlite.JDBC")
-    //     transaction { create(User) }
-    // }
-    Text("FRAN")
+    Text(StringResources.getString("app_name"))
 }
 
 fun main() = application {
