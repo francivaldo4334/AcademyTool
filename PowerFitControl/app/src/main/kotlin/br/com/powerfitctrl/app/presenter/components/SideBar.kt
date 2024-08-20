@@ -9,16 +9,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import br.com.powerfitctrl.app.presenter.viewmodels.CommonViewModel
+import br.com.powerfitctrl.app.presenter.viewmodels.enums.ModuleSelected
 import br.com.powerfitctrl.core.presenter.ui.secondary_900
 
 @Composable
-fun SideBar() {
+fun SideBar(commonViewModel: CommonViewModel = viewModel()) {
+
   Box(modifier = Modifier.fillMaxHeight().width(56.dp).background(secondary_900)) {
     Column(modifier = Modifier.align(Alignment.Center)) {
-      ButtonSelectModule()
-      ButtonSelectModule()
-      ButtonSelectModule()
+      ButtonSelectModule(selected = commonViewModel.moduleSelected.value == ModuleSelected.CLIENTS)
+      ButtonSelectModule(selected = false)
+      ButtonSelectModule(selected = false)
     }
-    ButtonSelectModule(modifier = Modifier.align(Alignment.BottomCenter))
+    ButtonSelectModule(selected = false, modifier = Modifier.align(Alignment.BottomCenter))
   }
 }

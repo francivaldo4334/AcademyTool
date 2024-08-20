@@ -12,14 +12,14 @@ import androidx.compose.ui.window.rememberWindowState
 import br.com.powerfitctrl.app.presenter.component.SideBar
 import br.com.powerfitctrl.core.presenter.ui.*
 import br.com.powerfitctrl.core.utils.StringResources
-import java.awt.Dimension
 
 fun main() = application {
     val windowState = rememberWindowState(placement = WindowPlacement.Maximized)
     Window(
             onCloseRequest = ::exitApplication,
             title = StringResources.getString("app_name"),
-            state = windowState
+            state = windowState,
+            undecorated = true,
     ) {
         window.minimumSize = java.awt.Dimension(800, 600)
         App()

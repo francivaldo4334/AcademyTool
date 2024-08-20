@@ -9,6 +9,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ButtonSelectModule(modifier: Modifier? = null) {
+fun ButtonSelectModule(selected: Boolean, modifier: Modifier? = null) {
   Box(modifier = Modifier.size(30.dp).background(Color(0xFFFF)))
 }

@@ -1,5 +1,4 @@
-package br.com.powerfitctrl.core.utils
-
+package br.com.pwrftctrl.core.utils
 
 import java.io.File
 import java.nio.file.Paths
