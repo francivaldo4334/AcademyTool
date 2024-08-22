@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -19,17 +20,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInWindow
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import br.com.pwrftctrl.app.ui.theme.LocalExtendedColors
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun Button() {
+fun Button(textHelp: String) {
         val extendedColors = LocalExtendedColors.current
         var isHovered = remember { mutableStateOf(false) }
-        Box {
+        var buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
+        Box(modifier = Modifier.wrapContentSize()) {
                 Button(
                         onClick = {},
                         contentPadding = PaddingValues(8.dp),
@@ -46,6 +52,15 @@ fun Button() {
                                         .onPointerEvent(PointerEventType.Exit) {
                                                 isHovered.value = false
                                         }
+                                        .onGloballyPositioned { coodinates ->
+                                                buttomPosition.value =
+                                                        coodinates.positionInWindow().run {
+                                                                IntOffset(
+                                                                        x.roundToInt(),
+                                                                        y.roundToInt()
+                                                                )
+                                                        }
+                                        }
                 ) { Box(modifier = Modifier.size(24.dp)) }
                 if (isHovered.value) {
                         Popup(
@@ -54,16 +69,17 @@ fun Button() {
                                         PopupProperties(
                                                 dismissOnBackPress = true,
                                                 dismissOnClickOutside = true,
-                                        )
+                                        ),
+                                offset = IntOffset(buttomPosition.value.x + 56, 4)
                         ) {
                                 Box(
                                         modifier =
-                                                Modifier.background(
-                                                                color = extendedColors.secondary50
+                                                Modifier.clip(RoundedCornerShape(4.dp))
+                                                        .background(
+                                                                color = extendedColors.secondary100
                                                         )
-                                                        .clip(CircleShape)
                                                         .padding(8.dp)
-                                ) { Text("okdfs") }
+                                ) { Text(textHelp) }
                         }
                 }
         }

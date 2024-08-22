@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.app.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.utils.StringResources as R
 
 @Composable
 fun SideBar() {
@@ -23,9 +24,10 @@ fun SideBar() {
                           .padding(8.dp),
   ) {
     Column(modifier = Modifier.align(Alignment.Center)) {
-      Button()
-      Button()
-      Button()
+      Button(textHelp = R.getString("controle_de_clientes"))
+      Button(textHelp = R.getString("visualizar_metricas"))
+      Button(textHelp = R.getString("controle_de_equipamentos"))
+      Button(textHelp = R.getString("controle_financeiro"))
     }
   }
 }
