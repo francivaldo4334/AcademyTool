@@ -63,8 +63,12 @@ val LocalExtendedColors = staticCompositionLocalOf { extendedColorScheme() }
 
 @Composable
 fun AppTheme(content: @Composable () -> Unit) {
-  val extendedColors = remember { extendedColorScheme() }
-  CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
-    MaterialTheme(colors = colorScheme, typography = MaterialTheme.typography, content = content)
-  }
+        val extendedColors = remember { extendedColorScheme() }
+        CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
+                MaterialTheme(
+                        colors = colorScheme,
+                        typography = MaterialTheme.typography,
+                        content = content
+                )
+        }
 }

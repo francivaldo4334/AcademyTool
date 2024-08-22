@@ -20,7 +20,7 @@ fun SideBar() {
                   Modifier.fillMaxHeight()
                           .width(56.dp)
                           .background(extendedColors.secondary900)
-                          .padding(8.dp)
+                          .padding(8.dp),
   ) {
     Column(modifier = Modifier.align(Alignment.Center)) {
       Button()
