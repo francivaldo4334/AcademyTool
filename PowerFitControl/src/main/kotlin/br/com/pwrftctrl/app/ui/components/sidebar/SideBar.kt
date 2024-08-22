@@ -10,11 +10,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.pwrftctrl.core.presenter.ui.secondary_900
+import br.com.pwrftctrl.app.ui.theme.LocalExtendedColors
 
 @Composable
 fun SideBar() {
-  Box(modifier = Modifier.fillMaxHeight().width(56.dp).background(secondary_900).padding(8.dp)) {
+  val extendedColors = LocalExtendedColors.current
+  Box(
+          modifier =
+                  Modifier.fillMaxHeight()
+                          .width(56.dp)
+                          .background(extendedColors.secondary900)
+                          .padding(8.dp)
+  ) {
     Column(modifier = Modifier.align(Alignment.Center)) {
       Button()
       Button()
