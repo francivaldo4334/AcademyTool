@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.ui.components.sidebar
+package br.com.pwrftctrl.app.presenter.ui.components.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -7,10 +7,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.pwrftctrl.app.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.app.presenter.ui.viewmodels.ModulesManagerViewModel
 import br.com.pwrftctrl.core.utils.Resources as R
 
 @Composable
@@ -24,10 +26,10 @@ fun SideBar() {
                           .padding(8.dp),
   ) {
     Column(modifier = Modifier.align(Alignment.Center)) {
-      Button(textHelp = R.strings.controle_de_clientes)
-      Button(textHelp = R.strings.visualizar_metricas)
-      Button(textHelp = R.strings.controle_de_equipamentos)
-      Button(textHelp = R.strings.controle_financeiro)
+      Button(iconPainter = R.vectors.ic_clients, textHelp = R.strings.controle_de_clientes)
+      Button(iconPainter = R.vectors.ic_status_up, textHelp = R.strings.visualizar_metricas)
+      Button(iconPainter = R.vectors.ic_dumbbells, textHelp = R.strings.controle_de_equipamentos)
+      Button(iconPainter = R.vectors.ic_hand_money, textHelp = R.strings.controle_financeiro)
     }
   }
 }

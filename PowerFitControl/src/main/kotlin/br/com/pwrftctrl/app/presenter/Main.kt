@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app
+package br.com.pwrftctrl.app.presenter
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Row
@@ -6,14 +6,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import br.com.pwrftctrl.app.ui.components.sidebar.SideBar
-import br.com.pwrftctrl.app.ui.theme.AppTheme
+import br.com.pwrftctrl.app.presenter.ui.components.sidebar.SideBar
+import br.com.pwrftctrl.app.presenter.ui.theme.AppTheme
 import br.com.pwrftctrl.core.utils.Resources as R
+import br.com.pwrftctrl.app.presenter.ui.viewmodels.ModulesManagerViewModel
 
 @Composable
 @Preview

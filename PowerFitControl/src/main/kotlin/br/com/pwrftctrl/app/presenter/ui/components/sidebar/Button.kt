@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.ui.components.sidebar
+package br.com.pwrftctrl.app.presenter.ui.components.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +19,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -26,12 +28,12 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import br.com.pwrftctrl.app.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun Button(textHelp: String) {
+fun Button(iconPainter: Painter, textHelp: String) {
         val extendedColors = LocalExtendedColors.current
         var isHovered = remember { mutableStateOf(false) }
         var buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
@@ -61,7 +63,14 @@ fun Button(textHelp: String) {
                                                                 )
                                                         }
                                         }
-                ) { Box(modifier = Modifier.size(24.dp)) }
+                ) {
+                        Icon(
+                                painter = iconPainter,
+                                contentDescription = "Icon Module $textHelp",
+                                modifier = Modifier.size(24.dp),
+                                tint = extendedColors.white
+                        )
+                }
                 if (isHovered.value) {
                         Popup(
                                 alignment = Alignment.TopStart,

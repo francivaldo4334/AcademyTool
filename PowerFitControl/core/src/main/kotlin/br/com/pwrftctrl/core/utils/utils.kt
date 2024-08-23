@@ -1,5 +1,8 @@
 package br.com.pwrftctrl.core.utils
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import java.io.File
 import java.nio.file.Paths
 import java.util.Locale
@@ -13,6 +16,29 @@ data class ResourceStrings(
         val app_name: String = Resources.getString("app_name"),
 )
 
+class ResourceVectors() {
+  val ic_clients: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_clients.svg")
+    }
+  val ic_dumbbells: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_dumbbells.svg")
+    }
+  val ic_hand_money: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_hand_money.svg")
+    }
+  val ic_status_up: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_status_up.svg")
+    }
+}
+
 object Resources {
   private val bundle: ResourceBundle
   init {
@@ -22,7 +48,12 @@ object Resources {
   fun getString(key: String): String {
     return bundle.getString(key)
   }
+  @Composable
+  fun getVector(key: String): Painter {
+    return painterResource("drawable/$key")
+  }
   val strings = ResourceStrings()
+  val vectors = ResourceVectors()
 }
 
 fun getDatabasePath(): String {
