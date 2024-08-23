@@ -13,7 +13,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import br.com.pwrftctrl.app.ui.components.sidebar.SideBar
 import br.com.pwrftctrl.app.ui.theme.AppTheme
-import br.com.pwrftctrl.core.utils.StringResources as R
+import br.com.pwrftctrl.core.utils.Resources as R
 
 @Composable
 @Preview
@@ -25,7 +25,7 @@ fun main() = application {
     val windowState = rememberWindowState(placement = WindowPlacement.Maximized)
     Window(
             onCloseRequest = ::exitApplication,
-            title = R.getString("app_name"),
+            title = R.strings.app_name,
             state = windowState,
             undecorated = true,
     ) {

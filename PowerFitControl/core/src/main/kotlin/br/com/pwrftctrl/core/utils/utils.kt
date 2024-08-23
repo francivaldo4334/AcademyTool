@@ -5,7 +5,15 @@ import java.nio.file.Paths
 import java.util.Locale
 import java.util.ResourceBundle
 
-object StringResources {
+data class ResourceStrings(
+        val controle_de_clientes: String = Resources.getString("controle_de_clientes"),
+        val visualizar_metricas: String = Resources.getString("visualizar_metricas"),
+        val controle_de_equipamentos: String = Resources.getString("controle_de_equipamentos"),
+        val controle_financeiro: String = Resources.getString("controle_financeiro"),
+        val app_name: String = Resources.getString("app_name"),
+)
+
+object Resources {
   private val bundle: ResourceBundle
   init {
     val locale = Locale.getDefault()
@@ -14,11 +22,12 @@ object StringResources {
   fun getString(key: String): String {
     return bundle.getString(key)
   }
+  val strings = ResourceStrings()
 }
 
 fun getDatabasePath(): String {
   val os = System.getProperty("os.name").lowercase()
-  val appName = StringResources.getString("app_name")
+  val appName = Resources.strings.app_name
   val databaseName = "database.db"
 
   val path =
