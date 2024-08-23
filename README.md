@@ -57,10 +57,19 @@ gradle init --type kotlin-application
 ```lua
 ...
 
-required'nvim-treesitter.configs'.setup{
-  highlight = {
-    enable = true,
-    disable = { "kotlin" }
-  }
-}
+vim.api.nvim_set_keymap('n', '<leader>r', ':!./gradlew clean build run<CR>', { noremap = true, silent = true })
+
+local lspconfig = require('lspconfig')
+
+lspconfig.kotlin_language_server.setup({
+  settings = {
+    kotlin = {
+      -- Configure your Kotlin settings here
+    }
+  },
+  on_attach = function(client, bufnr)
+    -- Disable formatting on save
+    client.server_capabilities.document_formatting = false
+  end,
+})
 ```
