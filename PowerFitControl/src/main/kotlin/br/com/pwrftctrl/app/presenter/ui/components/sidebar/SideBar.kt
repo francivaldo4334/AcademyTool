@@ -11,13 +11,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import br.com.pwrftctrl.app.presenter.ui.enums.ModuleSelection
 import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.app.presenter.ui.viewmodels.ModulesManagerViewModel
+import br.com.pwrftctrl.app.presenter.ui.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.Resources as R
 
 @Composable
 fun SideBar() {
   val extendedColors = LocalExtendedColors.current
+  val modulesManagerViewModel = MyViewModelFactory.create(ModulesManagerViewModel::class.java)
+  val moduleSelected = modulesManagerViewModel.moduleSelected.collectAsState()
   Box(
           modifier =
                   Modifier.fillMaxHeight()
@@ -26,10 +30,30 @@ fun SideBar() {
                           .padding(8.dp),
   ) {
     Column(modifier = Modifier.align(Alignment.Center)) {
-      Button(iconPainter = R.vectors.ic_clients, textHelp = R.strings.controle_de_clientes)
-      Button(iconPainter = R.vectors.ic_status_up, textHelp = R.strings.visualizar_metricas)
-      Button(iconPainter = R.vectors.ic_dumbbells, textHelp = R.strings.controle_de_equipamentos)
-      Button(iconPainter = R.vectors.ic_hand_money, textHelp = R.strings.controle_financeiro)
+      Button(
+              iconPainter = R.vectors.ic_clients,
+              textHelp = R.strings.controle_de_clientes,
+              moduleIndex = ModuleSelection.CLIENTS,
+              moduleSelected = moduleSelected.value
+      )
+      Button(
+              iconPainter = R.vectors.ic_status_up,
+              textHelp = R.strings.visualizar_metricas,
+              moduleIndex = ModuleSelection.METRICS,
+              moduleSelected = moduleSelected.value
+      )
+      Button(
+              iconPainter = R.vectors.ic_dumbbells,
+              textHelp = R.strings.controle_de_equipamentos,
+              moduleIndex = ModuleSelection.DUMBBLELLS,
+              moduleSelected = moduleSelected.value
+      )
+      Button(
+              iconPainter = R.vectors.ic_hand_money,
+              textHelp = R.strings.controle_financeiro,
+              moduleIndex = ModuleSelection.HAND_MONEY,
+              moduleSelected = moduleSelected.value
+      )
     }
   }
 }

@@ -28,23 +28,35 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
+import br.com.pwrftctrl.app.presenter.ui.enums.ModuleSelection
 import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.app.presenter.ui.viewmodels.ModulesManagerViewModel
+import br.com.pwrftctrl.app.presenter.ui.viewmodels.MyViewModelFactory
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun Button(iconPainter: Painter, textHelp: String) {
+fun Button(
+        iconPainter: Painter,
+        textHelp: String,
+        moduleIndex: ModuleSelection,
+        moduleSelected: ModuleSelection,
+) {
+        val modulesManagerViewModel = MyViewModelFactory.create(ModulesManagerViewModel::class.java)
         val extendedColors = LocalExtendedColors.current
         var isHovered = remember { mutableStateOf(false) }
         var buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
         Box(modifier = Modifier.wrapContentSize()) {
                 Button(
-                        onClick = {},
+                        onClick = { modulesManagerViewModel.selecteModule(moduleIndex) },
                         contentPadding = PaddingValues(8.dp),
                         colors =
                                 ButtonDefaults.buttonColors(
                                         backgroundColor =
-                                                if (isHovered.value) extendedColors.secondary800
+                                                if (moduleIndex == moduleSelected)
+                                                        extendedColors.primary500
+                                                else if (isHovered.value)
+                                                        extendedColors.secondary800
                                                 else Color.Transparent
                                 ),
                         modifier =
@@ -62,7 +74,8 @@ fun Button(iconPainter: Painter, textHelp: String) {
                                                                         y.roundToInt()
                                                                 )
                                                         }
-                                        }
+                                        },
+                        shape = RoundedCornerShape(12.dp)
                 ) {
                         Icon(
                                 painter = iconPainter,
@@ -83,7 +96,7 @@ fun Button(iconPainter: Painter, textHelp: String) {
                         ) {
                                 Box(
                                         modifier =
-                                                Modifier.clip(RoundedCornerShape(4.dp))
+                                                Modifier.clip(RoundedCornerShape(12.dp))
                                                         .background(
                                                                 color = extendedColors.secondary100
                                                         )

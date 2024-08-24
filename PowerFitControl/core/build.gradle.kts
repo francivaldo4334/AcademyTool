@@ -20,6 +20,7 @@ java {
     }
 }
 
+
 dependencies {
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.compose.material:material-icons-extended-desktop:1.4.0")

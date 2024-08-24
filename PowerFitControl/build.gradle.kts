@@ -18,8 +18,8 @@ repositories {
 
 dependencies {
     implementation(compose.desktop.currentOs)
-    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.4")
-    // implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     // implementation("org.jetbrains.androidx.navigation:navigation-compose:2.7.0-alpha03")
     implementation(project(":core"))
 }
