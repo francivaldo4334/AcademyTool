@@ -34,7 +34,8 @@ data class ExtendedColors(
 )
 
 // Definição de cores
-private val colorScheme = lightColors(primary = primary500, secondary = secondary500)
+private val colorScheme =
+        lightColors(primary = primary500, secondary = secondary500, onBackground = secondary900)
 
 fun extendedColorScheme() =
         ExtendedColors(

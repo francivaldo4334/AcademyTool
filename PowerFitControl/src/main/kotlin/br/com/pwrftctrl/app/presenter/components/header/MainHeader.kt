@@ -41,7 +41,7 @@ fun MainHeader() {
               horizontalAlignment = Alignment.End,
       ) {
         Text(
-                profileManager.profileName.value,
+                profileName.value,
                 fontSize = 20.sp,
         )
         Text(
