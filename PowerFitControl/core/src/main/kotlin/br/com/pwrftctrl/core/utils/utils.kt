@@ -37,6 +37,11 @@ class ResourceVectors() {
     get() {
       return Resources.getVector("ic_status_up.svg")
     }
+  val ic_logout: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_logout.svg")
+    }
 }
 
 object Resources {
