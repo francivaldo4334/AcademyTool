@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.enums
+package br.com.pwrftctrl.app.presenter.enums
 
 // TODO: Refatorar classe pra module de athentication
 enum class ProfileType {

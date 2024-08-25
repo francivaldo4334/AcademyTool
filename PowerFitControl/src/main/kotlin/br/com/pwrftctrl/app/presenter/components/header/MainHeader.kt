@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.components.header
+package br.com.pwrftctrl.app.presenter.components.header
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.app.presenter.ui.components.IconButton
-import br.com.pwrftctrl.app.presenter.ui.viewmodels.MyViewModelFactory
-import br.com.pwrftctrl.app.presenter.ui.viewmodels.ProfileManagerViewModel
+import br.com.pwrftctrl.app.presenter.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.app.presenter.viewmodels.ProfileManagerViewModel
 import br.com.pwrftctrl.core.utils.Resources as R
 
 @Composable

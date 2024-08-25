@@ -1,7 +1,7 @@
-package br.com.pwrftctrl.app.presenter.ui.viewmodels
+package br.com.pwrftctrl.app.presenter.viewmodels
 
 import androidx.lifecycle.ViewModel
-import br.com.pwrftctrl.app.presenter.ui.enums.ProfileType
+import br.com.pwrftctrl.app.presenter.enums.ProfileType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,5 +1,5 @@
-package br.com.pwrftctrl.app.presenter.ui.enums
-enum class ModuleSelection{
+package br.com.pwrftctrl.app.presenter.enums
+enum class ModuleSelection {
   CLIENTS,
   METRICS,
   DUMBBLELLS,

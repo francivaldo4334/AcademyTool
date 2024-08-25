@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.components.sidebar
+package br.com.pwrftctrl.app.presenter.components.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -28,10 +28,10 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
-import br.com.pwrftctrl.app.presenter.ui.enums.ModuleSelection
+import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
 import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
-import br.com.pwrftctrl.app.presenter.ui.viewmodels.ModulesManagerViewModel
-import br.com.pwrftctrl.app.presenter.ui.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.app.presenter.viewmodels.ModulesManagerViewModel
+import br.com.pwrftctrl.app.presenter.viewmodels.MyViewModelFactory
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
