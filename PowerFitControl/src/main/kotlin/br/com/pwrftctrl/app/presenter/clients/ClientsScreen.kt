@@ -20,7 +20,7 @@ fun ClientsScreen() {
             modifier =
                     Modifier.fillMaxHeight()
                             .widthIn(max = LocalDimensionsSizeScreen.maxWidth)
-                            .padding(16.dp)
+                            .padding(horizontal = 16.dp)
     ) { ClientsHeader() }
   }
 }

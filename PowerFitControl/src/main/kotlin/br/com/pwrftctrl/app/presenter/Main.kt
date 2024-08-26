@@ -38,10 +38,9 @@ fun App() {
             SideBar()
             Column(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 MainHeader()
-                Spacer(modifier = Modifier.height(8.dp))
                 Divider()
                 // UI module manager
                 ClientsScreen()

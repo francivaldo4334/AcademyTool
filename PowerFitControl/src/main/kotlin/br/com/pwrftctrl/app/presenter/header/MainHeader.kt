@@ -24,7 +24,7 @@ fun MainHeader() {
   val profileName = profileManager.profileName.collectAsState()
   Row(
           horizontalArrangement = Arrangement.SpaceBetween,
-          modifier = Modifier.fillMaxWidth().padding(top = 32.dp).padding(horizontal = 32.dp)
+          modifier = Modifier.fillMaxWidth().padding(top = 16.dp).padding(horizontal = 16.dp)
   ) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
       // LogoImage
