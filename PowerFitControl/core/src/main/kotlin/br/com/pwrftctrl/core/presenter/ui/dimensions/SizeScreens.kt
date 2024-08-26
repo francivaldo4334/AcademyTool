@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.dimensions
+package br.com.pwrftctrl.core.presenter.ui.dimensions
 
 import androidx.compose.ui.unit.dp
 

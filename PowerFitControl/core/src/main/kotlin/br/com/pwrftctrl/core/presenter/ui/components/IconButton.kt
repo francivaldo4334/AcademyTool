@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.components
+package br.com.pwrftctrl.core.presenter.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding

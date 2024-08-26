@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.ui.theme
+package br.com.pwrftctrl.core.presenter.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors

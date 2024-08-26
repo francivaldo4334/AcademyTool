@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.viewmodels
+package br.com.pwrftctrl.core.presenter.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

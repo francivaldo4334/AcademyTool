@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.clients.header
+package br.com.pwrftctrl.core.presenter.header
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,6 @@ fun ClientsHeader() {
     val clientsManagerViewModel = MyViewModelFactory.create(ClientsManagerViewModel::class.java)
     val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
     Text("Clientes", fontSize = 25.sp, fontWeight = FontWeight.Normal)
-    // Menu selectios
     Row() {
       TextButtomSelectionItem(
               R.strings.clients_option_students,

@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.clients.header.enums
+package br.com.pwrftctrl.clients.presenter.enums
 
 enum class OptionsType {
   STUDENTS,
