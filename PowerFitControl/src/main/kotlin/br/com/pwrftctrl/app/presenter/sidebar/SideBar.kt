@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.components.sidebar
+package br.com.pwrftctrl.app.presenter.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -32,28 +32,35 @@ fun SideBar() {
                 Column(modifier = Modifier.align(Alignment.Center)) {
                         Button(
                                 iconPainter = R.vectors.ic_clients,
-                                textHelp = R.strings.controle_de_clientes,
+                                textHelp = R.strings.clients_manager,
                                 moduleIndex = ModuleSelection.CLIENTS,
                                 moduleSelected = moduleSelected.value
                         )
                         Button(
                                 iconPainter = R.vectors.ic_status_up,
-                                textHelp = R.strings.visualizar_metricas,
+                                textHelp = R.strings.show_metrics,
                                 moduleIndex = ModuleSelection.METRICS,
                                 moduleSelected = moduleSelected.value
                         )
                         Button(
                                 iconPainter = R.vectors.ic_dumbbells,
-                                textHelp = R.strings.controle_de_equipamentos,
+                                textHelp = R.strings.equipments_control,
                                 moduleIndex = ModuleSelection.DUMBBLELLS,
                                 moduleSelected = moduleSelected.value
                         )
                         Button(
                                 iconPainter = R.vectors.ic_hand_money,
-                                textHelp = R.strings.controle_financeiro,
+                                textHelp = R.strings.financial_control,
                                 moduleIndex = ModuleSelection.HAND_MONEY,
                                 moduleSelected = moduleSelected.value
                         )
                 }
+                Button(
+                        iconPainter = R.vectors.ic_settings,
+                        textHelp = R.strings.settings,
+                        moduleIndex = ModuleSelection.SETTINGS,
+                        moduleSelected = moduleSelected.value,
+                        modifier = Modifier.align(Alignment.BottomCenter)
+                )
         }
 }

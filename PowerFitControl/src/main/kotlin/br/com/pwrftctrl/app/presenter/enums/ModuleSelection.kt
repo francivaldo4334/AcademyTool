@@ -4,4 +4,5 @@ enum class ModuleSelection {
   METRICS,
   DUMBBLELLS,
   HAND_MONEY,
+  SETTINGS,
 }

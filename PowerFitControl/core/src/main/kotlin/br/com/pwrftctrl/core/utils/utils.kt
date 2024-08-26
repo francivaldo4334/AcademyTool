@@ -9,11 +9,15 @@ import java.util.Locale
 import java.util.ResourceBundle
 
 data class ResourceStrings(
-        val controle_de_clientes: String = Resources.getString("controle_de_clientes"),
-        val visualizar_metricas: String = Resources.getString("visualizar_metricas"),
-        val controle_de_equipamentos: String = Resources.getString("controle_de_equipamentos"),
-        val controle_financeiro: String = Resources.getString("controle_financeiro"),
+        val clients_manager: String = Resources.getString("clients_manager"),
+        val show_metrics: String = Resources.getString("show_metrics"),
+        val equipments_control: String = Resources.getString("equipments_control"),
+        val financial_control: String = Resources.getString("financial_control"),
         val app_name: String = Resources.getString("app_name"),
+        val clients_option_students: String = Resources.getString("clients_option_students"),
+        val clients_option_classes: String = Resources.getString("clients_option_classes"),
+        val clients_option_birthdays: String = Resources.getString("clients_option_birthdays"),
+        val settings: String = Resources.getString("settings")
 )
 
 class ResourceVectors() {
@@ -41,6 +45,11 @@ class ResourceVectors() {
     @Composable
     get() {
       return Resources.getVector("ic_logout.svg")
+    }
+  val ic_settings: Painter
+    @Composable
+    get() {
+      return Resources.getVector("ic_settings.svg")
     }
 }
 

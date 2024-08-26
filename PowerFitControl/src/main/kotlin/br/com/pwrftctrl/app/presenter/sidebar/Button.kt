@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.components.sidebar
+package br.com.pwrftctrl.app.presenter.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -41,12 +41,13 @@ fun Button(
         textHelp: String,
         moduleIndex: ModuleSelection,
         moduleSelected: ModuleSelection,
+        modifier: Modifier = Modifier
 ) {
         val modulesManagerViewModel = MyViewModelFactory.create(ModulesManagerViewModel::class.java)
         val extendedColors = LocalExtendedColors.current
         var isHovered = remember { mutableStateOf(false) }
         var buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
-        Box(modifier = Modifier.wrapContentSize()) {
+        Box(modifier = modifier.wrapContentSize()) {
                 Button(
                         onClick = { modulesManagerViewModel.selecteModule(moduleIndex) },
                         contentPadding = PaddingValues(8.dp),

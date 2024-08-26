@@ -24,8 +24,8 @@ import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import br.com.pwrftctrl.app.presenter.clients.ClientsScreen
-import br.com.pwrftctrl.app.presenter.components.header.MainHeader
-import br.com.pwrftctrl.app.presenter.components.sidebar.SideBar
+import br.com.pwrftctrl.app.presenter.header.MainHeader
+import br.com.pwrftctrl.app.presenter.sidebar.SideBar
 import br.com.pwrftctrl.app.presenter.ui.dimensions.LocalDimensionsSizeScreen
 import br.com.pwrftctrl.app.presenter.ui.theme.AppTheme
 import br.com.pwrftctrl.core.utils.Resources as R

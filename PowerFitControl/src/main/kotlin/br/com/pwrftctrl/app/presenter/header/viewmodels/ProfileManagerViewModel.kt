@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.viewmodels
+package br.com.pwrftctrl.app.presenter.header.viewmodels
 
 import androidx.lifecycle.ViewModel
 import br.com.pwrftctrl.app.presenter.enums.ProfileType

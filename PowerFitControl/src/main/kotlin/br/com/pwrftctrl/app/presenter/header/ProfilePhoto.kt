@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.components.header
+package br.com.pwrftctrl.app.presenter.header
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -10,12 +10,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
 
+// TODO: Profile Photo
 @Composable
-fun Logo() {
+fun ProfilePhoto() {
         val extendedColors = LocalExtendedColors.current
         Box(
                 modifier =
-                        Modifier.size(40.dp)
+                        Modifier.size(48.dp)
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(extendedColors.primary500)
         ) {}
