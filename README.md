@@ -61,15 +61,29 @@ vim.api.nvim_set_keymap('n', '<leader>r', ':!./gradlew clean build run<CR>', { n
 
 local lspconfig = require('lspconfig')
 
-lspconfig.kotlin_language_server.setup({
+require('mason-lspconfig').setup{
+  ensure_installed = { "kotlin_language_server" }
+}
+
+local lspconfig = require("lspconfig")
+
+lspconfig.kotlin_language_server.setup{
+  cmd = { "/home/fran/.kotlin-language-server/bin/kotlin-language-server"},
+  filetype = { "kotlin" },
+  root_dir = lspconfig.util.root_pattern("settings.gragle", "settings.gragle.kts", ".git"),
   settings = {
     kotlin = {
-      -- Configure your Kotlin settings here
+      compiler = {
+        jvm = {
+          target = "1.8"
+        }
+      }
     }
   },
   on_attach = function(client, bufnr)
-    -- Disable formatting on save
-    client.server_capabilities.document_formatting = false
-  end,
-})
+    -- client.server_capabilities.document_formatting = false
+    vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+  end, 
+}
 ```
