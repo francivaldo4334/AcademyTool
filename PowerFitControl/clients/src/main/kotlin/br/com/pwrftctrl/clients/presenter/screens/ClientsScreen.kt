@@ -6,6 +6,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.clients.presenter.components.Header
+import br.com.pwrftctrl.clients.presenter.components.FiltersRow
 import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
 
 @Composable
@@ -18,6 +19,7 @@ fun ClientsScreen() {
                 .padding(horizontal = 16.dp)
         ) { 
             Header()
+            FiltersRow()
         }
     }
 }
