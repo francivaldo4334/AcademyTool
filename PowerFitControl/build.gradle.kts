@@ -44,6 +44,6 @@ compose.desktop {
 tasks.withType<KotlinCompile>().configureEach {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_21)
-//        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+        freeCompilerArgs = listOf("-Xjsr305=strict")
     }
 }
