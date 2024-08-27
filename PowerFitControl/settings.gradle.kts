@@ -14,5 +14,4 @@ pluginManagement {
 }
 
 rootProject.name = "PowerFitControl"
-include("core")
-include("clients")
+include( ":clients", ":core")

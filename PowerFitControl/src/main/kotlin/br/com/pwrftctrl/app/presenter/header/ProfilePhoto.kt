@@ -13,11 +13,11 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 // TODO: Profile Photo
 @Composable
 fun ProfilePhoto() {
-        val extendedColors = LocalExtendedColors.current
-        Box(
-                modifier =
-                        Modifier.size(48.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(extendedColors.primary500)
-        ) {}
+    val extendedColors = LocalExtendedColors.current
+    Box(
+        modifier =
+        Modifier.size(48.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(extendedColors.primary500)
+    ) {}
 }

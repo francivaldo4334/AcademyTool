@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.update
 import br.com.pwrftctrl.clients.presenter.enums.OptionsType
 
 class ClientsViewModel : ViewModel() {
-  val _selectedOption = MutableStateFlow(OptionsType.STUDENTS)
+  private val _selectedOption = MutableStateFlow(OptionsType.STUDENTS)
   val selectedOption: StateFlow<OptionsType> = _selectedOption.asStateFlow()
   fun selectOption(optionsType: OptionsType) {
     _selectedOption.update { optionsType }

@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.core.presenter.ui.colors
+package br.com.pwrftctrl.core.presenter.ui
 
 import androidx.compose.ui.graphics.Color
 

@@ -15,20 +15,20 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun IconButton(painter: Painter, contentDescription: String, onClick: () -> Unit) {
-        val extendedColors = LocalExtendedColors.current
-        IconButton(
-                onClick = onClick,
-                modifier =
-                        Modifier.size(40.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(extendedColors.primary500)
-                                .padding(0.dp),
-        ) {
-                Icon(
-                        painter = painter,
-                        contentDescription = contentDescription,
-                        modifier = Modifier.size(24.dp),
-                        tint = extendedColors.primary50
-                )
-        }
+    val extendedColors = LocalExtendedColors.current
+    IconButton(
+        onClick = onClick,
+        modifier =
+        Modifier.size(40.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(extendedColors.primary500)
+            .padding(0.dp),
+    ) {
+        Icon(
+            painter = painter,
+            contentDescription = contentDescription,
+            modifier = Modifier.size(24.dp),
+            tint = extendedColors.primary50
+        )
+    }
 }

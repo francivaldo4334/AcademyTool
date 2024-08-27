@@ -1,12 +1,9 @@
 package br.com.pwrftctrl.app.presenter
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,18 +22,26 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import br.com.pwrftctrl.app.presenter.header.MainHeader
 import br.com.pwrftctrl.app.presenter.sidebar.SideBar
-import br.com.pwrftctrl.core.utils.Resources as R
+import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
+import br.com.pwrftctrl.core.utils.R as R
 import br.com.pwrftctrl.core.presenter.ui.theme.AppTheme
 import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
 import br.com.pwrftctrl.clients.presenter.screens.ClientsScreen
 
 
 @Composable
-@Preview
 fun App() {
+    var moduleSelected by remember {
+        mutableStateOf(ModuleSelection.CLIENTS)
+    }
     AppTheme() {
         Row(modifier = Modifier.fillMaxSize()) {
-            SideBar()
+            SideBar(
+                moduleSelected = moduleSelected,
+                setModuleSelection = {
+                    moduleSelected = it
+                }
+            )
             Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -44,7 +49,12 @@ fun App() {
                 MainHeader()
                 Divider()
                 // UI module manager
-                ClientsScreen()
+                when(moduleSelected) {
+                    ModuleSelection.CLIENTS -> {
+                        ClientsScreen()
+                    }
+                    else -> {}
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import br.com.pwrftctrl.core.presenter.ui.colors.*
+import br.com.pwrftctrl.core.presenter.ui.*
 
 data class ExtendedColors(
         val white: Color,

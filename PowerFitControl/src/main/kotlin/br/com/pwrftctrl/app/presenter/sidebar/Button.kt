@@ -1,11 +1,7 @@
 package br.com.pwrftctrl.app.presenter.sidebar
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -29,81 +25,79 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
-import br.com.pwrftctrl.app.presenter.viewmodels.ModulesManagerViewModel
-import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Button(
-        iconPainter: Painter,
-        textHelp: String,
-        moduleIndex: ModuleSelection,
-        moduleSelected: ModuleSelection,
-        modifier: Modifier = Modifier
+    iconPainter: Painter,
+    textHelp: String,
+    moduleIndex: ModuleSelection,
+    moduleSelected: ModuleSelection,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
-        val modulesManagerViewModel = MyViewModelFactory.create(ModulesManagerViewModel::class.java)
-        val extendedColors = LocalExtendedColors.current
-        var isHovered = remember { mutableStateOf(false) }
-        var buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
-        Box(modifier = modifier.wrapContentSize()) {
-                Button(
-                        onClick = { modulesManagerViewModel.selecteModule(moduleIndex) },
-                        contentPadding = PaddingValues(8.dp),
-                        colors =
-                                ButtonDefaults.buttonColors(
-                                        backgroundColor =
-                                                if (moduleIndex == moduleSelected)
-                                                        extendedColors.primary500
-                                                else if (isHovered.value)
-                                                        extendedColors.secondary800
-                                                else Color.Transparent
-                                ),
-                        modifier =
-                                Modifier.onPointerEvent(PointerEventType.Enter) {
-                                        isHovered.value = true
-                                }
-                                        .onPointerEvent(PointerEventType.Exit) {
-                                                isHovered.value = false
-                                        }
-                                        .onGloballyPositioned { coodinates ->
-                                                buttomPosition.value =
-                                                        coodinates.positionInWindow().run {
-                                                                IntOffset(
-                                                                        x.roundToInt(),
-                                                                        y.roundToInt()
-                                                                )
-                                                        }
-                                        },
-                        shape = RoundedCornerShape(12.dp)
-                ) {
-                        Icon(
-                                painter = iconPainter,
-                                contentDescription = "Icon Module $textHelp",
-                                modifier = Modifier.size(24.dp),
-                                tint = extendedColors.white
-                        )
+    val extendedColors = LocalExtendedColors.current
+    val isHovered = remember { mutableStateOf(false) }
+    val buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
+    Box(modifier = modifier.wrapContentSize()) {
+        Button(
+            onClick = onClick,
+            contentPadding = PaddingValues(8.dp),
+            colors =
+            ButtonDefaults.buttonColors(
+                backgroundColor =
+                if (moduleIndex == moduleSelected)
+                    extendedColors.primary500
+                else if (isHovered.value)
+                    extendedColors.secondary800
+                else Color.Transparent
+            ),
+            modifier =
+            Modifier.onPointerEvent(PointerEventType.Enter) {
+                isHovered.value = true
+            }
+                .onPointerEvent(PointerEventType.Exit) {
+                    isHovered.value = false
                 }
-                if (isHovered.value) {
-                        Popup(
-                                alignment = Alignment.TopStart,
-                                properties =
-                                        PopupProperties(
-                                                dismissOnBackPress = true,
-                                                dismissOnClickOutside = true,
-                                        ),
-                                offset = IntOffset(buttomPosition.value.x + 56, 4)
-                        ) {
-                                Box(
-                                        modifier =
-                                                Modifier.clip(RoundedCornerShape(12.dp))
-                                                        .background(
-                                                                color = extendedColors.secondary100
-                                                        )
-                                                        .padding(8.dp)
-                                ) { Text(textHelp) }
+                .onGloballyPositioned { coodinates ->
+                    buttomPosition.value =
+                        coodinates.positionInWindow().run {
+                            IntOffset(
+                                x.roundToInt(),
+                                y.roundToInt()
+                            )
                         }
-                }
+                },
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Icon(
+                painter = iconPainter,
+                contentDescription = "Icon Module $textHelp",
+                modifier = Modifier.size(24.dp),
+                tint = extendedColors.white
+            )
         }
+        if (isHovered.value) {
+            Popup(
+                alignment = Alignment.TopStart,
+                properties =
+                PopupProperties(
+                    dismissOnBackPress = true,
+                    dismissOnClickOutside = true,
+                ),
+                offset = IntOffset(buttomPosition.value.x + 56, 4)
+            ) {
+                Box(
+                    modifier =
+                    Modifier.clip(RoundedCornerShape(12.dp))
+                        .background(
+                            color = extendedColors.secondary100
+                        )
+                        .padding(8.dp)
+                ) { Text(textHelp) }
+            }
+        }
+    }
 }
