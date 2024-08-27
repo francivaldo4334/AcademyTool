@@ -2,25 +2,22 @@ package br.com.pwrftctrl.core.presenter.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.pwrftctrl.app.presenter.header.viewmodels.ProfileManagerViewModel
-import br.com.pwrftctrl.app.presenter.clients.header.viewmodels.ClientsManagerViewModel
 import kotlin.lazy
+import kotlin.collections.mutableMapOf
 
 object MyViewModelFactory : ViewModelProvider.Factory {
 
-  private val modulesManagerViewModel by lazy { ModulesManagerViewModel() }
-  private val profileManagerViewModel by lazy { ProfileManagerViewModel() }
-  private val clientsManagerViewModel by lazy { ClientsManagerViewModel() }
+  private val viewModelInstances = mutableMapOf<Class<*>, ViewModel>()
 
+  @Suppress("UNCHECKED_CAST")
   fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(ModulesManagerViewModel::class.java)) {
-      return modulesManagerViewModel as T
-    } else if (modelClass.isAssignableFrom(ProfileManagerViewModel::class.java)) {
-      return profileManagerViewModel as T
-    } else if (modelClass.isAssignableFrom(ClientsManagerViewModel::class.java)) {
-      return clientsManagerViewModel as T
-    }
+    
+      return viewModelInstances.getOrPut(modelClass){
+          modelClass.getDeclaredConstructor().newInstance()
+      }.let {
+        if (modelClass.isInstance(it)) it as T
+        else throw IllegalArgumentException("Unknow  ViewModel class")
 
-    throw IllegalArgumentException("Unknow  ViewModel class")
+      } 
   }
 }

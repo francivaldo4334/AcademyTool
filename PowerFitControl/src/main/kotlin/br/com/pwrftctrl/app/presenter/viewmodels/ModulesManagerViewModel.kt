@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 
 class ModulesManagerViewModel : ViewModel() {
   private val _moduleSelected = MutableStateFlow<ModuleSelection>(ModuleSelection.CLIENTS)
-  val moduleSelected: StateFlow<ModuleSelection> = `_moduleSelected`.asStateFlow()
+  val moduleSelected: StateFlow<ModuleSelection> = _moduleSelected.asStateFlow()
   fun selecteModule(module: ModuleSelection) {
     _moduleSelected.update { module }
   }

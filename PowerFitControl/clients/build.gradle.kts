@@ -14,7 +14,11 @@ repositories {
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     google()
 }
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
 dependencies {
     implementation(compose.desktop.currentOs)
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
+    implementation(project(":core"))
 }
+

@@ -11,15 +11,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.pwrftctrl.app.presenter.clients.header.enums.OptionsType
-import br.com.pwrftctrl.app.presenter.clients.header.viewmodels.ClientsManagerViewModel
-import br.com.pwrftctrl.app.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.Resources as R
+import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.clients.presenter.viewmodels.ClientsViewModel
+import br.com.pwrftctrl.clients.presenter.header.components.TextButtomSelectionItem
+import br.com.pwrftctrl.clients.presenter.enums.OptionsType
 
 @Composable
 fun ClientsHeader() {
   Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-    val clientsManagerViewModel = MyViewModelFactory.create(ClientsManagerViewModel::class.java)
+    val clientsManagerViewModel = MyViewModelFactory.create(ClientsViewModel::class.java)
     val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
     Text("Clientes", fontSize = 25.sp, fontWeight = FontWeight.Normal)
     Row() {

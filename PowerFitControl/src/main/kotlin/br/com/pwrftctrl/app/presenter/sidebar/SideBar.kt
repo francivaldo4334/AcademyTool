@@ -12,9 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
-import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.app.presenter.viewmodels.ModulesManagerViewModel
-import br.com.pwrftctrl.app.presenter.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.Resources as R
 
 @Composable

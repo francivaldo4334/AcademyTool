@@ -12,10 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.pwrftctrl.app.presenter.ui.components.IconButton
-import br.com.pwrftctrl.app.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.app.presenter.header.viewmodels.ProfileManagerViewModel
 import br.com.pwrftctrl.core.utils.Resources as R
+import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.core.presenter.ui.components.IconButton
 
 @Composable
 fun MainHeader() {

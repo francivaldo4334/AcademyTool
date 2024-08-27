@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.app.presenter.clients.header
+package br.com.pwrftctrl.clients.presenter.header.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

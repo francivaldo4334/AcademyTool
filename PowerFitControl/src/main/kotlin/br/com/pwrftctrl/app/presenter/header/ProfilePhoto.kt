@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import br.com.pwrftctrl.app.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 // TODO: Profile Photo
 @Composable

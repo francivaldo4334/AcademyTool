@@ -15,3 +15,4 @@ pluginManagement {
 
 rootProject.name = "PowerFitControl"
 include("core")
+include("clients")
