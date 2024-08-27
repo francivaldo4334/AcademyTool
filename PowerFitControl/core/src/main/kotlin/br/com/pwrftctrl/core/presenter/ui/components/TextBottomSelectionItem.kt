@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.clients.presenter.header.components
+package br.com.pwrftctrl.core.presenter.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable

@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.clients.presenter.header
+package br.com.pwrftctrl.clients.presenter.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,13 +12,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.clients.presenter.enums.OptionsType
-import br.com.pwrftctrl.clients.presenter.header.components.TextBottomSelectionItem
 import br.com.pwrftctrl.clients.presenter.viewmodels.ClientsViewModel
 import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
+import br.com.pwrftctrl.core.presenter.ui.components.TextBottomSelectionItem
 import br.com.pwrftctrl.core.utils.R
 
 @Composable
-fun ClientsHeader() {
+fun Header() {
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         val clientsManagerViewModel = MyViewModelFactory.create(ClientsViewModel::class.java)
         val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
