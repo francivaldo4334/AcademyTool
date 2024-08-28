@@ -2,6 +2,7 @@ package br.com.pwrftctrl.core.presenter.ui.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
@@ -39,19 +40,22 @@ fun SearchField() {
                                                 )
                                                 .height(40.dp)
                                                 .widthIn(min = 272.dp, max = 400.dp)
-                                                .padding(8.dp),
+                                                .padding(horizontal = 12.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                                 Icon(
                                         painter = R.vectors.ic_search,
                                         contentDescription = "Icone de Pesquisa",
-                                        tint = extendedColors.secondary600
+                                        tint = extendedColors.secondary600,
+                                        modifier = Modifier.size(18.dp)
                                 )
-                                if (value.isEmpty()) {
-                                        Text(R.strings.search, color = extendedColors.secondary500)
-                                } else {
+                                Box(
+                                        contentAlignment = Alignment.CenterStart
+                                ){
                                         fieldBox() 
+                                        if (value.isEmpty())
+                                                Text(R.strings.search, color = extendedColors.secondary500)
                                 }
                         }
                 }

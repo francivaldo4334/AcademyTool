@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.material.Text
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.core.presenter.ui.components.SearchField
 import br.com.pwrftctrl.core.presenter.ui.components.TextButton
 import br.com.pwrftctrl.core.utils.R
@@ -26,7 +27,10 @@ fun FiltersRow() {
                 //TODO: Click pesquisar
             }
         ){
-            Text(R.strings.search)
+            Text(
+                text = R.strings.search,
+                fontSize = 12.sp
+            )
         }
     }
 }
