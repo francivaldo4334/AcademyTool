@@ -134,19 +134,31 @@ fun SelectField(
                             )
                         }
                         items.forEach { item ->
-                            Text(
-                                text = item,
+                            Row(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(8.dp))
                                     .clickable{
-                                       selectedItem = item
-                                       openPopup = false
-                                       onSelectedItem(item)
+                                        selectedItem = item
+                                        openPopup = false
+                                        onSelectedItem(item)
                                     }
                                     .widthIn(min = minContentWidthSelection.dp)
                                     .padding(vertical = 4.dp, horizontal = 8.dp),
-                                fontSize = 14.sp,
-                            )
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ){
+                                Text(
+                                    text = item,
+                                    fontSize = 14.sp,
+                                )
+                                if (item == selectedItem)
+                                    Icon(
+                                        painter = R.vectors.ic_checked,
+                                        contentDescription = "icon de check",
+                                        tint = extendedColors.secondary600,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                            }
                         }
                     }
                 }
