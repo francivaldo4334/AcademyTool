@@ -87,3 +87,7 @@ lspconfig.kotlin_language_server.setup{
   end, 
 }
 ```
+```bash
+export JAVA_OPTS="-Xmx2G"
+kls
+```

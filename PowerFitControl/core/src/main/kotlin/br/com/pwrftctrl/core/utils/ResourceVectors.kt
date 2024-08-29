@@ -39,4 +39,9 @@ class ResourceVectors() {
         get() {
             return R.getVector("ic_search.svg")
         }
+    val ic_arrow_down: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_arrow_down.svg")
+        }
 }

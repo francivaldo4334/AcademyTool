@@ -14,6 +14,7 @@ data class ResourceStrings(
         val clients_option_birthdays: String = R.getString("clients_option_birthdays"),
         val settings: String = R.getString("settings"),
         val search: String = R.getString("search"),
+        val has_no_items: String = R.getString("has_no_items")
 ) {
     fun getDatabasePath(): String {
         val os = System.getProperty("os.name").lowercase()
