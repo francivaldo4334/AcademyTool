@@ -29,6 +29,7 @@ import br.com.pwrftctrl.core.presenter.ui.components.PopoverTip
 fun CheckboxFilter(painter: Painter, checked: Boolean, contentDescription: String,onChange: (Boolean) -> Unit) {
     val extendedColors = LocalExtendedColors.current
     PopoverTip(
+        offset = IntOffset(0, 4),
         alignment = Alignment.BottomStart,
         contentComponent = {
             Box(

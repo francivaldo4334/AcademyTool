@@ -20,6 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandIn
+import androidx.compose.animation.shrinkOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
@@ -61,7 +69,11 @@ fun PopoverTip(
                 else -> offset  
             }
         ){
-            if (isHover) {
+            AnimatedVisibility(
+                visible = isHover,
+                enter = scaleIn() + expandIn() + fadeIn(),
+                exit = scaleOut() + shrinkOut() + fadeOut(),
+            ){
                 Box(
                     modifier = Modifier
                         .drawBehind {
@@ -70,10 +82,12 @@ fun PopoverTip(
                         }
                         .clip(RoundedCornerShape(4.dp))
                         .background(
-                            color = extendedColors.secondary500.copy(0.5f)
+                            color = extendedColors.secondary300.copy(0.5f)
                         )
                         .padding(4.dp)
-                ) { content() }
+                ) { 
+                    content()
+                }
             }
         }
     }

@@ -41,34 +41,37 @@ fun Button(
 ) {
     val extendedColors = LocalExtendedColors.current
     val isHovered = remember { mutableStateOf(false) }
-    PopoverTip(
-        offset = IntOffset(8, 0),
-        alignment = Alignment.CenterEnd,
-        contentComponent = {
-            Button(
-                onClick = onClick,
-                contentPadding = PaddingValues(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor =
-                    if (moduleIndex == moduleSelected)
-                        extendedColors.primary500
-                    else if (isHovered.value)
-                        extendedColors.secondary800
-                    else Color.Transparent
-                ),
-                modifier = Modifier
-                    .onPointerEvent(PointerEventType.Enter) { isHovered.value = true }
-                    .onPointerEvent(PointerEventType.Exit) { isHovered.value = false }
-                    .padding(horizontal = 8.dp),
-                shape = RoundedCornerShape(12.dp),
-            ) {
-                Icon(
-                    painter = iconPainter,
-                    contentDescription = "Icon Module $textHelp",
-                    modifier = Modifier.size(24.dp),
-                    tint = extendedColors.white
-                )
+    Box(
+        modifier = modifier.padding(horizontal = 8.dp)
+    ) {
+        PopoverTip(
+            offset = IntOffset(16, 0),
+            alignment = Alignment.CenterEnd,
+            contentComponent = {
+                Button(
+                    onClick = onClick,
+                    contentPadding = PaddingValues(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor =
+                        if (moduleIndex == moduleSelected)
+                            extendedColors.primary500
+                        else if (isHovered.value)
+                            extendedColors.secondary800
+                        else Color.Transparent
+                    ),
+                    modifier = Modifier
+                        .onPointerEvent(PointerEventType.Enter) { isHovered.value = true }
+                        .onPointerEvent(PointerEventType.Exit) { isHovered.value = false },
+                    shape = RoundedCornerShape(12.dp),
+                ) {
+                    Icon(
+                        painter = iconPainter,
+                        contentDescription = "Icon Module $textHelp",
+                        modifier = Modifier.size(24.dp),
+                        tint = extendedColors.white
+                    )
+                }
             }
-        }
-    ) { Text(textHelp) }
+        ) { Text(textHelp) }
+    }
 }
