@@ -26,6 +26,7 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.presenter.ui.components.PopoverTip
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -40,64 +41,34 @@ fun Button(
 ) {
     val extendedColors = LocalExtendedColors.current
     val isHovered = remember { mutableStateOf(false) }
-    val buttomPosition = remember { mutableStateOf(IntOffset.Zero) }
-    Box(modifier = modifier.wrapContentSize()) {
-        Button(
-            onClick = onClick,
-            contentPadding = PaddingValues(8.dp),
-            colors =
-            ButtonDefaults.buttonColors(
-                backgroundColor =
-                if (moduleIndex == moduleSelected)
-                    extendedColors.primary500
-                else if (isHovered.value)
-                    extendedColors.secondary800
-                else Color.Transparent
-            ),
-            modifier =
-            Modifier.onPointerEvent(PointerEventType.Enter) {
-                isHovered.value = true
-            }
-                .onPointerEvent(PointerEventType.Exit) {
-                    isHovered.value = false
-                }
-                .onGloballyPositioned { coodinates ->
-                    buttomPosition.value =
-                        coodinates.positionInWindow().run {
-                            IntOffset(
-                                x.roundToInt(),
-                                y.roundToInt()
-                            )
-                        }
-                },
-            shape = RoundedCornerShape(12.dp)
-        ) {
-            Icon(
-                painter = iconPainter,
-                contentDescription = "Icon Module $textHelp",
-                modifier = Modifier.size(24.dp),
-                tint = extendedColors.white
-            )
-        }
-        if (isHovered.value) {
-            Popup(
-                alignment = Alignment.TopStart,
-                properties =
-                PopupProperties(
-                    dismissOnBackPress = true,
-                    dismissOnClickOutside = true,
+    PopoverTip(
+        offset = IntOffset(8, 0),
+        alignment = Alignment.CenterEnd,
+        contentComponent = {
+            Button(
+                onClick = onClick,
+                contentPadding = PaddingValues(8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor =
+                    if (moduleIndex == moduleSelected)
+                        extendedColors.primary500
+                    else if (isHovered.value)
+                        extendedColors.secondary800
+                    else Color.Transparent
                 ),
-                offset = IntOffset(buttomPosition.value.x + 56, 4)
+                modifier = Modifier
+                    .onPointerEvent(PointerEventType.Enter) { isHovered.value = true }
+                    .onPointerEvent(PointerEventType.Exit) { isHovered.value = false }
+                    .padding(horizontal = 8.dp),
+                shape = RoundedCornerShape(12.dp),
             ) {
-                Box(
-                    modifier =
-                    Modifier.clip(RoundedCornerShape(12.dp))
-                        .background(
-                            color = extendedColors.secondary100
-                        )
-                        .padding(8.dp)
-                ) { Text(textHelp) }
+                Icon(
+                    painter = iconPainter,
+                    contentDescription = "Icon Module $textHelp",
+                    modifier = Modifier.size(24.dp),
+                    tint = extendedColors.white
+                )
             }
         }
-    }
+    ) { Text(textHelp) }
 }

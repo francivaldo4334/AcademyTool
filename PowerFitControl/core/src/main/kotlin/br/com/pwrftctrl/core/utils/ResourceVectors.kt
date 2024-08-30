@@ -49,4 +49,29 @@ class ResourceVectors() {
         get() {
             return R.getVector("ic_checked.svg")
         }
+    val ic_profile_add: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_profile_add.svg")
+        }
+    val ic_no_money: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_no_money.svg")
+        }
+    val ic_money: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_money.svg")
+        }
+    val ic_cake: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_cake.svg")
+        }
+    val ic_question: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_question.svg")
+        }
 }

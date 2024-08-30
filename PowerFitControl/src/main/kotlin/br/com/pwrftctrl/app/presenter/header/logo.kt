@@ -16,7 +16,7 @@ fun Logo() {
     Box(
         modifier =
         Modifier.size(40.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(extendedColors.primary500)
     ) {}
 }

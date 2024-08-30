@@ -20,7 +20,7 @@ fun IconButton(painter: Painter, contentDescription: String, onClick: () -> Unit
         onClick = onClick,
         modifier =
         Modifier.size(40.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(8.dp))
             .background(extendedColors.primary500)
             .padding(0.dp),
     ) {

@@ -34,6 +34,9 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.clip
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 
@@ -105,13 +108,18 @@ fun SelectField(
                 modifier = Modifier.size(16.dp)
             )
         }
-        if (openPopup) {
-            Popup(
-                offset = IntOffset(0,contentHeight),
-                onDismissRequest = {
-                    openPopup = false
-                }
-            ) {
+
+        Popup(
+            offset = IntOffset(0,contentHeight),
+            onDismissRequest = {
+                openPopup = false
+            }
+        ) {
+            AnimatedVisibility(
+                visible = openPopup,
+                enter = expandVertically(),
+                exit = shrinkVertically()
+            ){
                 Card(
                     backgroundColor = extendedColors.secondary50,
                     shape = RoundedCornerShape(12.dp),

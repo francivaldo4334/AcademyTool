@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.core.presenter.ui.components.SearchField
 import br.com.pwrftctrl.core.presenter.ui.components.TextButton
 import br.com.pwrftctrl.core.presenter.ui.components.SelectField
+import br.com.pwrftctrl.core.presenter.ui.components.IconButton
+import br.com.pwrftctrl.core.presenter.ui.components.CheckboxexFilterRow
+import br.com.pwrftctrl.core.presenter.ui.components.CheckboxFilter
 import br.com.pwrftctrl.core.utils.R
 
 @Composable
@@ -45,6 +48,39 @@ fun FiltersRow() {
                 label = "Items por página",
                 items = listOf("5", "10", "15"),
                 selectedItem = "5"
+            )
+            CheckboxexFilterRow{
+                CheckboxFilter(
+                    checked = true,
+                    painter = R.vectors.ic_no_money,
+                    contentDescription = R.strings.students_in_debt,
+                    onChange = {}
+                )
+                CheckboxFilter(
+                    checked = true,
+                    painter = R.vectors.ic_money,
+                    contentDescription = R.strings.students_checkeds,
+                    onChange = {}
+                )
+                CheckboxFilter(
+                    checked = false,
+                    painter = R.vectors.ic_cake,
+                    contentDescription = R.strings.birthdays_of_month,
+                    onChange = {}
+                )
+                CheckboxFilter(
+                    checked = true,
+                    painter = R.vectors.ic_question,
+                    contentDescription = R.strings.missing_students,
+                    onChange = {}
+                )
+            }
+            IconButton(
+                painter = R.vectors.ic_profile_add,
+                contentDescription = "Adicionar novo aluno",
+                onClick = {
+
+                }
             )
         }
     }
