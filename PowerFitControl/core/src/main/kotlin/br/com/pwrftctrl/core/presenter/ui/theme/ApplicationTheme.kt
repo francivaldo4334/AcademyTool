@@ -74,8 +74,9 @@ fun AppTheme(content: @Composable () -> Unit) {
         CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
                 MaterialTheme(
                         colors = colorScheme,
-                        typography = MaterialTheme.typography,
-                        content = content
+                        // typography = MaterialTheme.typography,
+                        typography = customTypography,
+                        content = content,
                 )
         }
 }
