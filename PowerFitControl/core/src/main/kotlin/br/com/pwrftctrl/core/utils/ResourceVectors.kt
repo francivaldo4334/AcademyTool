@@ -74,4 +74,14 @@ class ResourceVectors() {
         get() {
             return R.getVector("ic_question.svg")
         }
+    val ic_arrow_left: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_arrow_left.svg")
+        }
+    val ic_arrow_right: Painter
+        @Composable
+        get() {
+            return R.getVector("ic_arrow_rigth.svg")
+        }
 }
