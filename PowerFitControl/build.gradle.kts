@@ -47,3 +47,15 @@ tasks.withType<KotlinCompile>().configureEach {
         freeCompilerArgs = listOf("-Xjsr305=strict")
     }
 }
+
+tasks.register<Jar>("fatJar") {
+    from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
+    })
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes["Main-Class"] = "br.com.pwrftctrl.app.presenter.MainKt"
+    }
+}
