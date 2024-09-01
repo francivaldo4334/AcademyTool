@@ -19,6 +19,16 @@ data class ResourceStrings(
         val students_checkeds: String = R.getString("students_checkeds"),
         val birthdays_of_month: String = R.getString("birthdays_of_month"),
         val missing_students: String =R.getString("missing_students"),
+        val avatar: String = R.getString("avatar"),
+        val name: String = R.getString("name"),
+        val register: String = R.getString("register"),
+        val age: String = R.getString("age"),
+        val email: String = R.getString("email"),
+        val status: String = R.getString("status"),
+        val phone_or_whatsapp: String = R.getString("phone_or_whatsapp"),
+        val items_per_page: String = R.getString("items_per_page"),
+        val clients: String = R.getString("clients"),
+        val total_number_of_students: String = R.getString("total_number_of_students")
 ) {
     fun getDatabasePath(): String {
         val os = System.getProperty("os.name").lowercase()

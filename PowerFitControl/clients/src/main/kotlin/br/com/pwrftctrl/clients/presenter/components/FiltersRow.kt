@@ -62,7 +62,7 @@ fun FiltersRow() {
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) { 
             SelectField(
-                label = "Items por página",
+                label = R.strings.items_per_page,
                 items = listOf("5", "10", "15"),
                 selectedItem = "5"
             )

@@ -22,7 +22,7 @@ fun Header() {
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         val clientsManagerViewModel = MyViewModelFactory.create(ClientsViewModel::class.java)
         val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
-        Text("Clientes", fontSize = 25.sp, fontWeight = FontWeight.Normal)
+        Text(R.strings.clients, fontSize = 25.sp, fontWeight = FontWeight.Normal)
         Row() {
             TextBottomSelectionItem(
                 R.strings.clients_option_students,

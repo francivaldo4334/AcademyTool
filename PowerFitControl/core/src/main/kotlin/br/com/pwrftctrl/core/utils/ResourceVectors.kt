@@ -4,84 +4,76 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 
 class ResourceVectors() {
-    val ic_clients: Painter
+    val ic_clients
         @Composable
-        get() {
-            return R.getVector("ic_clients.svg")
-        }
-    val ic_dumbbells: Painter
+        get() = R.getVector("ic_clients.svg")
+        
+    val ic_dumbbells
         @Composable
-        get() {
-            return R.getVector("ic_dumbbells.svg")
-        }
-    val ic_hand_money: Painter
+        get() = R.getVector("ic_dumbbells.svg")
+        
+    val ic_hand_money
         @Composable
-        get() {
-            return R.getVector("ic_hand_money.svg")
-        }
-    val ic_status_up: Painter
+        get() = R.getVector("ic_hand_money.svg")
+        
+    val ic_status_up
         @Composable
-        get() {
-            return R.getVector("ic_status_up.svg")
-        }
-    val ic_logout: Painter
+        get() = R.getVector("ic_status_up.svg")
+        
+    val ic_logout
         @Composable
-        get() {
-            return R.getVector("ic_logout.svg")
-        }
-    val ic_settings: Painter
+        get() = R.getVector("ic_logout.svg")
+        
+    val ic_settings
         @Composable
-        get() {
-            return R.getVector("ic_settings.svg")
-        }
-    val ic_search: Painter
+        get() = R.getVector("ic_settings.svg")
+        
+    val ic_search
         @Composable
-        get() {
-            return R.getVector("ic_search.svg")
-        }
-    val ic_arrow_down: Painter
+        get() = R.getVector("ic_search.svg")
+        
+    val ic_arrow_down
         @Composable
-        get() {
-            return R.getVector("ic_arrow_down.svg")
-        }
-    val ic_checked: Painter
+        get() = R.getVector("ic_arrow_down.svg")
+        
+    val ic_checked
         @Composable
-        get() {
-            return R.getVector("ic_checked.svg")
-        }
-    val ic_profile_add: Painter
+        get() = R.getVector("ic_checked.svg")
+        
+    val ic_profile_add
         @Composable
-        get() {
-            return R.getVector("ic_profile_add.svg")
-        }
-    val ic_no_money: Painter
+        get() = R.getVector("ic_profile_add.svg")
+        
+    val ic_no_money
         @Composable
-        get() {
-            return R.getVector("ic_no_money.svg")
-        }
-    val ic_money: Painter
+        get() = R.getVector("ic_no_money.svg")
+        
+    val ic_money
         @Composable
-        get() {
-            return R.getVector("ic_money.svg")
-        }
-    val ic_cake: Painter
+        get() = R.getVector("ic_money.svg")
+        
+    val ic_cake
         @Composable
-        get() {
-            return R.getVector("ic_cake.svg")
-        }
-    val ic_question: Painter
+        get() = R.getVector("ic_cake.svg")
+        
+    val ic_question
         @Composable
-        get() {
-            return R.getVector("ic_question.svg")
-        }
-    val ic_arrow_left: Painter
+        get() = R.getVector("ic_question.svg")
+        
+    val ic_arrow_left
         @Composable
-        get() {
-            return R.getVector("ic_arrow_left.svg")
-        }
-    val ic_arrow_right: Painter
+        get() = R.getVector("ic_arrow_left.svg")
+        
+    val ic_arrow_right
         @Composable
-        get() {
-            return R.getVector("ic_arrow_rigth.svg")
-        }
+        get() = R.getVector("ic_arrow_right.svg")
+        
+    val ic_arrow_down_bold
+        @Composable
+        get() = R.getVector("ic_arrow_down_bold.svg")
+         
+    val ic_arrow_up_bold
+        @Composable
+        get() = R.getVector("ic_arrow_up_bold.svg")
+        
 }
