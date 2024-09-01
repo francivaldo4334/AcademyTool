@@ -53,7 +53,7 @@ data class HeaderItem(
         props.onSortAction?.invoke()
       }
       .then(
-        if (props.minWidth == null && props.maxWidth == null)
+        if (props.maxWidth == null)
           Modifier.weight(1f)
         else Modifier
       )

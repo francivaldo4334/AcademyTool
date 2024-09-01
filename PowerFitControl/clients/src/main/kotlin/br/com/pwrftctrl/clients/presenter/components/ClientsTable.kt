@@ -41,6 +41,7 @@ fun ColumnScope.ClientsTable() {
       ),
       HeaderItem(
         title = R.strings.phone_or_whatsapp,
+        minWidth = 200.dp
       ),
     )
   )
