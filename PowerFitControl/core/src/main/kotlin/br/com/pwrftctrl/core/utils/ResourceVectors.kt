@@ -75,5 +75,9 @@ class ResourceVectors() {
     val ic_arrow_up_bold
         @Composable
         get() = R.getVector("ic_arrow_up_bold.svg")
+
+    val ic_construction
+        @Composable
+        get() = R.getVector("ic_construction.svg")
         
 }
