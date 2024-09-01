@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.clients.presenter.enums.OptionsType
 import br.com.pwrftctrl.clients.presenter.viewmodels.ClientsViewModel
-import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.presenter.ui.components.TextBottomSelectionItem
+import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.R
 
 @Composable

@@ -2,43 +2,38 @@ package br.com.pwrftctrl.clients.presenter.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.com.pwrftctrl.clients.presenter.components.ClientsTable
-import br.com.pwrftctrl.clients.presenter.components.FiltersRow
 import br.com.pwrftctrl.clients.presenter.components.Header
-import br.com.pwrftctrl.core.presenter.ui.components.Pagination
+import br.com.pwrftctrl.clients.presenter.enums.OptionsType
+import br.com.pwrftctrl.clients.presenter.viewmodels.ClientsViewModel
 import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
-import br.com.pwrftctrl.core.utils.R
+import br.com.pwrftctrl.core.presenter.viewmodels.viewModel
 
 @Composable
 fun ClientsScreen() {
-    var currentPage by remember { mutableStateOf(1) }
+    val clientsManagerViewModel = viewModel<ClientsViewModel>()
+    val selectedOption by clientsManagerViewModel.selectedOption.collectAsState()
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
-                modifier =
-                        Modifier.fillMaxHeight()
-                                .widthIn(max = LocalDimensionsSizeScreen.maxWidth)
-                                .padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.SpaceBetween
+            modifier =
+            Modifier.fillMaxHeight()
+                .widthIn(max = LocalDimensionsSizeScreen.maxWidth)
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Column {
-                Header()
-                FiltersRow()
+            Header()
+            when (selectedOption) {
+                OptionsType.STUDENTS ->
+                    StudentsScreen()
+
+                else -> {
+
+                }
             }
-            ClientsTable()
-            Pagination(
-                    helpText = R.strings.total_number_of_students,
-                    countItems = 400,
-                    perPage = 11,
-                    selectedPage = currentPage,
-                    onChange = { currentPage = it }
-            )
         }
     }
 }
