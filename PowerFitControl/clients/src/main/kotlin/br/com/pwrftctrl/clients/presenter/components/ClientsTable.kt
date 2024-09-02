@@ -1,14 +1,19 @@
 package br.com.pwrftctrl.clients.presenter.components
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Modifier
+import androidx.compose.material.Text
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
 import br.com.pwrftctrl.core.utils.R
+import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun ColumnScope.ClientsTable() {
+  val extendedColors = LocalExtendedColors.current
   Table(
     headerItems = listOf(
       HeaderItem(
@@ -43,6 +48,18 @@ fun ColumnScope.ClientsTable() {
         title = R.strings.phone_or_whatsapp,
         minWidth = 200.dp
       ),
+    ) 
+  ) {
+    repeat(100) {
+    row(
+      { },
+      { },
+      { },
+      { },
+      { },
+      { },
+      { },
     )
-  )
+    }
+  }
 }

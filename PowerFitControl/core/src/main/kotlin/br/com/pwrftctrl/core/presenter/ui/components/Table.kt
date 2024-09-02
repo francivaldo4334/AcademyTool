@@ -4,17 +4,25 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 
@@ -92,16 +100,83 @@ private fun Header(items: List<HeaderItem>) {
     }
 }
 
+class TableRows(val sizeRow: Int) {
+    data class Cell(val contents: Array<@Composable () -> Unit>)
+    val rows: MutableList<Cell> = mutableListOf<Cell>()
+    fun row(vararg contents: @Composable () -> Unit) {
+        if (contents.size != sizeRow) 
+            throw ArrayIndexOutOfBoundsException("O numero de celulas deve ser memo setado para o header")
+        val cellsContents = contents as Array<@Composable () -> Unit>
+        rows.add(Cell(cellsContents))
+    }
+}
+
+@Composable
+private fun RowScope.CellLayout(props: HeaderItem, content: @Composable () -> Unit) {
+    var cellWindth by remember {
+        mutableStateOf(0)
+    }
+    var cellHeight by remember {
+        mutableStateOf(0)
+    }
+    Box(
+        modifier = Modifier
+            .then(
+                if (props.maxWidth == null)
+                    Modifier.weight(1f)
+                else Modifier
+            )
+            .then(
+                if (props.minWidth != null)
+                    Modifier.widthIn(min = props.minWidth)
+                else Modifier
+            )
+            .then(
+                if (props.maxWidth != null)
+                    Modifier.widthIn(max = props.maxWidth)
+                else Modifier
+            )
+            .heightIn(min = 32.dp)
+            .drawBehind {
+                cellWindth = size.width.toInt()
+                cellHeight = size.height.toInt()
+            },
+        ) {
+        Box(
+            modifier = Modifier.width(cellWindth.dp).height(cellHeight.dp)
+        ){
+            content()
+        }
+    }
+}
+
 @Composable
 fun ColumnScope.Table(
-    headerItems: List<HeaderItem>
+    headerItems: List<HeaderItem>,
+    rows: TableRows.() -> Unit,
 ) {
     val extendedColors = LocalExtendedColors.current
+    val tableRows = TableRows(headerItems.size).apply{
+        rows() 
+    }
     Column(
         modifier =
         Modifier.border(2.dp, extendedColors.secondary200, RoundedCornerShape(12.dp))
             .weight(1f)
             .fillMaxWidth()
             .padding(12.dp),
-    ) { Header(headerItems) }
+    ) { 
+        Header(headerItems)
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth()
+        ){
+            items(tableRows.rows) { cell -> 
+                Row{
+                    headerItems.forEachIndexed { index, it ->
+                        CellLayout(it, cell.contents[index])
+                    }
+                }
+            } 
+        }
+    }
 }
