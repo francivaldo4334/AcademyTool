@@ -90,7 +90,9 @@ private fun Header(items: List<HeaderItem>) {
     val extendedColors = LocalExtendedColors.current
     Row(
         modifier =
-        Modifier.fillMaxWidth()
+        Modifier
+            .padding(bottom = 4.dp)
+            .fillMaxWidth()
             .heightIn(min = 32.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(extendedColors.secondary100),
@@ -101,22 +103,19 @@ private fun Header(items: List<HeaderItem>) {
 }
 
 class TableRows(val sizeRow: Int) {
-    data class Cell(val contents: Array<@Composable () -> Unit>)
+    data class Cell(val key: Int, val contents: Array<@Composable () -> Unit>, val onClick: () -> Unit)
     val rows: MutableList<Cell> = mutableListOf<Cell>()
-    fun row(vararg contents: @Composable () -> Unit) {
+    fun row(key:Int, vararg contents: @Composable () -> Unit, onClick: () -> Unit) {
         if (contents.size != sizeRow) 
             throw ArrayIndexOutOfBoundsException("O numero de celulas deve ser memo setado para o header")
         val cellsContents = contents as Array<@Composable () -> Unit>
-        rows.add(Cell(cellsContents))
+        rows.add(Cell(key, cellsContents, onClick))
     }
 }
 
 @Composable
 private fun RowScope.CellLayout(props: HeaderItem, content: @Composable () -> Unit) {
     var cellWindth by remember {
-        mutableStateOf(0)
-    }
-    var cellHeight by remember {
         mutableStateOf(0)
     }
     Box(
@@ -139,11 +138,10 @@ private fun RowScope.CellLayout(props: HeaderItem, content: @Composable () -> Un
             .heightIn(min = 32.dp)
             .drawBehind {
                 cellWindth = size.width.toInt()
-                cellHeight = size.height.toInt()
             },
         ) {
         Box(
-            modifier = Modifier.width(cellWindth.dp).height(cellHeight.dp)
+            modifier = Modifier.width(cellWindth.dp)
         ){
             content()
         }
@@ -170,8 +168,15 @@ fun ColumnScope.Table(
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
         ){
-            items(tableRows.rows) { cell -> 
-                Row{
+            items(
+                items = tableRows.rows,
+                key = { it.key }
+            ) { cell -> 
+                Row(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .clickable{ cell.onClick() }
+                ){
                     headerItems.forEachIndexed { index, it ->
                         CellLayout(it, cell.contents[index])
                     }

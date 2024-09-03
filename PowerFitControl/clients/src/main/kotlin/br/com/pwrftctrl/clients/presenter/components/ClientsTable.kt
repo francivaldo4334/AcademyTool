@@ -1,19 +1,18 @@
 package br.com.pwrftctrl.clients.presenter.components
 
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
-import androidx.compose.material.Text
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
+import br.com.pwrftctrl.core.presenter.ui.components.ProfileImage
 import br.com.pwrftctrl.core.utils.R
-import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun ColumnScope.ClientsTable() {
-  val extendedColors = LocalExtendedColors.current
   Table(
     headerItems = listOf(
       HeaderItem(
@@ -50,16 +49,24 @@ fun ColumnScope.ClientsTable() {
       ),
     ) 
   ) {
-    repeat(100) {
-    row(
-      { },
-      { },
-      { },
-      { },
-      { },
-      { },
-      { },
-    )
+    repeat(10) {
+      row(
+        key = it,
+        {
+          ProfileImage(
+            fileName = "teste.jpeg",
+            modifier = Modifier.padding(12.dp).size(32.dp)
+          )
+        },
+        { },
+        { },
+        { },
+        { },
+        { },
+        { },
+      ) {
+
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ package br.com.pwrftctrl.core.utils
 
 import androidx.compose.runtime.Composable
 
-class ResourceVectors() {
+class Vectors() {
     val ic_clients
         @Composable
         get() = R.getVector("ic_clients.svg")

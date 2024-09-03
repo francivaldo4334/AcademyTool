@@ -3,7 +3,7 @@ package br.com.pwrftctrl.core.utils
 import java.io.File
 import java.nio.file.Paths
 
-data class ResourceStrings(
+data class Strings(
     val clients_manager: String = R.getString("clients_manager"),
     val show_metrics: String = R.getString("show_metrics"),
     val equipments_control: String = R.getString("equipments_control"),
