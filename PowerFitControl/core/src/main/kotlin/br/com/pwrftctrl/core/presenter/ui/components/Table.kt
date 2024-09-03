@@ -139,9 +139,10 @@ private fun RowScope.CellLayout(props: HeaderItem, content: @Composable () -> Un
             .drawBehind {
                 cellWindth = size.width.toInt()
             },
+        contentAlignment = Alignment.CenterStart
         ) {
         Box(
-            modifier = Modifier.width(cellWindth.dp)
+            modifier = Modifier.width(cellWindth.dp),
         ){
             content()
         }
@@ -175,7 +176,8 @@ fun ColumnScope.Table(
                 Row(
                     modifier = Modifier
                         .clip(RoundedCornerShape(12.dp))
-                        .clickable{ cell.onClick() }
+                        .clickable{ cell.onClick() },
+                    verticalAlignment = Alignment.CenterVertically
                 ){
                     headerItems.forEachIndexed { index, it ->
                         CellLayout(it, cell.contents[index])

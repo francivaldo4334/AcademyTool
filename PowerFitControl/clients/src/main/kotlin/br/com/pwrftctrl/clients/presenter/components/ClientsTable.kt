@@ -2,10 +2,14 @@ package br.com.pwrftctrl.clients.presenter.components
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.Modifier
+import androidx.compose.material.Text
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
 import br.com.pwrftctrl.core.presenter.ui.components.ProfileImage
@@ -58,7 +62,13 @@ fun ColumnScope.ClientsTable() {
             modifier = Modifier.padding(12.dp).size(32.dp)
           )
         },
-        { },
+        {
+          Text(
+            text = "Nome completo do usuário",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Medium,
+          )
+        },
         { },
         { },
         { },
