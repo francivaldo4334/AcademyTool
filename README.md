@@ -65,23 +65,36 @@ require('mason-lspconfig').setup{
   ensure_installed = { "kotlin_language_server" }
 }
 
-local lspconfig = require("lspconfig")
+local lsp = require('lspconfig')
 
-lspconfig.kotlin_language_server.setup{
-  cmd = { "/home/fran/.kotlin-language-server/bin/kotlin-language-server"},
+local function restart_lsp()
+    for _, client in ipairs(vim.lsp.get_active_clients()) do
+        client.stop()
+        lsp[client.name].setup{}
+    end
+end
+
+local function on_publish_diagnostics(_, result, _, _)
+    for _, diagnostic in ipairs(result.diagnostics) do
+        if diagnostic.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
+            if diagnostic.message:find("OutOfMemoryError") then
+                restart_lsp()
+                return
+            end
+        end
+    end
+end
+
+vim.lsp.handlers['textDocument/publishDiagnostics'] = on_publish_diagnostics
+lsp.kotlin_language_server.setup{
+  -- cmd = { "sh", "-c", "fuser -k 50000/tcp && /home/higia/.kotlin_language_server/server/bin/kotlin-language-server --tcpServerPort 50000 & nc localhost 50000"},
+  cmd = {"/home/higia/.kotlin_language_server/server/bin/kotlin-language-server"},
   filetype = { "kotlin" },
-  root_dir = lspconfig.util.root_pattern("settings.gragle", "settings.gragle.kts", ".git"),
-  settings = {
-    kotlin = {
-      compiler = {
-        jvm = {
-          target = "1.8"
-        }
-      }
-    }
-  },
+  root_dir = lsp.util.root_pattern("settings.gragle", "settings.gragle.kts", ".git"),
   on_attach = function(client, bufnr)
-    -- client.server_capabilities.document_formatting = false
+    -- client.server_capabilities.document_formatting = true
+    -- client.server_capabilities.documentFormattingProvider = false
+    -- client.server_capabilities.documentRangeFormattingProvider = false
     vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
     vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
   end, 
