@@ -53,30 +53,26 @@ fun ColumnScope.ClientsTable() {
       ),
     ) 
   ) {
-    repeat(10) {
-      row(
-        key = it,
-        {
-          ProfileImage(
-            fileName = "teste.jpeg",
-            modifier = Modifier.padding(12.dp).size(32.dp)
-          )
-        },
-        {
-          Text(
-            text = "Nome completo do usuário",
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Medium,
-          )
-        },
-        { },
-        { },
-        { },
-        { },
-        { },
-      ) {
-
-      }
+    val textWithStyle: @Composable (text: String) -> Unit = {
+        Text(
+          text = it,
+          fontSize = 12.sp,
+          fontWeight = FontWeight.Medium,
+          modifier = Modifier.padding(start = 12.dp)
+        )
     }
+    row(
+      key = 0,
+      {
+        ProfileImage(
+          fileName = "teste.jpeg",
+          modifier = Modifier.padding(12.dp).size(32.dp)
+        )
+      },
+      { textWithStyle("Nome completo do usuário") },
+      { textWithStyle("10/01/2024") },
+      { textWithStyle("24 anos") },
+      { textWithStyle("francivaldodev@gmail.com")},
+      { }, { }) { }
   }
 }

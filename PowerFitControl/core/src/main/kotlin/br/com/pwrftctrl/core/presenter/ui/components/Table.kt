@@ -47,9 +47,6 @@ inline private fun RowScope.HeaderItemLayout(
     }
     Row(
         modifier = Modifier
-            .drawBehind {
-                onWidthItem(size.width.toInt().dp)
-            }
             .clip(RoundedCornerShape(8.dp))
             .clickable(props.onSortAction != null) {
                 sorted = !sorted
@@ -70,6 +67,9 @@ inline private fun RowScope.HeaderItemLayout(
                     Modifier.widthIn(max = props.maxWidth)
                 else Modifier
             )
+            .drawBehind {
+                onWidthItem(size.width.toInt().dp)
+            }
             .heightIn(min = 32.dp)
             .padding(horizontal = 12.dp, vertical = 8.dp) ,
         verticalAlignment = Alignment.CenterVertically
@@ -167,9 +167,6 @@ fun ColumnScope.Table(
     val extendedColors = LocalExtendedColors.current
     val tableRows = TableRows(headerItems.size).apply{
         rows() 
-    }
-    var widthItems by remember{
-        mutableStateOf(emptyList<Dp>())
     }
     var listWidth = remember {
         mutableStateListOf(*headerItems.map{0.dp}.toTypedArray())
