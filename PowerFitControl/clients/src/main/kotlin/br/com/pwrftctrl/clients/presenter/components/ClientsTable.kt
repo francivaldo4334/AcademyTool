@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
 import br.com.pwrftctrl.core.presenter.ui.components.ProfileImage
+import br.com.pwrftctrl.core.presenter.ui.components.Clipboard
 import br.com.pwrftctrl.core.utils.R
 
 @Composable
@@ -73,6 +74,8 @@ fun ColumnScope.ClientsTable() {
       { textWithStyle("10/01/2024") },
       { textWithStyle("24 anos") },
       { textWithStyle("francivaldodev@gmail.com")},
-      { }, { }) { }
+      {
+        Clipboard("teste")
+      }, { }) { }
   }
 }

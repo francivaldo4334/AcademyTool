@@ -78,5 +78,8 @@ class Vectors() {
     val ic_construction
         @Composable
         get() = R.getVector("ic_construction.svg")
+    val ic_clipboard
+        @Composable
+        get() = R.getVector("ic_copy.svg")
 
 }
