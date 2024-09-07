@@ -57,6 +57,7 @@ fun Pagination(
     countItems: Int,
     perPage: Int,
     selectedPage: Int = 1,
+    countRepeat: Int = COUNT_REPEAT,
     longJump: Int = 30,
     onChange: (Int) -> Unit
 ) {
@@ -68,7 +69,7 @@ fun Pagination(
     val nextLongJump =
         if ((selectedPage + longJump) > countPage) countPage else (selectedPage + longJump)
     val previusLongJump = if ((selectedPage - longJump) < 1) 1 else (selectedPage - longJump)
-    val regress = COUNT_REPEAT / 2
+    val regress = countRepeat / 2
     val initialPositionPage =
         if (selectedPage > regress)
             selectedPage -
@@ -91,7 +92,7 @@ fun Pagination(
                 painter = R.vectors.ic_arrow_left,
             )
 
-            repeat(COUNT_REPEAT) {
+            repeat(countRepeat) {
                 when (it) {
                     START -> {
                         LongJumpButton(
