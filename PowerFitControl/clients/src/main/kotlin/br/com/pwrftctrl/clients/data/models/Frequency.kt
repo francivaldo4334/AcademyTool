@@ -1,10 +1,10 @@
 package br.com.pwrftctrl.clients.data.models
 
 import org.jetbrains.exposed.sql.Table
-import br.com.pwrftctrl.clients.data.utils.dateField
-import br.com.pwrftctrl.clients.data.utils.timeInMinutesField
-import br.com.pwrftctrl.clients.data.utils.CurrentDate
-import br.com.pwrftctrl.clients.data.utils.CurrentTimeInMinutesTime
+import br.com.pwrftctrl.core.data.utils.dateField
+import br.com.pwrftctrl.core.data.utils.timeInMinutesField
+import br.com.pwrftctrl.core.data.utils.CurrentDate
+import br.com.pwrftctrl.core.data.utils.CurrentTimeInMinutesTime
 
 object Frequency: Table() {
   val id = integer("id").autoIncrement().entityId()

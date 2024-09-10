@@ -1,7 +1,7 @@
 package br.com.pwrftctrl.clients.data.models
 
 import org.jetbrains.exposed.sql.Table
-import br.com.pwrftctrl.clients.data.utils.centsField
+import br.com.pwrftctrl.core.data.utils.centsField
 
 object RegistrationDiscount: Table() {
   val id = integer("id").autoIncrement().entityId()

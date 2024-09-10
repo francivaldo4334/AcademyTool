@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 object TrainingSheet: Table() {
   val id = integer("id").autoIncrement().entityId()
   val active = bool("active").default(true)
-  val registraion = integer("registraion").references(Registraion.id)
+  val registration = integer("registration").references(Registration.id)
   val studentName = varchar("student_name", 255)
-  //TODO
+  val instructor = varchar("instructor", 11)
 }

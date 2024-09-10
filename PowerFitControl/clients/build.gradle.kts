@@ -21,9 +21,6 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
     implementation("org.xerial:sqlite-jdbc:3.46.1.0")
     implementation(project(":core"))
 }

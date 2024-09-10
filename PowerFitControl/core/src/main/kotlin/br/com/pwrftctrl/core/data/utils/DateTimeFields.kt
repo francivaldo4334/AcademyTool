@@ -1,4 +1,4 @@
-package br.com.pwrftctrl.clients.data.utils
+package br.com.pwrftctrl.core.data.utils
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.and
@@ -24,7 +24,12 @@ fun Table.timeField(name: String): Column<Long> {
 }
 
 fun Table.centsField(name: String = "value"): Column<Int> {
-  return integer(name).check{ it greaterEq 0}.default(0)
+  return integer(name).check { it greaterEq 0}.default(0)
+}
+
+fun Table.weekdayField(name: String = "weekday"): Column<Int> {
+  //Idex 0 iqual a Domingo
+  return integer(name).check { (it greaterEq 0) and (it lessEq 6)}
 }
 
 class CurrentDate : Expression<Long>() {
