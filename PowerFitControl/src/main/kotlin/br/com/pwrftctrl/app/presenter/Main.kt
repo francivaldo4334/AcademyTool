@@ -24,7 +24,7 @@ import androidx.compose.ui.window.rememberWindowState
 import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
 import br.com.pwrftctrl.app.presenter.header.MainHeader
 import br.com.pwrftctrl.app.presenter.sidebar.SideBar
-import br.com.pwrftctrl.clients.presenter.screens.ClientsScreen
+import br.com.pwrftctrl.students.presenter.screens.ClientsScreen
 import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
 import br.com.pwrftctrl.core.presenter.ui.theme.AppTheme
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
