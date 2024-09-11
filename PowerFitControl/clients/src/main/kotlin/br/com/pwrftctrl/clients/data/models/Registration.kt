@@ -14,4 +14,5 @@ object Registration : Table() {
   val situation = varchar("situation", 120)
   val modality = integer("modality").references(Modality.id)
   val observation = varchar("observation", 255)
+  val inDebit = bool("in_debit").default(false)
 }
