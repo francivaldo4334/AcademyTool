@@ -7,28 +7,28 @@ import org.jetbrains.exposed.sql.Expression
 import org.jetbrains.exposed.sql.QueryBuilder
 import org.jetbrains.exposed.sql.append
 
+// Data formato YYYY/MM/dd contagem em dias
 fun Table.dateField(name: String): Column<Long> {
   return long(name)
 }
 
+// DataHora formato YYYY/MM/dd HH:mm contagem em Minutos
 fun Table.dateTimeField(name: String): Column<Long> {
   return long(name)
 }
 
+// Hora formato HH:mm contagem em Minutos em um intervalo de 0 a 24 horas
 fun Table.timeInMinutesField(name: String): Column<Int> {
-  return integer(name).check { (it greaterEq 0) and (it lessEq 24)}
+  return integer(name).check { (it greaterEq 0) and (it lessEq 24 * 60)}
 }
 
+// Hora formato HH:mm:ss contagem em segundos em um intervalo de 0 a 24 horas
 fun Table.timeField(name: String): Column<Long> {
-  return long(name)
+  return long(name).check { (it greaterEq 0) and (it lessEq 24 * 60 * 60)}
 }
 
-fun Table.centsField(name: String = "value"): Column<Int> {
-  return integer(name).check { it greaterEq 0}.default(0)
-}
-
+// Dia da semana como inicio index 0 Domingo
 fun Table.weekdayField(name: String = "weekday"): Column<Int> {
-  //Idex 0 iqual a Domingo
   return integer(name).check { (it greaterEq 0) and (it lessEq 6)}
 }
 
