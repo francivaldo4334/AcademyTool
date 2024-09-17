@@ -4,12 +4,16 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.Modifier
 import androidx.compose.material.Text
+import br.com.pwrftctrl.students.presenter.enums.StudentStateFilter
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
 import br.com.pwrftctrl.core.presenter.ui.components.ProfileImage
@@ -32,6 +36,7 @@ fun ColumnScope.ClientsTable() {
       HeaderItem(
         title = R.strings.register,
         minWidth = 120.dp,
+        maxWidth = 72.dp,
         onSortAction = {}
       ),
       HeaderItem(
@@ -75,7 +80,23 @@ fun ColumnScope.ClientsTable() {
       { textWithStyle("24 anos") },
       { textWithStyle("francivaldodev@gmail.com")},
       {
-        Clipboard("teste")
-      }, { }) { }
+        Row(
+          modifier = Modifier.fillMaxSize(),
+          horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+          StatusCounter(status = StudentStateFilter.NO_PAID, count = 3)
+          StatusCounter(status = StudentStateFilter.PAID, count = 3)
+          StatusCounter(status = StudentStateFilter.MISSING, count = 3)
+        }
+      },
+      {
+        Column(
+          verticalArrangement = Arrangement.spacedBy(8.dp),
+          modifier = Modifier.padding(vertical = 8.dp)
+        ) {
+          Clipboard("(86) 88 9 0000000")
+          Clipboard("(86) 88 9 0000000")
+        }
+      }) { }
   }
 }

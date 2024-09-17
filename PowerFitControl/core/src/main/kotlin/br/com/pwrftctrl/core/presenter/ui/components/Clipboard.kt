@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
@@ -21,9 +22,12 @@ fun Clipboard(text: String) {
   Row(
     modifier = Modifier
       .clip(RoundedCornerShape(16.dp))
+      .clickable{
+
+      }
       .background(extendedColors.secondary50)
-      .padding(8.dp),
-    verticalAlignment = Alignment.CenterVertically
+      .padding(vertical = 8.dp).padding(start = 12.dp, end = 8.dp),
+    verticalAlignment = Alignment.CenterVertically,
   ) {
     Text(
       text = text
