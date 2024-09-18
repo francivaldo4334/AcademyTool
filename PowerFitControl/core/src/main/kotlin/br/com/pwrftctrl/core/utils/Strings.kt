@@ -28,7 +28,11 @@ data class Strings(
     val phone_or_whatsapp: String = R.getString("phone_or_whatsapp"),
     val items_per_page: String = R.getString("items_per_page"),
     val clients: String = R.getString("clients"),
-    val total_number_of_students: String = R.getString("total_number_of_students")
+    val total_number_of_students: String = R.getString("total_number_of_students"),
+    val birthday: String = R.getString("birthday"),
+    val in_debt: String = R.getString("in_debt"),
+    val checked: String = R.getString("checked"),
+    val missing: String = R.getString("missing"),
 ) {
     fun getDatabasePath(): String {
         val os = System.getProperty("os.name").lowercase()

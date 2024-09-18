@@ -15,7 +15,8 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
         backgroundColor = extendedColors.red100,
         tint = extendedColors.red900,
         painter = R.vectors.ic_no_money,
-        count = count.toString()
+        count = count.toString(),
+        textTip = R.strings.in_debt,
       )
     }
     StudentStateFilter.PAID -> {
@@ -23,7 +24,8 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
         backgroundColor = extendedColors.green100,
         painter = R.vectors.ic_money,
         tint = extendedColors.green900,
-        count = count.toString()
+        count = count.toString(),
+        textTip = R.strings.checked,
       )
     }
     StudentStateFilter.BIRTHDAY -> {
@@ -31,7 +33,8 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
         backgroundColor = extendedColors.yellow100,
         painter = R.vectors.ic_cake,
         tint = extendedColors.yellow900,
-        count = count.toString()
+        count = count.toString(),
+        textTip = R.strings.birthday,
       )
     }
     StudentStateFilter.MISSING -> {
@@ -39,7 +42,8 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
         backgroundColor = extendedColors.blue100,
         painter = R.vectors.ic_question,
         tint = extendedColors.blue900,
-        count = count.toString()
+        count = count.toString(),
+        textTip = R.strings.missing,
       )
     }
     StudentStateFilter.NONE -> {}
