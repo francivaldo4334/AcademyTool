@@ -5,23 +5,23 @@ import androidx.compose.runtime.Composable
 class Vectors() {
     val ic_clients
         @Composable
-        get() = R.getVector("ic_clients.svg")
+        get() = R.getVector("ic_users.svg")
 
     val ic_dumbbells
         @Composable
-        get() = R.getVector("ic_dumbbells.svg")
+        get() = R.getVector("ic_dumbbell.svg")
 
     val ic_hand_money
         @Composable
-        get() = R.getVector("ic_hand_money.svg")
+        get() = R.getVector("ic_hand_coins.svg")
 
     val ic_status_up
         @Composable
-        get() = R.getVector("ic_status_up.svg")
+        get() = R.getVector("ic_chart_no_axes_combined.svg")
 
     val ic_logout
         @Composable
-        get() = R.getVector("ic_logout.svg")
+        get() = R.getVector("ic_log_out.svg")
 
     val ic_settings
         @Composable
@@ -33,23 +33,23 @@ class Vectors() {
 
     val ic_arrow_down
         @Composable
-        get() = R.getVector("ic_arrow_down.svg")
+        get() = R.getVector("ic_chevron_up_down.svg")
 
     val ic_checked
         @Composable
-        get() = R.getVector("ic_checked.svg")
+        get() = R.getVector("ic_check.svg")
 
     val ic_profile_add
         @Composable
-        get() = R.getVector("ic_profile_add.svg")
+        get() = R.getVector("ic_user_plus.svg")
 
     val ic_no_money
         @Composable
-        get() = R.getVector("ic_no_money.svg")
+        get() = R.getVector("ic_bookmark_x.svg")
 
     val ic_money
         @Composable
-        get() = R.getVector("ic_money.svg")
+        get() = R.getVector("ic_bookmark_check.svg")
 
     val ic_cake
         @Composable
@@ -57,23 +57,23 @@ class Vectors() {
 
     val ic_question
         @Composable
-        get() = R.getVector("ic_question.svg")
+        get() = R.getVector("ic_user_x.svg")
 
     val ic_arrow_left
         @Composable
-        get() = R.getVector("ic_arrow_left.svg")
+        get() = R.getVector("ic_chevron_left.svg")
 
     val ic_arrow_right
         @Composable
-        get() = R.getVector("ic_arrow_right.svg")
+        get() = R.getVector("ic_chevron_right.svg")
 
     val ic_arrow_down_bold
         @Composable
-        get() = R.getVector("ic_arrow_down_bold.svg")
+        get() = R.getVector("ic_chevron_down.svg")
 
     val ic_arrow_up_bold
         @Composable
-        get() = R.getVector("ic_arrow_up_bold.svg")
+        get() = R.getVector("ic_chevron_up.svg")
 
     val ic_construction
         @Composable

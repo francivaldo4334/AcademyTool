@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CheckboxexFilterRow(content: @Composable RowScope.() -> Unit) {
     Row(
-        modifier = Modifier.clip(RoundedCornerShape(6.dp)),
+        modifier = Modifier.clip(RoundedCornerShape(4.dp)),
         content = content,
     )
 }

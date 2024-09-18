@@ -19,7 +19,7 @@ import androidx.compose.material.Text
 @Composable
 fun BaseStatusCounter(backgroundColor: Color, tint: Color, painter: Painter, count: String) {
   Row(
-    modifier = Modifier.height(32.dp).background(backgroundColor, shape = RoundedCornerShape(16.dp)).padding(4.dp),
+    modifier = Modifier.height(32.dp).background(backgroundColor, shape = RoundedCornerShape(12.dp)).padding(6.dp),
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.spacedBy(4.dp)
   ) {
@@ -27,7 +27,8 @@ fun BaseStatusCounter(backgroundColor: Color, tint: Color, painter: Painter, cou
       painter = painter,
       contentDescription = "",
       tint = tint
-    ) 
-    Text(count, fontSize=10.sp, color = tint)
+    )
+    if (count.isNotEmpty())
+      Text(count, fontSize=10.sp, color = tint)
   } 
 }
