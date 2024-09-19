@@ -8,15 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import br.com.pwrftctrl.core.presenter.ui.components.CompanyLogo
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun Logo() {
     val extendedColors = LocalExtendedColors.current
-    Box(
+    CompanyLogo(
         modifier =
         Modifier.size(40.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(extendedColors.primary500)
-    ) {}
+    )
 }

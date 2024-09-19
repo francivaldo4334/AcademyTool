@@ -3,6 +3,12 @@ package br.com.pwrftctrl.core.utils
 import androidx.compose.runtime.Composable
 
 class Vectors() {
+    val ic_image
+        @Composable
+        get() = R.getVector("ic_image.svg")
+    val ic_user
+        @Composable
+        get() = R.getVector("ic_user.svg")
     val ic_clients
         @Composable
         get() = R.getVector("ic_users.svg")

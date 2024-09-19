@@ -6,6 +6,7 @@ import br.com.pwrftctrl.students.presenter.components.ClientsTable
 import br.com.pwrftctrl.students.presenter.components.FiltersRow
 import br.com.pwrftctrl.core.presenter.ui.components.Pagination
 import br.com.pwrftctrl.core.utils.R
+import br.com.pwrftctrl.students.presenter.components.ModalCreateStudent
 
 @Composable
 fun ColumnScope.StudentsScreen() {
@@ -19,6 +20,7 @@ fun ColumnScope.StudentsScreen() {
         selectedPage = currentPage,
         onChange = { currentPage = it }
     )
+    ModalCreateStudent()
 }
 
 

@@ -53,4 +53,5 @@ fun ProfileImage(fileName: String, modifier: Modifier = Modifier) {
           .height(imageHeight.dp)
           .background(extendedColors.primary500),
       )
-  }}
+  }
+}
