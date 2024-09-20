@@ -20,6 +20,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.material.Text
 import androidx.compose.material.Icon
 import androidx.compose.ui.unit.sp
@@ -34,14 +35,20 @@ fun ProgressIndicatorSide(
     tasks: List<String>,
     indexTask: Int = 1,
     currentTaskComplected: Boolean = false,
+    modifier: Modifier = Modifier,
+    onChangeCurrentTaskCompleted: (Boolean) -> Unit,
 ) {
     val extendedColor = LocalExtendedColors.current
+    LaunchedEffect(indexTask) {
+        onChangeCurrentTaskCompleted(false)
+    }
     Column(
         modifier = Modifier
             .widthIn(min=200.dp)
             .heightIn(min=200.dp)
             .background(extendedColor.secondary50)
             .padding(16.dp)
+            .then(modifier)
     ) {
         CompanyLogo()
         Spacer(modifier = Modifier.height(16.dp))

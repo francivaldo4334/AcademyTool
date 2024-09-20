@@ -1,7 +1,10 @@
 package br.com.pwrftctrl.students.presenter.components
 
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import  androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.Modifier
 import br.com.pwrftctrl.core.presenter.ui.components.BaseModal
 import br.com.pwrftctrl.core.presenter.ui.components.ProgressIndicatorSide
 
@@ -16,14 +19,16 @@ fun ModalCreateStudent(
     ) {
         Row {
             ProgressIndicatorSide(
+                modifier = Modifier
+                    .heightIn(min=490.dp),
                 tasks = listOf(
-                    "Tarefa 1",
-                    "Tarefa 2",
-                    "Tarefa 3",
-                    "Tarefa 4",
-                    "Tarefa 5",
+                    "Dados pessoais",
+                    "Endereço do aluno",
+                    "Informações de matricula",
                 )
-            )
+            ) {
+
+            }
         }
     }
 }
