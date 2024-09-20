@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 
@@ -28,7 +29,8 @@ fun BaseModal(
       modifier = Modifier
         .background(color = MaterialTheme.colors.background, shape = RoundedCornerShape(24.dp))
         .widthIn(min = 300.dp)
-        .heightIn(min = 200.dp),
+        .heightIn(min = 200.dp)
+        .clip(RoundedCornerShape(24.dp)),
     ) {
       content()
     }
