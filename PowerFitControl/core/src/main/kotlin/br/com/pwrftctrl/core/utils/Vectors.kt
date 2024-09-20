@@ -44,6 +44,10 @@ class Vectors() {
     val ic_checked
         @Composable
         get() = R.getVector("ic_check.svg")
+    
+    val ic_check_check
+        @Composable
+        get() = R.getVector("ic_check_check.svg")
 
     val ic_profile_add
         @Composable

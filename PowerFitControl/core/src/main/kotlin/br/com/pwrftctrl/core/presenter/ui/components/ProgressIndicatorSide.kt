@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
@@ -31,7 +33,7 @@ import br.com.pwrftctrl.core.utils.R
 fun ProgressIndicatorSide(
     tasks: List<String>,
     indexTask: Int = 1,
-    currentTaskComplected: Boolean = true,
+    currentTaskComplected: Boolean = false,
 ) {
     val extendedColor = LocalExtendedColors.current
     Column(
@@ -51,7 +53,24 @@ fun ProgressIndicatorSide(
         )
         Spacer(modifier = Modifier.height(40.dp))
         tasks.forEachIndexed{ id, it ->
-            val showSelection = (id + 1) == indexTask
+            val isLessIndexSelected = (id + 1) < indexTask
+            val isSelected  = (id + 1) == indexTask
+            if (id != 0) {
+                Box(
+                    modifier = Modifier
+                        .width(24.dp)
+                        .height(48.dp)
+                        .padding(horizontal = 10.dp, vertical = 4.dp)
+                        .background(
+                            color = if (isLessIndexSelected || isSelected) {
+                                    extendedColor.primary500
+                                } else  {
+                                    extendedColor.secondary300
+                                },
+                            shape = RoundedCornerShape(2.dp)
+                        )
+                )
+            }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -61,7 +80,7 @@ fun ProgressIndicatorSide(
                         .size(24.dp)
                         .clip(RoundedCornerShape(16.dp))
                         .background(
-                            if (currentTaskComplected && showSelection) {
+                            if (isLessIndexSelected || (isSelected && currentTaskComplected)) {
                                 extendedColor.primary500                  
                             }
                             else {
@@ -69,8 +88,8 @@ fun ProgressIndicatorSide(
                             }
                         )
                         .then(
-                            if (showSelection) {
-                                Modifier.border(border = BorderStroke(2.dp, extendedColor.primary500), shape = CircleShape)
+                            if (isSelected && !currentTaskComplected) {
+                                Modifier.border(border = BorderStroke(4.dp, extendedColor.primary500), shape = CircleShape)
                             }
                             else {
                                 Modifier
@@ -78,15 +97,15 @@ fun ProgressIndicatorSide(
                         ),
                     contentAlignment = Alignment.Center
                 ) {
-                    if (showSelection && currentTaskComplected) {
+                    if (isLessIndexSelected || (isSelected && currentTaskComplected)) {
                         Icon(
-                            painter = R.vectors.ic_checked,
+                            painter = R.vectors.ic_check_check,
                             contentDescription = null,
                             tint = extendedColor.secondary50,
                             modifier = Modifier.size(16.dp)
                         )
                     }
-                    else if (showSelection){
+                    else if (!isSelected){
                         Text(
                             text = (id +1).toString(),
                             fontSize = 10.sp,
