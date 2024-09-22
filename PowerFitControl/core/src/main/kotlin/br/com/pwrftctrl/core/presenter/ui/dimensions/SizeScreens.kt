@@ -6,4 +6,6 @@ object LocalDimensionsSizeScreen {
     val maxWidth = 1400.dp
     const val defaultWidth = 1024
     const val defaultHeight = 720
+    const val defaultModalMinHeight = 200
+    const val defaultModalMinWidth = 600
 }

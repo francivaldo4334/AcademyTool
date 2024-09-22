@@ -12,17 +12,22 @@ import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
-fun TextButton(onClick: () -> Unit, content: @Composable RowScope.() -> Unit) {
+fun TextButton(
+        enabled: Boolean = true,
+        onClick: () -> Unit,
+        content: @Composable RowScope.() -> Unit
+) {
     val extendedColors = LocalExtendedColors.current
     materialTextButton(
+            enabled = enabled,
             onClick = onClick,
             content = content,
             shape = RoundedCornerShape(8.dp),
             colors =
                     ButtonDefaults.textButtonColors(
-                            backgroundColor = extendedColors.primary500,
-                            contentColor = MaterialTheme.colors.background,
-                    ),
+                        backgroundColor = if (enabled) extendedColors.primary500 else extendedColors.secondary300,
+                        contentColor = MaterialTheme.colors.background,
+                   ),
             modifier = Modifier.height(40.dp)
     )
 }
