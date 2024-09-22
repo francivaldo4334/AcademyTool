@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,13 +16,13 @@ import br.com.pwrftctrl.core.presenter.ui.components.*
 import br.com.pwrftctrl.core.utils.R
 
 @Composable
-fun FiltersRow() {
+fun RowScope.FiltersRow() {
     var isStateNoPaid by remember { mutableStateOf(false) }
     var isStatePaid by remember { mutableStateOf(false) }
     var isStateBirthday by remember { mutableStateOf(false) }
     var isStateMissing by remember { mutableStateOf(false) }
     Row(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp),
+            modifier = Modifier.weight(1f).padding(vertical = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Row(
@@ -70,11 +71,6 @@ fun FiltersRow() {
                         onChange = { isStateMissing = !isStateMissing }
                 )
             }
-            IconButton(
-                    painter = R.vectors.ic_profile_add,
-                    contentDescription = "Adicionar novo aluno",
-                    onClick = {}
-            )
         }
     }
 }
