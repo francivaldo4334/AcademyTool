@@ -53,7 +53,6 @@ fun CompanyLogo(
                 modifier = Modifier
                     .width(imageWidth.dp)
                     .height(imageHeight.dp)
-                    .background(MaterialTheme.colors.background)
                     .background(extendedColors.secondary100, shape = RoundedCornerShape(8.dp))
                     .padding(8.dp),
                 tint = extendedColors.secondary400

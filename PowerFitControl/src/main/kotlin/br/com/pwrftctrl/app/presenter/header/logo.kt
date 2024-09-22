@@ -13,11 +13,8 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun Logo() {
-    val extendedColors = LocalExtendedColors.current
     CompanyLogo(
         modifier =
         Modifier.size(40.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(extendedColors.primary500)
     )
 }
