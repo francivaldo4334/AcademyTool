@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.core.presenter.ui.components.BaseModal
+import br.com.pwrftctrl.core.presenter.ui.components.TextField
 import br.com.pwrftctrl.core.presenter.ui.components.ProgressIndicatorSide
 
 @Composable
@@ -38,6 +39,12 @@ fun ModalCreateStudent(
                         onChangeIndexTask = {
                                 indexTask = it
                         },
-                ) { Text("TEste") }
+                ) { 
+                        TextField(
+                                label = "Teste", 
+                                value = "") {
+
+                        }
+                }
         }
 }
