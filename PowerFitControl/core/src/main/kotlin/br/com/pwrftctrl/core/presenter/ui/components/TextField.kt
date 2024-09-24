@@ -36,10 +36,10 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
     val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 0f,
+        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1f,
         animationSpec = tween(durationMillis)
     )
-    return remember { derivedStateOf { Alignment{size,_,_ -> IntOffset(0, (yOffset * size.height).toInt())} }}
+    return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
 }
 
 @Composable
@@ -52,11 +52,11 @@ fun TextField(
     val extendedColors = LocalExtendedColors.current
     var isFocused by remember { mutableStateOf(false)}
     val spLabel by animateIntAsState(
-        targetValue = if (isFocused) 10 else 14,
+        targetValue = if (isFocused || value.isNotEmpty()) 10 else 14,
         animationSpec = tween(300)
     )
     val labelAlingment by animateAlignmentAsState(
-        targetAlignment = if (isFocused) Alignment.TopStart else Alignment.CenterStart
+        targetAlignment = if (isFocused || value.isNotEmpty()) Alignment.TopStart else Alignment.CenterStart
     )
     BasicTextField(
         modifier = Modifier.onFocusChanged {
@@ -88,7 +88,7 @@ fun TextField(
                   modifier = Modifier.align(labelAlingment)
                 )
                 Box(
-                  modifier = Modifier.align(Alignment{size, _, _ -> IntOffset(0, size.height)})
+                  modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, spacer.height / 2)})
                 ) {
                     fieldBox()
                 }
