@@ -2,9 +2,11 @@ package br.com.pwrftctrl.app.presenter.sidebar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,8 +26,12 @@ fun SideBar(
         Modifier.fillMaxHeight()
             .width(56.dp)
             .background(extendedColors.secondary900)
+            .padding(vertical = 8.dp)
     ) {
-        Column(modifier = Modifier.align(Alignment.Center)) {
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
             Button(
                 iconPainter = R.vectors.ic_clients,
                 textHelp = R.strings.clients_manager,
