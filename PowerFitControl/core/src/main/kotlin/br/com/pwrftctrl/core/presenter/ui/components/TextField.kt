@@ -36,7 +36,7 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
     val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1f,
+        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1.2f,
         animationSpec = tween(durationMillis)
     )
     return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
@@ -66,7 +66,7 @@ fun TextField(
         onValueChange = onValueChange,
         singleLine = true,
         textStyle = TextStyle(
-            fontSize = 10.sp,
+            fontSize = 14.sp,
         ),
         decorationBox = { fieldBox ->
             Box(
@@ -76,9 +76,9 @@ fun TextField(
                       color = extendedColors.secondary100,
                       shape = RoundedCornerShape(8.dp)
                   )
-                    .heightIn(min = 40.dp)
+                    .heightIn(min = 48.dp)
                     .widthIn(min = 150.dp)
-                    .padding(horizontal = 12.dp),
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
             ) {
                 
                 Text(
@@ -88,7 +88,7 @@ fun TextField(
                   modifier = Modifier.align(labelAlingment)
                 )
                 Box(
-                  modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, spacer.height / 2)})
+                  modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.4f).toInt())})
                 ) {
                     fieldBox()
                 }
