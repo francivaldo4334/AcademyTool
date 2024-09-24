@@ -44,7 +44,7 @@ fun ProgressIndicatorSide(
         onCancell: () -> Unit,
         currentTaskComplected: Boolean = false,
         modifier: Modifier = Modifier,
-        onSubmmit: () -> Unit,
+        onSubmit: () -> Unit,
         onChangeCurrentTaskCompleted: (Boolean) -> Unit,
         content: @Composable (Int) -> Unit,
 ) {
@@ -188,7 +188,7 @@ fun ProgressIndicatorSide(
                                         enabled = (!endForm || currentTaskComplected ),
                                         onClick = {
                                                 if (endForm && currentTaskComplected) {
-                                                        onSubmmit()
+                                                        onSubmit()
                                                 }
                                                 else if (!endForm) {
                                                         onChangeIndexTask(indexTask + 1)

@@ -21,6 +21,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.MutableState
 import androidx.compose.material.Text
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,6 +31,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
+import br.com.pwrftctrl.core.presenter.utils.Form
 
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
@@ -44,6 +46,7 @@ private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: 
 fun TextField(
   label: String,
   value: String,
+  modifier: Modifier = Modifier,
   onValueChange: (String) -> Unit,
 ) {
     val extendedColors = LocalExtendedColors.current
@@ -68,13 +71,13 @@ fun TextField(
         decorationBox = { fieldBox ->
             Box(
                 modifier =
-                  Modifier.border(
+                  modifier.border(
                       width = 2.dp,
                       color = extendedColors.secondary100,
                       shape = RoundedCornerShape(8.dp)
                   )
                     .heightIn(min = 40.dp)
-                    .widthIn(min = 150.dp, max = 400.dp)
+                    .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp),
             ) {
                 
@@ -85,11 +88,27 @@ fun TextField(
                   modifier = Modifier.align(labelAlingment)
                 )
                 Box(
-                  modifier = Modifier.align(Alignment.CenterStart)
+                  modifier = Modifier.align(Alignment{size, _, _ -> IntOffset(0, size.height)})
                 ) {
                     fieldBox()
                 }
             }
         }
+    )
+}
+
+@Composable
+fun TextField(
+    label: String,
+    form: Form,
+    key: String,
+    modifier: Modifier = Modifier,
+) {
+    val field = form.getField(key)!!
+    TextField(
+        label = label,
+        value = field.value,
+        onValueChange = {field.value = it},
+        modifier = modifier 
     )
 }

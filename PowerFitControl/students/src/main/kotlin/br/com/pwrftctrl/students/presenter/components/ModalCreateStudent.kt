@@ -12,39 +12,43 @@ import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.core.presenter.ui.components.BaseModal
 import br.com.pwrftctrl.core.presenter.ui.components.TextField
 import br.com.pwrftctrl.core.presenter.ui.components.ProgressIndicatorSide
+import br.com.pwrftctrl.students.presenter.forms.FormStudent
 
 @Composable
 fun ModalCreateStudent(
         onDismissRequest: () -> Unit
 ) {
+        val formStudent = FormStudent()
         var indexTask by remember {
                 mutableStateOf(1)
         }
         BaseModal(onDismissRequest = onDismissRequest) {
                 ProgressIndicatorSide(
+                        onSubmit = formStudent::onSubmit,
                         indexTask = indexTask,
                         title = "Teste 1",
+                        tasks = listOf(
+                                "Dados pessoais",
+                                "Endereço do aluno",
+                                "Informações de matricula",
+                        ),
                         onCancell = {
                                 onDismissRequest()
                         },
-                        onSubmmit = {},
                         modifier = Modifier.heightIn(min = 490.dp),
-                        tasks =
-                                listOf(
-                                        "Dados pessoais",
-                                        "Endereço do aluno",
-                                        "Informações de matricula",
-                                ),
                         onChangeCurrentTaskCompleted = {},
-                        onChangeIndexTask = {
-                                indexTask = it
-                        },
+                        onChangeIndexTask = { indexTask = it },
                 ) { 
                         TextField(
-                                label = "Teste", 
-                                value = "") {
-
-                        }
+                                label = "Nome",
+                                form = formStudent,
+                                key = formStudent.FIRST_NAME,
+                        )
+                        TextField(
+                                label = "Sobre nome",
+                                form = formStudent,
+                                key = formStudent.LAST_NAME,
+                        )
                 }
         }
 }
