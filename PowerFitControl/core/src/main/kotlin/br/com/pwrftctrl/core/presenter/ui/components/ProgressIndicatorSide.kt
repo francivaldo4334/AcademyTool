@@ -174,7 +174,11 @@ fun ProgressIndicatorSide(
                         modifier = Modifier.height(maxHeight),
                         verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                        content(indexTask)
+                        Box(
+                                modifier = Modifier.weight(1f)
+                        ) {
+                                content(indexTask)
+                        }
                         Row(
                                 modifier = Modifier.padding(16.dp).fillMaxWidth()
                         ) {

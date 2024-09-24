@@ -1,6 +1,8 @@
 package br.com.pwrftctrl.students.presenter.components
 
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -39,16 +41,20 @@ fun ModalCreateStudent(
                         onChangeCurrentTaskCompleted = {},
                         onChangeIndexTask = { indexTask = it },
                 ) { 
-                        TextField(
-                                label = "Nome",
-                                form = formStudent,
-                                key = formStudent.FIRST_NAME,
-                        )
-                        TextField(
-                                label = "Sobre nome",
-                                form = formStudent,
-                                key = formStudent.LAST_NAME,
-                        )
+                        Column(
+                                modifier = Modifier.padding(16.dp)
+                        ){
+                                TextField(
+                                        label = "Nome",
+                                        form = formStudent,
+                                        key = formStudent.FIRST_NAME,
+                                )
+                                TextField(
+                                        label = "Sobre nome",
+                                        form = formStudent,
+                                        key = formStudent.LAST_NAME,
+                                )
+                        }
                 }
         }
 }
