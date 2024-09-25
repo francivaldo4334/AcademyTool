@@ -188,7 +188,7 @@ fun ProgressIndicatorSide(
                                 content(indexTask)
                         }
                         Row(
-                                modifier = Modifier.padding(16.dp).fillMaxWidth()
+                                modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp).fillMaxWidth()
                         ) {
                                 val endForm = indexTask >= tasks.size
                                 if (indexTask > 1)

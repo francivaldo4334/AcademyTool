@@ -99,4 +99,8 @@ class Vectors() {
     val ic_alert 
         @Composable
         get() = R.getVector("ic_alert.svg")
+
+    val ic_upload
+        @Composable
+        get() = R.getVector("ic_upload.svg")
 }

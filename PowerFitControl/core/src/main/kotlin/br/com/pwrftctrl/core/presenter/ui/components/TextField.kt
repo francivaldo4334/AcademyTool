@@ -95,6 +95,7 @@ fun TextField(
                         text = label,
                         fontSize = 14.sp,
                         color = extendedColors.primary500,
+                        maxLines = 1
                     )
                 }
                 Box(

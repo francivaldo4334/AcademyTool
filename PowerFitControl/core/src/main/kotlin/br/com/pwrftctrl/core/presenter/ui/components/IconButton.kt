@@ -31,7 +31,7 @@ fun IconButton(
         modifier = modifier
             .size(40.dp)
             .background(containerColor, shape = RoundedCornerShape(cornerRadius))
-            .padding(0.dp),
+            .padding(4.dp),
     ) {
         Icon(
             painter = painter,
