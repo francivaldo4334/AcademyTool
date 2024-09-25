@@ -68,13 +68,13 @@ fun ModalCreateStudent(
                                                 TextField(
                                                         label = "Nome",
                                                         form = formStudent,
-                                                        key = formStudent.FIRST_NAME,
+                                                        key = FormStudent.FIRST_NAME,
                                                         modifier =  Modifier.fillMaxWidth()
                                                 )
                                                 TextField(
                                                         label = "Sobre nome",
                                                         form = formStudent,
-                                                        key = formStudent.LAST_NAME,
+                                                        key = FormStudent.LAST_NAME,
                                                         modifier =  Modifier.fillMaxWidth()
                                                 )
                                         }
@@ -101,31 +101,31 @@ fun ModalCreateStudent(
                                 TextField(
                                         label = "CPF",
                                         form = formStudent,
-                                        key = formStudent.CPF,
+                                        key = FormStudent.CPF,
                                         modifier = Modifier.fillMaxWidth()
                                 )
                                 TextField(
                                         label = "Data de nascimento",
                                         form = formStudent,
-                                        key = formStudent.BIRTHDATE,
+                                        key = FormStudent.BIRTHDATE,
                                         modifier = Modifier.fillMaxWidth()
                                 )
                                 TextField(
                                         label = "E-mail",
                                         form = formStudent,
-                                        key = formStudent.EMAIL,
+                                        key = FormStudent.EMAIL,
                                         modifier = Modifier.fillMaxWidth()
                                 )
                                 TextField(
                                         label = "Telefone",
                                         form = formStudent,
-                                        key = formStudent.PHONE_1,
+                                        key = FormStudent.PHONE_1,
                                         modifier = Modifier.fillMaxWidth()
                                 )
                                 TextField(
                                         label = "Whatsapp",
                                         form = formStudent,
-                                        key = formStudent.WHATSAPP,
+                                        key = FormStudent.WHATSAPP,
                                         modifier = Modifier.fillMaxWidth()
                                 )
                         }
