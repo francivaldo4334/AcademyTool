@@ -38,7 +38,7 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
     val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1f,
+        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 0.8f,
         animationSpec = tween(durationMillis)
     )
     return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
@@ -54,7 +54,7 @@ fun TextField(
     val extendedColors = LocalExtendedColors.current
     var isFocused by remember { mutableStateOf(false)}
     val scaleLabel by animateFloatAsState(
-        targetValue = if (isFocused || value.isNotEmpty()) 0.9f else 1f,
+        targetValue = if (isFocused || value.isNotEmpty()) 0.8f else 1f,
         animationSpec = tween(300)
     )
     val labelAlingment by animateAlignmentAsState(
@@ -78,7 +78,7 @@ fun TextField(
                       color = extendedColors.secondary100,
                       shape = RoundedCornerShape(8.dp)
                   )
-                    .heightIn(min = 48.dp)
+                    .heightIn(min = 40.dp)
                     .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
             ) {
