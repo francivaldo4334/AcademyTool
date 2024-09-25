@@ -1,5 +1,12 @@
 package br.com.pwrftctrl.core.presenter.ui.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -75,6 +82,24 @@ fun ProgressIndicatorSide(
                         tasks.forEachIndexed { id, it ->
                                 val isLessIndexSelected = (id + 1) < indexTask
                                 val isSelected = (id + 1) == indexTask
+                                val animatedColorBackground by animateColorAsState(
+                                        targetValue = 
+                                                if (isLessIndexSelected ||
+                                                                isSelected && currentTaskComplected
+                                                ) {
+                                                        extendedColor
+                                                                .primary500
+                                                }
+                                                else if (isSelected) {
+                                                        extendedColor
+                                                                .green100
+                                                }
+                                                else {
+                                                        extendedColor
+                                                                .secondary200
+                                                },
+                                        animationSpec = tween()
+                                )
                                 if (id != 0) {
                                         Box(
                                                 modifier =
@@ -85,21 +110,7 @@ fun ProgressIndicatorSide(
                                                                         vertical = 4.dp
                                                                 )
                                                                 .background(
-                                                                        color =
-                                                                                if (isLessIndexSelected ||
-                                                                                                isSelected && currentTaskComplected
-                                                                                ) {
-                                                                                        extendedColor
-                                                                                                .primary500
-                                                                                }
-                                                                                else if (isSelected) {
-                                                                                        extendedColor
-                                                                                                .green100
-                                                                                }
-                                                                                else {
-                                                                                        extendedColor
-                                                                                                .secondary300
-                                                                                },
+                                                                        color = animatedColorBackground,
                                                                         shape =
                                                                                 RoundedCornerShape(
                                                                                         2.dp
@@ -111,32 +122,20 @@ fun ProgressIndicatorSide(
                                         verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                                 ) {
-                                        Box(
+                                        Column(
                                                 modifier =
                                                         Modifier.size(24.dp)
                                                                 .clip(RoundedCornerShape(16.dp))
-                                                                .background(
-                                                                        if (isLessIndexSelected ||
-                                                                                        (isSelected &&
-                                                                                                currentTaskComplected)
-                                                                        ) {
-                                                                                extendedColor
-                                                                                        .primary500
-                                                                        }
-                                                                        else if (isSelected) {
-                                                                                extendedColor
-                                                                                        .green100
-                                                                        }
-                                                                        else {
-                                                                                extendedColor
-                                                                                        .secondary300
-                                                                        }
-                                                                ),
-                                                contentAlignment = Alignment.Center
+                                                                .background(animatedColorBackground),
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                                verticalArrangement = Arrangement.Center
                                         ) {
-                                                if (isLessIndexSelected ||
-                                                                (isSelected &&
-                                                                        currentTaskComplected)
+                                                val showIcCheck = isLessIndexSelected || (isSelected && currentTaskComplected)
+                                                val showIcAlert = !showIcCheck && isSelected
+                                                AnimatedVisibility(
+                                                        visible = showIcCheck,
+                                                        enter = fadeIn() + expandVertically(),
+                                                        exit = fadeOut() + shrinkVertically(),
                                                 ) {
                                                         Icon(
                                                                 painter = R.vectors.ic_checked,
@@ -145,7 +144,11 @@ fun ProgressIndicatorSide(
                                                                 modifier = Modifier.size(16.dp)
                                                         )
                                                 }
-                                                else if (isSelected)  {
+                                                AnimatedVisibility(
+                                                        visible = showIcAlert,
+                                                        enter = fadeIn() + expandVertically(),
+                                                        exit = fadeOut() + shrinkVertically(),
+                                                )  {
                                                         Icon(
                                                                 painter = R.vectors.ic_alert,
                                                                 contentDescription = null,
@@ -153,7 +156,12 @@ fun ProgressIndicatorSide(
                                                                 modifier = Modifier.size(24.dp)
                                                         )
                                                 }
-                                                else {
+                                                AnimatedVisibility(
+                                                        visible = !showIcAlert && !showIcCheck,
+                                                        enter = fadeIn() + expandVertically(),
+                                                        exit = fadeOut() + shrinkVertically(),
+
+                                                ) {
                                                         Text(
                                                                 text = (id + 1).toString(),
                                                                 fontSize = 10.sp,

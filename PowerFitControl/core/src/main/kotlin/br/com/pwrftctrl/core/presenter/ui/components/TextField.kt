@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
@@ -36,7 +38,7 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
     val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1.2f,
+        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 1f,
         animationSpec = tween(durationMillis)
     )
     return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
@@ -51,8 +53,8 @@ fun TextField(
 ) {
     val extendedColors = LocalExtendedColors.current
     var isFocused by remember { mutableStateOf(false)}
-    val spLabel by animateIntAsState(
-        targetValue = if (isFocused || value.isNotEmpty()) 10 else 14,
+    val scaleLabel by animateFloatAsState(
+        targetValue = if (isFocused || value.isNotEmpty()) 0.9f else 1f,
         animationSpec = tween(300)
     )
     val labelAlingment by animateAlignmentAsState(
@@ -80,15 +82,23 @@ fun TextField(
                     .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
             ) {
-                
-                Text(
-                  text = label,
-                  fontSize = spLabel.sp,
-                  color = extendedColors.primary500,
-                  modifier = Modifier.align(labelAlingment)
-                )
                 Box(
-                  modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.4f).toInt())})
+                    modifier = Modifier.align(labelAlingment)
+                        .graphicsLayer{
+                            scaleX = scaleLabel
+                            scaleY = scaleLabel 
+                            transformOrigin = TransformOrigin(0f,0f)
+                        },
+                    contentAlignment = Alignment.TopStart
+                ){
+                    Text(
+                        text = label,
+                        fontSize = 14.sp,
+                        color = extendedColors.primary500,
+                    )
+                }
+                Box(
+                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.4f).toInt())})
                 ) {
                     fieldBox()
                 }

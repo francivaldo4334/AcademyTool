@@ -25,7 +25,7 @@ fun TextButton(
             shape = RoundedCornerShape(8.dp),
             colors =
                     ButtonDefaults.textButtonColors(
-                        backgroundColor = if (enabled) extendedColors.primary500 else extendedColors.secondary300,
+                        backgroundColor = if (enabled) extendedColors.primary500 else extendedColors.secondary200,
                         contentColor = MaterialTheme.colors.background,
                    ),
             modifier = Modifier.height(40.dp)
