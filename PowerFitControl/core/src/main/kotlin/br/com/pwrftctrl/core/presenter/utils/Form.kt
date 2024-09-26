@@ -13,6 +13,13 @@ open class Form(vararg fieldName: String) {
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
     private var errorMessages: MutableMap<String, String> = mutableMapOf()
     private var forms: MutableMap<String, Form>? = null
+
+    operator fun plus(form: Form): Form {
+        if (this.forms == null)
+            this.forms = mutableMapOf()
+        this.forms!![form.toString()] = form
+        return this
+    }
     fun validateField(fieldName: String): String? {
         TODO("Not yet implemented")
     }
@@ -22,14 +29,24 @@ open class Form(vararg fieldName: String) {
     }
 
     fun getField(fieldName: String): MutableState<String>? {
-        if (fields.contains(fieldName)) {
-            return fields.get(fieldName)
+        return this.getFields()[fieldName]
+    }
+
+    fun getFields(): Map<String, MutableState<String>> {
+        val fields = this.fields.toMutableMap()
+        this.forms?.forEach { (key, value) ->
+            val valueFields = value.getFields()
+            fields += valueFields
         }
-        return null
+        return fields
+    }
+
+    fun getErrorMessage(fieldName: String): String? {
+        return this.getErrorMessages()[fieldName]
     }
 
     fun getErrorMessages(): MutableMap<String, String> {
-        var errorMessages = this.errorMessages
+        val errorMessages = this.errorMessages
         this.forms?.forEach { (key, value) ->
             val valueErrorMessages = value.getErrorMessages()
             errorMessages += valueErrorMessages
