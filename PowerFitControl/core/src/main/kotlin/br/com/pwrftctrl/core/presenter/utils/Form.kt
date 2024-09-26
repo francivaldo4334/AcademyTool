@@ -9,7 +9,7 @@ fun loadFields(vararg fieldName: String): Map<String, MutableState<String>> {
     )
 }
 
-open class Form(vararg fieldName: String) {
+abstract class Form(vararg fieldName: String) {
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
     private var errorMessages: MutableMap<String, String> = mutableMapOf()
     private var forms: MutableMap<String, Form>? = null
@@ -20,13 +20,9 @@ open class Form(vararg fieldName: String) {
         this.forms!![form.toString()] = form
         return this
     }
-    fun validateField(fieldName: String): String? {
-        TODO("Not yet implemented")
-    }
+    abstract fun validateField(fieldName: String): String?
 
-    fun onAction() {
-        TODO("Not yet implemented")
-    }
+    abstract fun onAction()
 
     fun getField(fieldName: String): MutableState<String>? {
         return this.getFields()[fieldName]

@@ -1,34 +1,28 @@
 package br.com.pwrftctrl.students.presenter.forms
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import br.com.pwrftctrl.core.presenter.utils.Form
-import br.com.pwrftctrl.core.presenter.utils.loadFields
 
-class FormStudent(
-    fields: Map<String, MutableState<String>> =
-       loadFields(
-            FIRST_NAME ,
-            LAST_NAME ,
-            CPF ,
-            BIRTHDATE ,
-            EMAIL ,
-            PHONE_1 ,
-            PHONE_2 ,
-            WHATSAPP ,
-            ADDRESS ,
-            NEIGHBORHOOD ,
-            AVENUE ,
-            STREET ,
-            ZIP_CODE ,
-            NUMBER ,
-            REFERENCE ,
-            START_DATE ,
-            END_DATE ,
-            MODALITY ,
-            OBSERVATION ,
-        )
-) : Form(fields) {
+class FormStudent : Form(
+    FIRST_NAME,
+    LAST_NAME,
+    CPF,
+    BIRTHDATE,
+    EMAIL,
+    PHONE_1,
+    PHONE_2,
+    WHATSAPP,
+    ADDRESS,
+    NEIGHBORHOOD,
+    AVENUE,
+    STREET,
+    ZIP_CODE,
+    NUMBER,
+    REFERENCE,
+    START_DATE,
+    END_DATE,
+    MODALITY,
+    OBSERVATION,
+) {
     companion object {
         val FIRST_NAME = "FIRST_NAME"
         val LAST_NAME = "LAST_NAME"
@@ -51,7 +45,6 @@ class FormStudent(
         val OBSERVATION = "OBSERVATION"
     }
 
-    override var messageErrors = mutableMapOf<String, String>()
     override fun validateField(fieldName: String): String? {
         return null
     }
