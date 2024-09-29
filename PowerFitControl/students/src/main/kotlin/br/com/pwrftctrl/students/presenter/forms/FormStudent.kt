@@ -17,6 +17,27 @@ class FormStudentData : Form(
         WHATSAPP,
     }
 
+    override fun validateField(fieldName: String, value: String): String? {
+        return when(fieldName) {
+            Field.FIRST_NAME.name,
+            Field.LAST_NAME.name,
+            Field.CPF.name,
+            Field.BIRTHDATE.name,
+            Field.PHONE_1.name
+            -> {
+                val errors = mutableListOf<String>()
+                if (value.isEmpty()){
+                    errors.add("Este campo é obrigatorio!")
+                }
+                if (errors.isNotEmpty())
+                    errors.joinToString(",")
+                else null
+            }
+            else -> null
+
+        }
+    }
+
     override fun onAction() {
 
     }

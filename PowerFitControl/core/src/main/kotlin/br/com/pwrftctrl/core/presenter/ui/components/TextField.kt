@@ -145,12 +145,11 @@ fun TextField(
             label = label,
             value = field.value,
             onValueChange = {
-                if (form.validateField(key, it) == null) {
-                    field.value = it
-                }
+                form.validateField(key, it)
+                field.value = it
             },
             modifier = modifier,
-            errorMessage = form.getErrorMessage(key)
+            errorMessage = form.getErrorMessage(key)?.value?: null
         )
     }
 }

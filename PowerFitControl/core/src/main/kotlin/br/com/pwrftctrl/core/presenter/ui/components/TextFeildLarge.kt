@@ -98,12 +98,11 @@ fun TextFieldLarge(
             label = label,
             value = field.value,
             onValueChange = {
-              if (form.validateField(key, it) == null) {
+                form.validateField(key, it)
                 field.value = it
-              }
             },
             modifier = modifier,
-            errorMessage = form.getErrorMessage(key)
+            errorMessage = form.getErrorMessage(key)?.value?: null
         )
     }
 }

@@ -32,7 +32,7 @@ fun ColumnScope.FieldsStudentData(formStudent: FormStudentData) {
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
                 Column(
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                         modifier = Modifier
                                 .weight(1f)
                                 .wrapContentWidth()

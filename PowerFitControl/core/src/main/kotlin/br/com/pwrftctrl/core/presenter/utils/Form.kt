@@ -9,7 +9,7 @@ fun loadFields(vararg fieldName: String): Map<String, MutableState<String>> {
 
 abstract class Form(private val formName: String? = null, vararg fieldName: String) {
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
-    private var errorMessages: MutableMap<String, String> = mutableMapOf()
+    private var errorMessages: MutableMap<String, MutableState<String>> = loadFields(*fieldName).toMutableMap()
     private val forms: MutableMap<String, Form> = mutableMapOf()
 
     operator fun plus(form: Form): Form {
@@ -42,11 +42,11 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
         return this.fields
     }
 
-    fun getErrorMessage(fieldName: String): String? {
+    fun getErrorMessage(fieldName: String): MutableState<String>? {
         return this.getErrorMessages()[fieldName]
     }
 
-    fun getErrorMessages(): MutableMap<String, String> {
+    fun getErrorMessages(): MutableMap<String, MutableState<String>> {
         val allErrorMessages = this.errorMessages
         this.forms.forEach { (_, form) ->
             allErrorMessages.putAll(form.getErrorMessages())
@@ -58,7 +58,7 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
         var isValid = true
         this.getFields().forEach{ (key, value) ->
             validateField(key, value.value)?.let{ message -> 
-                errorMessages[key] = message
+                errorMessages[key]?.value = message 
                 isValid = false
             }
         }

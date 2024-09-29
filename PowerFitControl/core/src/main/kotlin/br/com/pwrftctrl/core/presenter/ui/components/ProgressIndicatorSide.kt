@@ -56,9 +56,6 @@ fun ProgressIndicatorSide(
         var currentTaskComplected by remember{ mutableStateOf(false) }
         val extendedColor = LocalExtendedColors.current
         var maxHeight by remember { mutableStateOf(0.dp) }
-        LaunchedEffect(indexTask) { 
-                currentTaskComplected = form.getForms()[tasks[indexTask]]?.validation()?: false
-        }
         Row(
                 modifier = Modifier
                         .drawBehind { maxHeight = size.height.toDp() }
@@ -201,7 +198,10 @@ fun ProgressIndicatorSide(
                                                         form.onSubmit()
                                                 }
                                                 else if (!endForm) {
-                                                        indexTask ++
+                                                        currentTaskComplected = form.getForm(tasks[indexTask]).validation()
+                                                        if (currentTaskComplected) {
+                                                                indexTask ++
+                                                        }
                                                 }
                                         }
                                 ){
