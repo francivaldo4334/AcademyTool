@@ -41,23 +41,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import br.com.pwrftctrl.core.presenter.utils.Form
 
 @Composable
 fun ProgressIndicatorSide(
         title: String,
-        tasks: List<String>,
-        indexTask: Int = 1,
-        onChangeIndexTask: (Int) -> Unit,
+        form: Form,
         onCancell: () -> Unit,
-        currentTaskComplected: Boolean = false,
         modifier: Modifier = Modifier,
-        onSubmit: () -> Unit,
-        onChangeCurrentTaskCompleted: (Boolean) -> Unit,
-        content: @Composable (Int) -> Unit,
+        content: @Composable (String) -> Unit,
 ) {
+        val tasks = form.getFormNames()
+        var indexTask by remember{ mutableStateOf(0) }
+        var currentTaskComplected by remember{ mutableStateOf(false) }
         val extendedColor = LocalExtendedColors.current
         var maxHeight by remember { mutableStateOf(0.dp) }
-        LaunchedEffect(indexTask) { onChangeCurrentTaskCompleted(false) }
+        LaunchedEffect(indexTask) { 
+                currentTaskComplected = form.getForms()[tasks[indexTask]]?.validation()?: false
+        }
         Row(
                 modifier = Modifier
                         .drawBehind { maxHeight = size.height.toDp() }
@@ -80,8 +81,8 @@ fun ProgressIndicatorSide(
                         )
                         Spacer(modifier = Modifier.height(40.dp))
                         tasks.forEachIndexed { id, it ->
-                                val isLessIndexSelected = (id + 1) < indexTask
-                                val isSelected = (id + 1) == indexTask
+                                val isLessIndexSelected = id < indexTask
+                                val isSelected = id == indexTask
                                 val animatedColorBackground by animateColorAsState(
                                         targetValue = 
                                                 if (isLessIndexSelected ||
@@ -102,20 +103,17 @@ fun ProgressIndicatorSide(
                                 )
                                 if (id != 0) {
                                         Box(
-                                                modifier =
-                                                        Modifier.width(24.dp)
-                                                                .height(48.dp)
-                                                                .padding(
-                                                                        horizontal = 10.dp,
-                                                                        vertical = 4.dp
-                                                                )
-                                                                .background(
-                                                                        color = animatedColorBackground,
-                                                                        shape =
-                                                                                RoundedCornerShape(
-                                                                                        2.dp
-                                                                                )
-                                                                )
+                                                modifier = Modifier
+                                                        .width(24.dp)
+                                                        .height(48.dp)
+                                                        .padding(
+                                                                horizontal = 10.dp,
+                                                                vertical = 4.dp
+                                                        )
+                                                        .background(
+                                                                color = animatedColorBackground,
+                                                                shape = RoundedCornerShape( 2.dp)
+                                                        )
                                         )
                                 }
                                 Row(
@@ -185,14 +183,14 @@ fun ProgressIndicatorSide(
                         Box(
                                 modifier = Modifier.weight(1f)
                         ) {
-                                content(indexTask)
+                                content(form.getForm(tasks[indexTask]).toString())
                         }
                         Row(
                                 modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp).fillMaxWidth()
                         ) {
-                                val endForm = indexTask >= tasks.size
-                                if (indexTask > 1)
-                                        BackButton{ onChangeIndexTask(indexTask - 1)}
+                                val endForm = indexTask >= tasks.size-1
+                                if (indexTask > 0)
+                                        BackButton{ indexTask --}
                                 Spacer(modifier = Modifier.weight(1f))
                                 CancellButton {onCancell()}
                                 Spacer(modifier = Modifier.width(16.dp))
@@ -200,10 +198,10 @@ fun ProgressIndicatorSide(
                                         enabled = (!endForm || currentTaskComplected ),
                                         onClick = {
                                                 if (endForm && currentTaskComplected) {
-                                                        onSubmit()
+                                                        form.onSubmit()
                                                 }
                                                 else if (!endForm) {
-                                                        onChangeIndexTask(indexTask + 1)
+                                                        indexTask ++
                                                 }
                                         }
                                 ){
@@ -217,4 +215,5 @@ fun ProgressIndicatorSide(
                         }
                 }
         }
+
 }

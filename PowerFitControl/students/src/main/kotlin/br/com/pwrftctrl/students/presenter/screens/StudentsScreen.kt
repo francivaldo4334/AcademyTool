@@ -12,7 +12,7 @@ import br.com.pwrftctrl.students.presenter.components.ClientsTable
 import br.com.pwrftctrl.students.presenter.components.FiltersRow
 import br.com.pwrftctrl.core.presenter.ui.components.Pagination
 import br.com.pwrftctrl.core.utils.R
-import br.com.pwrftctrl.students.presenter.components.ModalCreateStudent
+import br.com.pwrftctrl.students.presenter.components.form.ModalCreateStudent
 import br.com.pwrftctrl.core.presenter.ui.components.IconButton
 
 @Composable

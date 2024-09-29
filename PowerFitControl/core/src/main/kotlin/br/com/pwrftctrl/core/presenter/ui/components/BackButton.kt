@@ -36,6 +36,7 @@ fun BackButton(
                                 contentColor = extendedColors.secondary600
                         ),
                 elevation = null,
+                shape = RoundedCornerShape(8.dp)
         ) { 
                 Text(R.strings.go_to_back)
                 Spacer(modifier = Modifier.width(4.dp))

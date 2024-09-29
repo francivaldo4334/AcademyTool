@@ -4,10 +4,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.border
@@ -23,6 +25,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.MutableState
 import androidx.compose.material.Text
+import androidx.compose.material.Divider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.IntOffset
@@ -31,14 +34,17 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.presenter.utils.Form
 
 @Composable
 private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
     val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 0.8f,
+        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 0.9f,
         animationSpec = tween(durationMillis)
     )
     return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
@@ -46,11 +52,15 @@ private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: 
 
 @Composable
 fun TextField(
-  label: String,
-  value: String,
-  modifier: Modifier = Modifier,
-  onValueChange: (String) -> Unit,
+    label: String,
+    value: String,
+    errorMessage: String? = null,
+    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit,
 ) {
+    var errorTipHeight by remember {
+        mutableStateOf(0)
+    }
     val extendedColors = LocalExtendedColors.current
     var isFocused by remember { mutableStateOf(false)}
     val scaleLabel by animateFloatAsState(
@@ -73,11 +83,11 @@ fun TextField(
         decorationBox = { fieldBox ->
             Box(
                 modifier =
-                  modifier.border(
-                      width = 2.dp,
-                      color = extendedColors.secondary100,
-                      shape = RoundedCornerShape(8.dp)
-                  )
+                modifier.border(
+                    width = 2.dp,
+                    color = extendedColors.secondary100,
+                    shape = RoundedCornerShape(8.dp)
+                )
                     .heightIn(min = 40.dp)
                     .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -99,11 +109,26 @@ fun TextField(
                     )
                 }
                 Box(
-                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.4f).toInt())})
+                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
                 ) {
                     fieldBox()
                 }
             }
+            Popup(
+                alignment = Alignment.BottomStart,
+                offset = IntOffset(4,errorTipHeight),
+            ) {
+                if (errorMessage != null){
+                    Text(
+                        text = errorMessage,
+                        modifier = Modifier.drawBehind{
+                            errorTipHeight = size.height.toInt()
+                        },
+                        color = extendedColors.red900,
+                        fontSize = 10.sp
+                    )
+                }
+           }
         }
     )
 }
@@ -115,11 +140,17 @@ fun TextField(
     key: String,
     modifier: Modifier = Modifier,
 ) {
-    val field = form.getField(key)!!
-    TextField(
-        label = label,
-        value = field.value,
-        onValueChange = {field.value = it},
-        modifier = modifier 
-    )
+    form.getField(key)?.let{ field -> 
+        TextField(
+            label = label,
+            value = field.value,
+            onValueChange = {
+                if (form.validateField(key, it) == null) {
+                    field.value = it
+                }
+            },
+            modifier = modifier,
+            errorMessage = form.getErrorMessage(key)
+        )
+    }
 }
