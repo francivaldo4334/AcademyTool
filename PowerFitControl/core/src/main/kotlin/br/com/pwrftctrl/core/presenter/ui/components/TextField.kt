@@ -54,7 +54,7 @@ private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: 
 fun TextField(
     label: String,
     value: String,
-    errorMessage: String? = null,
+    errorMessage: String = "",
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
@@ -81,44 +81,43 @@ fun TextField(
             fontSize = 14.sp,
         ),
         decorationBox = { fieldBox ->
-            Box(
-                modifier =
-                modifier.border(
-                    width = 2.dp,
-                    color = extendedColors.secondary100,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                    .heightIn(min = 40.dp)
-                    .widthIn(min = 150.dp)
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-            ) {
+            Column(
+                horizontalAlignment = Alignment.End
+            ){
                 Box(
-                    modifier = Modifier.align(labelAlingment)
-                        .graphicsLayer{
-                            scaleX = scaleLabel
-                            scaleY = scaleLabel 
-                            transformOrigin = TransformOrigin(0f,0f)
-                        },
-                    contentAlignment = Alignment.TopStart
-                ){
-                    Text(
-                        text = label,
-                        fontSize = 14.sp,
-                        color = extendedColors.primary500,
-                        maxLines = 1
+                    modifier =
+                    modifier.border(
+                        width = 2.dp,
+                        color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
+                        shape = RoundedCornerShape(8.dp)
                     )
-                }
-                Box(
-                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
+                        .heightIn(min = 40.dp)
+                        .widthIn(min = 150.dp)
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                 ) {
-                    fieldBox()
+                    Box(
+                        modifier = Modifier.align(labelAlingment)
+                            .graphicsLayer{
+                                scaleX = scaleLabel
+                                scaleY = scaleLabel 
+                                transformOrigin = TransformOrigin(0f,0f)
+                            },
+                        contentAlignment = Alignment.TopStart
+                    ){
+                        Text(
+                            text = label,
+                            fontSize = 14.sp,
+                            color = extendedColors.primary500,
+                            maxLines = 1
+                        )
+                    }
+                    Box(
+                        modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
+                    ) {
+                        fieldBox()
+                    }
                 }
-            }
-            Popup(
-                alignment = Alignment.BottomStart,
-                offset = IntOffset(4,errorTipHeight),
-            ) {
-                if (errorMessage != null){
+                if (errorMessage.isNotEmpty()){
                     Text(
                         text = errorMessage,
                         modifier = Modifier.drawBehind{
@@ -128,7 +127,7 @@ fun TextField(
                         fontSize = 10.sp
                     )
                 }
-           }
+            }
         }
     )
 }
@@ -149,7 +148,7 @@ fun TextField(
                 field.value = it
             },
             modifier = modifier,
-            errorMessage = form.getErrorMessage(key)?.value?: null
+            errorMessage = form.getErrorMessage(key)?.value?: ""
         )
     }
 }
