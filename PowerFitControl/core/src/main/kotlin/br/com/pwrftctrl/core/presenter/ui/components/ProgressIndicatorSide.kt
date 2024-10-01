@@ -195,7 +195,9 @@ fun ProgressIndicatorSide(
                                         enabled = (!endForm || currentTaskComplected ),
                                         onClick = {
                                                 if (endForm && currentTaskComplected) {
-                                                        form.onSubmit()
+                                                        if(form.getForm(tasks[indexTask].toString()).validation()){
+                                                                form.onSubmit()
+                                                        }
                                                 }
                                                 else if (!endForm) {
                                                         currentTaskComplected = form.getForm(tasks[indexTask]).validation()

@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.border
@@ -32,7 +34,7 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 fun TextFieldLarge(
     label: String,
     value: String,
-    errorMessage: String? = null,
+    errorMessage: String = "",
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
@@ -40,11 +42,14 @@ fun TextFieldLarge(
         mutableStateOf(0)
     }
     val extendedColors = LocalExtendedColors.current
-    Column{
+    Column(
+        horizontalAlignment = Alignment.End
+    ){
       Text(
         text = label,
         fontSize = 12.sp,
         color = extendedColors.primary500,
+        modifier = Modifier.fillMaxWidth()
       )
       BasicTextField(
           value = value,
@@ -57,7 +62,7 @@ fun TextFieldLarge(
                   modifier =
                   modifier.border(
                       width = 2.dp,
-                      color = extendedColors.secondary100,
+                      color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
                       shape = RoundedCornerShape(8.dp)
                   )
                       .heightIn(min = 72.dp)
@@ -67,23 +72,18 @@ fun TextFieldLarge(
               ) {
                   fieldBox()
               }
-              Popup(
-                  alignment = Alignment.BottomStart,
-                  offset = IntOffset(4,errorTipHeight),
-              ) {
-                  if (errorMessage != null){
-                      Text(
-                          text = errorMessage,
-                          modifier = Modifier.drawBehind{
-                              errorTipHeight = size.height.toInt()
-                          },
-                          color = extendedColors.red900,
-                          fontSize = 10.sp
-                      )
-                  }
-            }
           }
       )
+        AnimatedVisibility(errorMessage.isNotEmpty()){
+            Text(
+                text = errorMessage,
+                modifier = Modifier.drawBehind{
+                    errorTipHeight = size.height.toInt()
+                },
+                color = extendedColors.red900,
+                fontSize = 10.sp
+            )
+        }
     }
 }
 @Composable
@@ -102,7 +102,7 @@ fun TextFieldLarge(
                 field.value = it
             },
             modifier = modifier,
-            errorMessage = form.getErrorMessage(key)?.value?: null
+            errorMessage = form.getErrorMessage(key)?.value?: ""
         )
     }
 }

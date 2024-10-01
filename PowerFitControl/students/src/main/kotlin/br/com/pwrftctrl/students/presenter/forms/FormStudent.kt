@@ -72,5 +72,22 @@ class FormStudentRegistrationData : Form(
         OBSERVATION,
     }
 
+    override fun validateField(fieldName:String, value:String): String? {
+        return when(fieldName) {
+            Field.OBSERVATION.name,
+            -> {
+                val errors = mutableListOf<String>()
+                if (value.isEmpty()){
+                    errors.add("Este campo é obrigatorio!")
+                }
+                if (errors.isNotEmpty())
+                    errors.joinToString(",")
+                else null
+            }
+            else -> null
+
+        }
+    }
+
     override fun onAction() { }
 }
