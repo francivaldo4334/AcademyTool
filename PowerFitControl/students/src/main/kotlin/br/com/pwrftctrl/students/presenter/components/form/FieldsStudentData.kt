@@ -1,13 +1,14 @@
 package br.com.pwrftctrl.students.presenter.components.form
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.graphicsLayer
@@ -22,91 +23,103 @@ import br.com.pwrftctrl.core.presenter.ui.components.CompanyLogo
 import br.com.pwrftctrl.core.presenter.ui.components.IconButton
 import br.com.pwrftctrl.core.presenter.ui.components.TextField
 
-@Composable
-fun ColumnScope.FieldsStudentData(formStudent: FormStudentData) {
+fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
+    item {
         var avatarSize by remember {
-                mutableStateOf(0.dp)
+            mutableStateOf(0.dp)
+        }
+        var columnHeight by remember {
+            mutableStateOf(0.dp)
         }
         val extendedColor = LocalExtendedColors.current
-        Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+        LaunchedEffect(columnHeight) {
+            if (avatarSize == 0.dp) {
+                avatarSize = columnHeight
+            }
+        }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(16.dp)
         ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Column(
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
-                        modifier = Modifier
-                                .weight(1f)
-                                .wrapContentWidth()
-                                .drawBehind {
-                                        avatarSize = this.size.height.toDp()
-                                }
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .wrapContentWidth()
+                        .drawBehind {
+                            columnHeight = this.size.height.toDp()
+                        }
                 ) {
-                        TextField(
-                                label = "Nome",
-                                form = formStudent,
-                                key = FormStudentData.Field.FIRST_NAME.name,
-                                modifier =  Modifier.fillMaxWidth()
-                        )
-                        TextField(
-                                label = "Sobre nome",
-                                form = formStudent,
-                                key = FormStudentData.Field.LAST_NAME.name,
-                                modifier =  Modifier.fillMaxWidth()
-                        )
+                    TextField(
+                        label = "Nome",
+                        form = formStudent,
+                        key = FormStudentData.Field.FIRST_NAME.name,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    TextField(
+                        label = "Sobre nome",
+                        form = formStudent,
+                        key = FormStudentData.Field.LAST_NAME.name,
+                        modifier = Modifier.fillMaxWidth()
+                    )
                 }
                 Box() {
-                        CompanyLogo(
-                                modifier = Modifier.size(avatarSize)
-                        )
-                        IconButton(
-                                painter = R.vectors.ic_upload,
-                                contentDescription = "Botão de upload",
-                                modifier = Modifier
-                                        .size(24.dp)
-                                        .align(Alignment.TopEnd)
-                                        .graphicsLayer {
-                                                val elevation =  4.dp.toPx()
-                                                translationX += elevation
-                                                translationY -= elevation
-                                        }
-                        ){
+                    CompanyLogo(
+                        modifier = Modifier.size(avatarSize)
+                    )
+                    IconButton(
+                        painter = R.vectors.ic_upload,
+                        contentDescription = "Botão de upload",
+                        modifier = Modifier
+                            .size(24.dp)
+                            .align(Alignment.TopEnd)
+                            .graphicsLayer {
+                                val elevation = 4.dp.toPx()
+                                translationX += elevation
+                                translationY -= elevation
+                            }
+                    ) {
 
-                        }
+                    }
                 }
-        }
-        TextField(
+            }
+            TextField(
                 label = "CPF",
                 form = formStudent,
                 key = FormStudentData.Field.CPF.name,
                 modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
+            )
+            TextField(
                 label = "Data de nascimento",
                 form = formStudent,
                 key = FormStudentData.Field.BIRTHDATE.name,
                 modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
+            )
+            TextField(
                 label = "E-mail",
                 form = formStudent,
                 key = FormStudentData.Field.EMAIL.name,
                 modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
+            )
+            TextField(
                 label = "Telefone 1",
                 form = formStudent,
                 key = FormStudentData.Field.PHONE_1.name,
                 modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
+            )
+            TextField(
                 label = "Telefone 2",
                 form = formStudent,
                 key = FormStudentData.Field.PHONE_2.name,
                 modifier = Modifier.fillMaxWidth()
-        )
-        TextField(
+            )
+            TextField(
                 label = "Whatsapp",
                 form = formStudent,
                 key = FormStudentData.Field.WHATSAPP.name,
                 modifier = Modifier.fillMaxWidth()
-        )
+            )
+        }
+    }
 }

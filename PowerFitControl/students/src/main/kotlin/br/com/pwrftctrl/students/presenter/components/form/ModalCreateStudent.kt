@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,9 +34,9 @@ fun ModalCreateStudent(
                         },
                         modifier = Modifier.heightIn(min = 490.dp),
                 ) { formName ->
-                        Column(
-                                modifier = Modifier.width(490.dp).padding(16.dp).wrapContentWidth(),
-                                verticalArrangement = Arrangement.spacedBy(12.dp)
+                        LazyColumn(
+                                modifier = Modifier.width(490.dp).wrapContentWidth(),
+                                // verticalArrangement = Arrangement.spacedBy(12.dp)
                         ){ 
                                 when(formName) {
                                         formStudentData.toString() -> FieldsStudentData(formStudentData)
