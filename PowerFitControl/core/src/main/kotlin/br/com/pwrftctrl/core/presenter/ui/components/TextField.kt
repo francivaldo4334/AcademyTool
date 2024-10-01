@@ -117,7 +117,7 @@ fun TextField(
                         fieldBox()
                     }
                 }
-                if (errorMessage.isNotEmpty()){
+                AnimatedVisibility(errorMessage.isNotEmpty()){
                     Text(
                         text = errorMessage,
                         modifier = Modifier.drawBehind{
