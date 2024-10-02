@@ -19,9 +19,9 @@ import br.com.pwrftctrl.core.utils.R
 
 @Composable
 fun Header() {
+    val clientsManagerViewModel = MyViewModelFactory.create(ClientsViewModel::class.java)
+    val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        val clientsManagerViewModel = MyViewModelFactory.create(ClientsViewModel::class.java)
-        val selectedOption = clientsManagerViewModel.selectedOption.collectAsState()
         Text(R.strings.clients, fontSize = 25.sp, fontWeight = FontWeight.Normal)
         Row() {
             TextBottomSelectionItem(

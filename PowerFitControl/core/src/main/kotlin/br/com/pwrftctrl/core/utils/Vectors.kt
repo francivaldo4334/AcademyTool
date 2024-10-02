@@ -103,4 +103,8 @@ class Vectors() {
     val ic_upload
         @Composable
         get() = R.getVector("ic_upload.svg")
+
+    val ic_x
+        @Composable
+        get() = R.getVector("ic_x.svg")
 }

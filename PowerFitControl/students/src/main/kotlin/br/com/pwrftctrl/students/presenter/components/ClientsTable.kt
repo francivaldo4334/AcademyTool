@@ -8,12 +8,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.Modifier
 import androidx.compose.material.Text
 import br.com.pwrftctrl.students.presenter.enums.StudentStateFilter
+import br.com.pwrftctrl.students.presenter.components.modal.StudentDetails
 import br.com.pwrftctrl.core.presenter.ui.components.Table
 import br.com.pwrftctrl.core.presenter.ui.components.HeaderItem
 import br.com.pwrftctrl.core.presenter.ui.components.ProfileImage
@@ -22,6 +27,9 @@ import br.com.pwrftctrl.core.utils.R
 
 @Composable
 fun ColumnScope.ClientsTable() {
+  var openDetails by remember {
+    mutableStateOf(false)
+  }
   Table(
     headerItems = listOf(
       HeaderItem(
@@ -97,6 +105,16 @@ fun ColumnScope.ClientsTable() {
           Clipboard("(86) 88 9 0000000")
           Clipboard("(86) 88 9 0000000")
         }
-      }) { }
+      },
+      onClick = {
+        openDetails = true
+      })
+  }
+  if (openDetails) {
+    StudentDetails(
+      onDismissRequest = {
+        openDetails = false
+      }
+    )
   }
 }

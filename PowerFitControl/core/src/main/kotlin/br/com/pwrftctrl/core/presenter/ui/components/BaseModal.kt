@@ -16,13 +16,14 @@ import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
 
 @Composable
 fun BaseModal(
+        autoDimiss: Boolean = false,
         onDismissRequest: () -> Unit,
         content: @Composable () -> Unit,
 ) {
         Dialog(
                 onDismissRequest = onDismissRequest,
                 properties =
-                        DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false),
+                        DialogProperties(dismissOnBackPress = autoDimiss, dismissOnClickOutside = autoDimiss),
         ) {
                 Box(
                         modifier =
