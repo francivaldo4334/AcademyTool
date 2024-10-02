@@ -17,7 +17,7 @@ class FormStudentData : Form(
         WHATSAPP,
     }
 
-    override fun validateField(fieldName: String, value: String): String? {
+    override fun getValidateFieldMessage(fieldName: String, value: String): String? {
         return when(fieldName) {
             Field.FIRST_NAME.name,
             Field.LAST_NAME.name,
@@ -72,7 +72,7 @@ class FormStudentRegistrationData : Form(
         OBSERVATION,
     }
 
-    override fun validateField(fieldName:String, value:String): String? {
+    override fun getValidateFieldMessage(fieldName:String, value:String): String? {
         return when(fieldName) {
             Field.OBSERVATION.name,
             -> {

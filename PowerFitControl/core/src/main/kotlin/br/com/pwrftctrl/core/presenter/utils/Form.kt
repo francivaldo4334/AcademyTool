@@ -11,13 +11,24 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
     private var errorMessages: MutableMap<String, MutableState<String>> = loadFields(*fieldName).toMutableMap()
     private val forms: MutableMap<String, Form> = mutableMapOf()
+    public var isValid = mutableStateOf(false)
 
     operator fun plus(form: Form): Form {
         this.forms[form.toString()] = form
         return this
     }
-    open fun validateField(fieldName: String, value: String): String? = null
+    open fun getValidateFieldMessage(fieldName: String, value: String): String? = null
 
+    fun validateField(fieldName: String, value: String, setMessageErrors: Boolean = true): Boolean {
+        var isValid = true
+        getValidateFieldMessage(fieldName, value)?.let{ message -> 
+            if (setMessageErrors){
+                errorMessages[fieldName]?.value = message 
+            }
+            isValid = false
+        }
+        return isValid
+    }
     abstract fun onAction()
 
     fun getForm(formName: String): Form {
@@ -54,14 +65,14 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
         return allErrorMessages
     }
 
-    fun validation(): Boolean {
+    fun validation(setMessageErrors: Boolean = true): Boolean {
         var isValid = true
         this.getFields().forEach{ (key, value) ->
-            validateField(key, value.value)?.let{ message -> 
-                errorMessages[key]?.value = message 
+            if (!this@Form.validateField(key, value.value,setMessageErrors)){
                 isValid = false
             }
         }
+        this.isValid.value = isValid
         return isValid
 
     }

@@ -29,9 +29,12 @@ fun ProgressIndicatorSide(
 ) {
     val tasks = form.getFormNames()
     var indexTask by remember { mutableStateOf(0) }
-    var currentTaskComplected by remember { mutableStateOf(false) }
+    val taskComplected = form.getForm(tasks[indexTask]).isValid
     val extendedColor = LocalExtendedColors.current
     var maxHeight by remember { mutableStateOf(0.dp) }
+    LaunchedEffect(indexTask){
+        form.getForm(tasks[indexTask]).validation(false)
+    }
     Row(
         modifier = Modifier.drawBehind { maxHeight = size.height.toDp() }
     ) {
@@ -56,18 +59,12 @@ fun ProgressIndicatorSide(
                 val isSelected = id == indexTask
                 val animatedColorBackground by animateColorAsState(
                     targetValue =
-                    if (isLessIndexSelected ||
-                        isSelected && currentTaskComplected
-                    ) {
-                        extendedColor
-                            .primary500
-                    } else if (isSelected) {
-                        extendedColor
-                            .green100
-                    } else {
-                        extendedColor
-                            .secondary200
-                    },
+                    if (isLessIndexSelected || isSelected && taskComplected.value)
+                        extendedColor.primary500
+                    else if (isSelected)
+                        extendedColor.green100
+                    else
+                        extendedColor.secondary200,
                     animationSpec = tween()
                 )
                 if (id != 0) {
@@ -97,7 +94,7 @@ fun ProgressIndicatorSide(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        val showIcCheck = isLessIndexSelected || (isSelected && currentTaskComplected)
+                        val showIcCheck = isLessIndexSelected || (isSelected && taskComplected.value)
                         val showIcAlert = !showIcCheck && isSelected
                         AnimatedVisibility(
                             visible = showIcCheck,
@@ -164,15 +161,12 @@ fun ProgressIndicatorSide(
                 CancellButton { onCancell() }
                 Spacer(modifier = Modifier.width(16.dp))
                 TextButton(
-                    enabled = (!endForm || currentTaskComplected),
                     onClick = {
-                        if (endForm && currentTaskComplected) {
-                            if (form.getForm(tasks[indexTask].toString()).validation()) {
-                                form.onSubmit()
-                            }
+                        form.getForm(tasks[indexTask]).validation()
+                        if (endForm && taskComplected.value) {
+                            form.onSubmit()
                         } else if (!endForm) {
-                            currentTaskComplected = form.getForm(tasks[indexTask]).validation()
-                            if (currentTaskComplected) {
+                            if (taskComplected.value) {
                                 indexTask++
                             }
                         }
