@@ -35,6 +35,7 @@ fun TextFieldLarge(
     label: String,
     value: String,
     errorMessage: String = "",
+    enabled: Boolean = true,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
@@ -50,17 +51,13 @@ fun TextFieldLarge(
       )
       BaseTextField(
           value = value,
+          enabled = enabled,
           onValueChange = onValueChange,
           errorMessage = errorMessage,
           decorationBox = { fieldBox ->
               Box(
                   modifier =
-                  modifier.border(
-                      width = 2.dp,
-                      color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
-                      shape = RoundedCornerShape(8.dp)
-                  )
-                      .heightIn(min = 72.dp)
+                  modifier                      .heightIn(min = 72.dp)
                       .widthIn(min = 150.dp)
                       .padding(12.dp),
                   contentAlignment = Alignment.TopStart
@@ -82,6 +79,7 @@ fun TextFieldLarge(
         TextFieldLarge(
             label = label,
             value = field.value,
+            enabled = !form.isOnlyRead.value,
             onValueChange = {
                 form.validateField(key, it)
                 field.value = it

@@ -55,6 +55,7 @@ fun TextField(
     label: String,
     value: String,
     errorMessage: String = "",
+    enabled: Boolean = true,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
@@ -71,17 +72,14 @@ fun TextField(
         onFocusChange = {
             isFocused = it.isFocused
         },
+        enabled = enabled,
         value = value,
         onValueChange = onValueChange,
         errorMessage = errorMessage,
         decorationBox = { fieldBox ->
             Box(
                 modifier =
-                modifier.border(
-                    width = 2.dp,
-                    color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
-                    shape = RoundedCornerShape(8.dp)
-                )
+                modifier
                     .heightIn(min = 40.dp)
                     .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
@@ -123,6 +121,7 @@ fun TextField(
         TextField(
             label = label,
             value = field.value,
+            enabled = !form.isOnlyRead.value,
             onValueChange = {
                 form.validateField(key, it)
                 field.value = it

@@ -37,6 +37,8 @@ fun StudentDetails(
   val formStudentData = FormStudentData()
   val formStudentAddress = FormStudentAddress()
   val formStudentRegistrationData = FormStudentRegistrationData()
+  val formStudent = formStudentData + formStudentAddress + formStudentRegistrationData
+  formStudent.setIsOnlyRead(true)
   val STUDENT = 0
   val ADDRESS = 1
   val REGISTER = 2

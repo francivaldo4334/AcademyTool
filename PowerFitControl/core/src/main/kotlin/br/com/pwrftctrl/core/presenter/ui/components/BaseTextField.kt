@@ -34,6 +34,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.Modifier
@@ -47,8 +48,9 @@ fun BaseTextField(
     value: String,
     errorMessage: String = "",
     modifier: Modifier = Modifier,
-    onValueChange: (String) -> Unit,
     onFocusChange: (FocusState) -> Unit = {},
+    enabled: Boolean = true,
+    onValueChange: (String) -> Unit,
     decorationBox: @Composable (@Composable () -> Unit) -> Unit
 ) {
     var errorTipHeight by remember {
@@ -59,6 +61,7 @@ fun BaseTextField(
         modifier = modifier.onFocusChanged {
             onFocusChange(it)
         },
+        enabled = enabled,
         value = value,
         onValueChange = onValueChange,
         singleLine = true,
@@ -69,7 +72,16 @@ fun BaseTextField(
             Column(
                 horizontalAlignment = Alignment.End
             ){
-                decorationBox(fieldBox)
+                Box(
+                    modifier = Modifier.border(
+                        width = 2.dp,
+                        color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    .background(if (!enabled) extendedColors.secondary100 else Color.Transparent, shape = RoundedCornerShape(8.dp))
+                ){
+                    decorationBox(fieldBox)
+                }
                 AnimatedVisibility(errorMessage.isNotEmpty()){
                     Text(
                         text = errorMessage,

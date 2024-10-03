@@ -7,15 +7,22 @@ fun loadFields(vararg fieldName: String): Map<String, MutableState<String>> {
     return fieldName.associateWith{mutableStateOf("")}
 }
 
-abstract class Form(private val formName: String? = null, vararg fieldName: String) {
+abstract class Form(private val formName: String? = null, vararg fieldName: String, isOnlyRead: Boolean = false) {
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
     private var errorMessages: MutableMap<String, MutableState<String>> = loadFields(*fieldName).toMutableMap()
     private val forms: MutableMap<String, Form> = mutableMapOf()
-    public var isValid = mutableStateOf(false)
+    var isValid = mutableStateOf(false)
+    var isOnlyRead = mutableStateOf(isOnlyRead)
 
     operator fun plus(form: Form): Form {
         this.forms[form.toString()] = form
         return this
+    }
+    fun setIsOnlyRead(value: Boolean){
+        this.isOnlyRead.value = value
+        this.forms.forEach { _, it ->
+            it.setIsOnlyRead(value)
+        }
     }
     open fun getValidateFieldMessage(fieldName: String, value: String): String? = null
 
