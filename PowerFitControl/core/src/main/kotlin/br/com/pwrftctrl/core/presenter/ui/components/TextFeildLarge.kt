@@ -38,9 +38,6 @@ fun TextFieldLarge(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
-    var errorTipHeight by remember {
-        mutableStateOf(0)
-    }
     val extendedColors = LocalExtendedColors.current
     Column(
         horizontalAlignment = Alignment.End
@@ -51,12 +48,10 @@ fun TextFieldLarge(
         color = extendedColors.primary500,
         modifier = Modifier.fillMaxWidth()
       )
-      BasicTextField(
+      BaseTextField(
           value = value,
           onValueChange = onValueChange,
-          textStyle = TextStyle(
-              fontSize = 14.sp,
-          ),
+          errorMessage = errorMessage,
           decorationBox = { fieldBox ->
               Box(
                   modifier =
@@ -74,16 +69,6 @@ fun TextFieldLarge(
               }
           }
       )
-        AnimatedVisibility(errorMessage.isNotEmpty()){
-            Text(
-                text = errorMessage,
-                modifier = Modifier.drawBehind{
-                    errorTipHeight = size.height.toInt()
-                },
-                color = extendedColors.red900,
-                fontSize = 10.sp
-            )
-        }
     }
 }
 @Composable

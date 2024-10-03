@@ -58,9 +58,6 @@ fun TextField(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
 ) {
-    var errorTipHeight by remember {
-        mutableStateOf(0)
-    }
     val extendedColors = LocalExtendedColors.current
     var isFocused by remember { mutableStateOf(false)}
     val scaleLabel by animateFloatAsState(
@@ -70,62 +67,45 @@ fun TextField(
     val labelAlingment by animateAlignmentAsState(
         targetAlignment = if (isFocused || value.isNotEmpty()) Alignment.TopStart else Alignment.CenterStart
     )
-    BasicTextField(
-        modifier = Modifier.onFocusChanged {
+    BaseTextField(
+        onFocusChange = {
             isFocused = it.isFocused
         },
         value = value,
         onValueChange = onValueChange,
-        singleLine = true,
-        textStyle = TextStyle(
-            fontSize = 14.sp,
-        ),
+        errorMessage = errorMessage,
         decorationBox = { fieldBox ->
-            Column(
-                horizontalAlignment = Alignment.End
-            ){
+            Box(
+                modifier =
+                modifier.border(
+                    width = 2.dp,
+                    color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
+                    shape = RoundedCornerShape(8.dp)
+                )
+                    .heightIn(min = 40.dp)
+                    .widthIn(min = 150.dp)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+            ) {
                 Box(
-                    modifier =
-                    modifier.border(
-                        width = 2.dp,
-                        color = if(errorMessage.isNotEmpty()) extendedColors.red100 else extendedColors.secondary100,
-                        shape = RoundedCornerShape(8.dp)
-                    )
-                        .heightIn(min = 40.dp)
-                        .widthIn(min = 150.dp)
-                        .padding(horizontal = 12.dp, vertical = 8.dp),
-                ) {
-                    Box(
-                        modifier = Modifier.align(labelAlingment)
-                            .graphicsLayer{
-                                scaleX = scaleLabel
-                                scaleY = scaleLabel 
-                                transformOrigin = TransformOrigin(0f,0f)
-                            },
-                        contentAlignment = Alignment.TopStart
-                    ){
-                        Text(
-                            text = label,
-                            fontSize = 14.sp,
-                            color = extendedColors.primary500,
-                            maxLines = 1
-                        )
-                    }
-                    Box(
-                        modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
-                    ) {
-                        fieldBox()
-                    }
-                }
-                AnimatedVisibility(errorMessage.isNotEmpty()){
-                    Text(
-                        text = errorMessage,
-                        modifier = Modifier.drawBehind{
-                            errorTipHeight = size.height.toInt()
+                    modifier = Modifier.align(labelAlingment)
+                        .graphicsLayer{
+                            scaleX = scaleLabel
+                            scaleY = scaleLabel 
+                            transformOrigin = TransformOrigin(0f,0f)
                         },
-                        color = extendedColors.red900,
-                        fontSize = 10.sp
+                    contentAlignment = Alignment.TopStart
+                ){
+                    Text(
+                        text = label,
+                        fontSize = 14.sp,
+                        color = extendedColors.primary500,
+                        maxLines = 1
                     )
+                }
+                Box(
+                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
+                ) {
+                    fieldBox()
                 }
             }
         }

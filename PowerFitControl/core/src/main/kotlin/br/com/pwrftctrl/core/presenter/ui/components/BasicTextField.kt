@@ -48,7 +48,7 @@ fun BaseTextField(
     errorMessage: String = "",
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
-    onFocusChange: (FocusState) -> Unit,
+    onFocusChange: (FocusState) -> Unit = {},
     decorationBox: @Composable (@Composable () -> Unit) -> Unit
 ) {
     var errorTipHeight by remember {
