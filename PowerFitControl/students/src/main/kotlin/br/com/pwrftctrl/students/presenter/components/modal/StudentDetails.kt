@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
@@ -38,7 +39,9 @@ fun StudentDetails(
   val formStudentAddress = FormStudentAddress()
   val formStudentRegistrationData = FormStudentRegistrationData()
   val formStudent = formStudentData + formStudentAddress + formStudentRegistrationData
-  formStudent.setIsOnlyRead(true)
+  LaunchedEffect(Unit){
+    formStudent.setIsOnlyRead(true)
+  }
   val STUDENT = 0
   val ADDRESS = 1
   val REGISTER = 2
@@ -94,14 +97,43 @@ fun StudentDetails(
         }
         Row(
           modifier = Modifier.fillMaxWidth().padding(16.dp),
-          horizontalArrangement = Arrangement.spacedBy(16.dp)
+          horizontalArrangement = Arrangement.SpaceBetween
         ){
-          TextButton(
-                  onClick = {},
-          ) { Text("Editar") }
-          RedButton(
-                  onClick = {},
-          ) { Text("Excluir") }
+          Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+          ){
+            if (formStudent.isOnlyRead.value){
+              TextButton(
+                onClick = {
+                  formStudent.setIsOnlyRead(false)
+                },
+              ) { Text("Editar") }
+            }
+            RedButton(
+              onClick = {
+                if (!formStudent.isOnlyRead.value) {
+                  formStudent.setIsOnlyRead(true)
+                }
+                else {
+                    //TODO: excluir
+                }
+              },
+            ) { 
+              Text(
+                if (formStudent.isOnlyRead.value)
+                  "Excluir"
+                else
+                  "Cancelar"
+              ) 
+            }
+          }
+          if (!formStudent.isOnlyRead.value){
+            TextButton(
+              onClick = {
+                formStudent.onSubmit()
+              },
+            ) { Text("Salvar") }
+          }
         }
       }
     }
