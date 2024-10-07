@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import br.com.pwrftctrl.core.utils.R
 import br.com.pwrftctrl.core.presenter.ui.components.ProgressIndicatorSide
 import br.com.pwrftctrl.core.presenter.utils.Form
 import br.com.pwrftctrl.students.presenter.forms.*
@@ -27,7 +28,7 @@ fun ModalCreateStudent(
         val formStudent = formStudentData + formStudentAddress + formStudentRegistrationData
         BaseModal(onDismissRequest = onDismissRequest) {
                 ProgressIndicatorSide(
-                        title = "Cadastro de aluno",
+                        title = R.strings.student_registration,
                         form = formStudent,
                         onCancell = {
                                 onDismissRequest()

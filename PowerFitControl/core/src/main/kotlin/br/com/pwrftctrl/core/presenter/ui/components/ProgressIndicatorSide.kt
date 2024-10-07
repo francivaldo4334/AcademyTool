@@ -173,7 +173,7 @@ fun ProgressIndicatorSide(
                     }
                 ) {
                     if (endForm) {
-                        Text("Concluir")
+                        Text(R.strings.conclude)
                     } else {
                         Text(R.strings.next)
                     }

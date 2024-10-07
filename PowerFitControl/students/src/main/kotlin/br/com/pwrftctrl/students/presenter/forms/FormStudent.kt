@@ -1,9 +1,10 @@
 package br.com.pwrftctrl.students.presenter.forms
 
 import br.com.pwrftctrl.core.presenter.utils.Form
+import br.com.pwrftctrl.core.utils.R
 
 class FormStudentData : Form(
-    formName="Dados pessoais",
+    formName=R.strings.student,
     *Field.values().map{it.name}.toTypedArray()
 ) {
     enum class Field {
@@ -43,7 +44,7 @@ class FormStudentData : Form(
     }
 }
 class FormStudentAddress : Form(
-    formName="Endereço do aluno",
+    formName=R.strings.address,
     *Field.values().map{it.name}.toTypedArray()
 ) {
     enum class Field {
@@ -62,7 +63,7 @@ class FormStudentAddress : Form(
     }
 }
 class FormStudentRegistrationData : Form(
-    formName="Informações de matricula",
+    formName=R.strings.student_register,
     *Field.values().map{it.name}.toTypedArray()
 ) {
     enum class Field {

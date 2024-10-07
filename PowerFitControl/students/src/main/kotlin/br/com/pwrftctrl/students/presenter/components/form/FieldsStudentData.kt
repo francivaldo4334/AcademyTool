@@ -52,13 +52,13 @@ fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
                         }
                 ) {
                     TextField(
-                        label = "Nome",
+                        label = R.strings.name,
                         form = formStudent,
                         key = FormStudentData.Field.FIRST_NAME.name,
                         modifier = Modifier.fillMaxWidth()
                     )
                     TextField(
-                        label = "Sobre nome",
+                        label = R.strings.last_name,
                         form = formStudent,
                         key = FormStudentData.Field.LAST_NAME.name,
                         modifier = Modifier.fillMaxWidth()
@@ -85,37 +85,37 @@ fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
                 }
             }
             TextField(
-                label = "CPF",
+                label = R.strings.cpf,
                 form = formStudent,
                 key = FormStudentData.Field.CPF.name,
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
-                label = "Data de nascimento",
+                label = R.strings.date_of_birth,
                 form = formStudent,
                 key = FormStudentData.Field.BIRTHDATE.name,
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
-                label = "E-mail",
+                label = R.strings.email,
                 form = formStudent,
                 key = FormStudentData.Field.EMAIL.name,
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
-                label = "Telefone 1",
+                label = R.strings.phone_1,
                 form = formStudent,
                 key = FormStudentData.Field.PHONE_1.name,
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
-                label = "Telefone 2",
+                label = R.strings.phone_2,
                 form = formStudent,
                 key = FormStudentData.Field.PHONE_2.name,
                 modifier = Modifier.fillMaxWidth()
             )
             TextField(
-                label = "Whatsapp",
+                label = R.strings.whatsapp,
                 form = formStudent,
                 key = FormStudentData.Field.WHATSAPP.name,
                 modifier = Modifier.fillMaxWidth()

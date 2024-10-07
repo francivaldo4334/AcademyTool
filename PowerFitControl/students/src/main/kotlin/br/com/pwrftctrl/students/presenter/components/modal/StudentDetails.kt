@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
@@ -63,28 +66,35 @@ fun StudentDetails(
           contentDescription = "Botao de fechar",
           onClick = onDismissRequest 
         )
-        Row(
+        LazyRow(
           modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.Center
         ){
-          TextBottomSelectionItem(
-              "Aluno",
-              selected = optionSelected == STUDENT,
-          ) {
-            optionSelected = STUDENT
+          item{ Spacer(modifier = Modifier.width(16.dp)) }
+          item{
+            TextBottomSelectionItem(
+                R.strings.student,
+                selected = optionSelected == STUDENT,
+            ) {
+              optionSelected = STUDENT
+            }
           }
-          TextBottomSelectionItem(
-              "Endereço",
-              selected = optionSelected == ADDRESS,
-          ) {
-            optionSelected = ADDRESS
+          item {
+            TextBottomSelectionItem(
+                R.strings.address,
+                selected = optionSelected == ADDRESS,
+            ) {
+              optionSelected = ADDRESS
+            }
           }
-          TextBottomSelectionItem(
-              "Matricula",
-              selected = optionSelected == REGISTER,
-          ) {
-            optionSelected = REGISTER
+          item {
+            TextBottomSelectionItem(
+                R.strings.student_register,
+                selected = optionSelected == REGISTER,
+            ) {
+              optionSelected = REGISTER
+            }
           }
+          item{ Spacer(modifier = Modifier.width(16.dp)) }
         }
         LazyColumn(
           modifier = Modifier.weight(1f)
@@ -107,7 +117,7 @@ fun StudentDetails(
                 onClick = {
                   formStudent.setIsOnlyRead(false)
                 },
-              ) { Text("Editar") }
+              ) { Text(R.strings.edit) }
             }
             RedButton(
               onClick = {
@@ -121,9 +131,9 @@ fun StudentDetails(
             ) { 
               Text(
                 if (formStudent.isOnlyRead.value)
-                  "Excluir"
+                  R.strings.exclude
                 else
-                  "Cancelar"
+                  R.strings.cancell
               ) 
             }
           }
@@ -132,7 +142,7 @@ fun StudentDetails(
               onClick = {
                 formStudent.onSubmit()
               },
-            ) { Text("Salvar") }
+            ) { Text(R.strings.save) }
           }
         }
       }
