@@ -57,15 +57,16 @@ fun Pagination(
     countItems: Int,
     perPage: Int,
     selectedPage: Int = 1,
-    countRepeat: Int = COUNT_REPEAT,
     longJump: Int = 30,
     onChange: (Int) -> Unit
 ) {
-    val countPage = (countItems / perPage).toInt()
+    var countPage = (countItems / perPage).toInt()
+    if (countItems % perPage != 0)
+        countPage ++
+    val countRepeat = if (COUNT_REPEAT > countPage) countPage else COUNT_REPEAT
     fun _onChange(it: Int) {
         if (it <= countPage && it > 0) onChange(it)
     }
-
     val nextLongJump =
         if ((selectedPage + longJump) > countPage) countPage else (selectedPage + longJump)
     val previusLongJump = if ((selectedPage - longJump) < 1) 1 else (selectedPage - longJump)

@@ -36,7 +36,7 @@ fun ColumnScope.StudentsScreen() {
     ClientsTable()
     Pagination(
         helpText = R.strings.total_number_of_students,
-        countItems = 10,
+        countItems = 100,
         perPage = 4,
         selectedPage = currentPage,
         onChange = { currentPage = it }
