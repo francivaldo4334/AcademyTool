@@ -9,5 +9,5 @@ object TrainingSheet: Table() {
   val registration = integer("registration").references(Registration.id)
   val studentName = varchar("student_name", 255)
   val student = integer("student").references(User.id)
-  val instructor = varchar("instructor", 11)
+  val instructor = integer("instructor").references(User.id)
 }
