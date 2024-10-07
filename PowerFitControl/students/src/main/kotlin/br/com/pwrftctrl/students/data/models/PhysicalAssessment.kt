@@ -2,10 +2,11 @@ package br.com.pwrftctrl.students.data.models
 
 import org.jetbrains.exposed.sql.Table
 import br.com.pwrftctrl.core.data.utils.dateField
+import br.com.pwrftctrl.core.data.models.User
 
 class PhysicalAssessment: Table() {
   val id = integer("id").autoIncrement().entityId()
-  val student = varchar("student", 11)
+  val student = integer("student").references(User.id)
   val instructor = varchar("instructor", 11)
   val date = dateField("date")
   val heartRate = integer("heart_rate")

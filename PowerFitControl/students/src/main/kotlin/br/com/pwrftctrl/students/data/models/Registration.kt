@@ -3,11 +3,12 @@ package br.com.pwrftctrl.students.data.models
 import org.jetbrains.exposed.sql.Table
 import br.com.pwrftctrl.core.data.utils.dateField
 import br.com.pwrftctrl.core.data.utils.CurrentDate
+import br.com.pwrftctrl.core.data.models.User
 
 object Registration : Table() {
   val id = integer("id").autoIncrement().entityId()
   val active = bool("active").default(true)
-  val student = varchar("student", 11).uniqueIndex()
+  val student = integer("student").references(User.id)
   val registrationDate = dateField("reistraion_date").defaultExpression(CurrentDate())
   val startDate = dateField("start_date")
   val dueDate = dateField("end_date")
