@@ -66,35 +66,27 @@ fun StudentDetails(
           contentDescription = "Botao de fechar",
           onClick = onDismissRequest 
         )
-        LazyRow(
-          modifier = Modifier.fillMaxWidth(),
+        Row(
+          modifier = Modifier.fillMaxWidth().padding(horizontal=16.dp),
         ){
-          item{ Spacer(modifier = Modifier.width(16.dp)) }
-          item{
-            TextBottomSelectionItem(
-                R.strings.student,
-                selected = optionSelected == STUDENT,
-            ) {
-              optionSelected = STUDENT
-            }
+          TextBottomSelectionItem(
+              R.strings.student,
+              selected = optionSelected == STUDENT,
+          ) {
+            optionSelected = STUDENT
           }
-          item {
-            TextBottomSelectionItem(
-                R.strings.address,
-                selected = optionSelected == ADDRESS,
-            ) {
-              optionSelected = ADDRESS
-            }
+          TextBottomSelectionItem(
+              R.strings.address,
+              selected = optionSelected == ADDRESS,
+          ) {
+            optionSelected = ADDRESS
           }
-          item {
-            TextBottomSelectionItem(
-                R.strings.student_register,
-                selected = optionSelected == REGISTER,
-            ) {
-              optionSelected = REGISTER
-            }
+          TextBottomSelectionItem(
+              R.strings.student_register,
+              selected = optionSelected == REGISTER,
+          ) {
+            optionSelected = REGISTER
           }
-          item{ Spacer(modifier = Modifier.width(16.dp)) }
         }
         LazyColumn(
           modifier = Modifier.weight(1f)
