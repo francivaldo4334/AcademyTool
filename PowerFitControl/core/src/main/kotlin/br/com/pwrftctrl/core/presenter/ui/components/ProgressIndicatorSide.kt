@@ -147,7 +147,7 @@ fun ProgressIndicatorSide(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Box(
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).padding(top = 32.dp)
             ) {
                 content(form.getForm(tasks[indexTask]).toString())
             }
