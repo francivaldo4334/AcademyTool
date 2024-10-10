@@ -32,7 +32,7 @@ fun ProgressIndicatorSide(
     val taskComplected = form.getForm(tasks[indexTask]).isValid
     val extendedColor = LocalExtendedColors.current
     var maxHeight by remember { mutableStateOf(0.dp) }
-    LaunchedEffect(indexTask){
+    LaunchedEffect(indexTask) {
         form.getForm(tasks[indexTask]).validation(false)
     }
     Row(
@@ -53,7 +53,7 @@ fun ProgressIndicatorSide(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold
             )
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(32.dp))
             tasks.forEachIndexed { id, it ->
                 val isLessIndexSelected = id < indexTask
                 val isSelected = id == indexTask

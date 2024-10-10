@@ -108,7 +108,7 @@ fun StudentDetails(
             IconButton(
                 containerColor = Color.Transparent,
                 contentColor = LocalExtendedColors.current.secondary900,
-                modifier = Modifier.size(48.dp).align(Alignment.End),
+                modifier = Modifier.size(48.dp).align(Alignment.End).padding(8.dp),
                 painter = R.vectors.ic_x,
                 contentDescription = "Botao de fechar",
                 onClick = onDismissRequest

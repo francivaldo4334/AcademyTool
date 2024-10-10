@@ -27,7 +27,7 @@ fun FormSelection(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    val strokeWidth = 2.dp
+    val strokeWidth = 1.dp
     val cornerRadius = 8.dp
     var widthItemSelected by remember {
         mutableStateOf(0f)
