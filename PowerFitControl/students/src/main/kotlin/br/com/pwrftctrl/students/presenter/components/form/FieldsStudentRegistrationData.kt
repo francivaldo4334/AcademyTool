@@ -22,20 +22,21 @@ fun LazyListScope.FieldsStudentRegistrationData(formStudentRegistrationData: For
       modifier = Modifier.padding(16.dp)
     ) {
       Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
       ){
         TextField(
           label = R.strings.start_date,
           form = formStudentRegistrationData,
           key = FormStudentRegistrationData.Field.START_DATE.name,
-          modifier = Modifier.fillMaxWidth(0.5f).padding(end=6.dp) 
-        ) 
+          modifier = Modifier.weight(1f)
+        )
         TextField(
           label = R.strings.due_date,
           form = formStudentRegistrationData,
           key = FormStudentRegistrationData.Field.END_DATE.name,
-          modifier = Modifier.fillMaxWidth().padding(start=6.dp) 
-        ) 
+          modifier = Modifier.weight(1f)
+        )
       }
       TextField(
         label = R.strings.modality,

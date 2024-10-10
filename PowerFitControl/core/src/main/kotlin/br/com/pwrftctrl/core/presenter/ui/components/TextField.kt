@@ -3,12 +3,6 @@ package br.com.pwrftctrl.core.presenter.ui.components
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.background
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +10,7 @@ import androidx.compose.foundation.border
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
@@ -76,10 +71,11 @@ fun TextField(
         value = value,
         onValueChange = onValueChange,
         errorMessage = errorMessage,
+        modifier =  modifier.wrapContentWidth(),
         decorationBox = { fieldBox ->
             Box(
-                modifier =
-                modifier
+                modifier = Modifier
+                    .fillMaxWidth()
                     .heightIn(min = 40.dp)
                     .widthIn(min = 150.dp)
                     .padding(horizontal = 12.dp, vertical = 8.dp),
