@@ -72,7 +72,8 @@ fun ColumnScope.ClientsTable() {
           text = it,
           fontSize = 12.sp,
           fontWeight = FontWeight.Medium,
-          modifier = Modifier.padding(start = 12.dp)
+          modifier = Modifier.padding(start = 12.dp),
+          maxLines = 1
         )
     }
     row(

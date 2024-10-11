@@ -32,8 +32,9 @@ fun Clipboard(text: String) {
     horizontalArrangement = Arrangement.spacedBy(4.dp)
   ) {
     Text(
-      text = text
-    )
+      text = text,
+      maxLines = 1
+  )
     Icon(
       painter = R.vectors.ic_clipboard,
       contentDescription = "Copiar texto",
