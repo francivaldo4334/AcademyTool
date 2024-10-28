@@ -17,7 +17,7 @@ repositories {
 java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
 
 dependencies {
-    val exposedVersion = "0.54.0"
+    val exposedVersion = "0.55.0"
     implementation(compose.desktop.currentOs)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.1")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
