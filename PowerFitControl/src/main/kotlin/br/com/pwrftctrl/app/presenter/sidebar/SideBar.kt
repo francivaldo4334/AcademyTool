@@ -20,6 +20,7 @@ import com.composables.icons.lucide.Users
 import com.composables.icons.lucide.Dumbbell
 import com.composables.icons.lucide.ChartNoAxesCombined
 import com.composables.icons.lucide.HandCoins
+import com.composables.icons.lucide.Settings
 
 @Composable
 fun SideBar(
@@ -76,7 +77,7 @@ fun SideBar(
             )
         }
         Button(
-            iconPainter = R.vectors.ic_settings,
+            iconPainter = rememberVectorPainter(Lucide.Settings),
             textHelp = R.strings.settings,
             moduleIndex = ModuleSelection.SETTINGS,
             moduleSelected = moduleSelected,

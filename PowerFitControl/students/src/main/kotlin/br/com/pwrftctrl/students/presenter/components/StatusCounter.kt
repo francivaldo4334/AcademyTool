@@ -5,6 +5,10 @@ import br.com.pwrftctrl.students.presenter.enums.StudentStateFilter
 import br.com.pwrftctrl.core.presenter.ui.components.BaseStatusCounter
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.UserX
+import com.composables.icons.lucide.Cake
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
 fun StatusCounter(status: StudentStateFilter, count: Int) {
@@ -31,7 +35,7 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
     StudentStateFilter.BIRTHDAY -> {
       BaseStatusCounter(
         backgroundColor = extendedColors.yellow100,
-        painter = R.vectors.ic_cake,
+        painter = rememberVectorPainter(Lucide.Cake),
         tint = extendedColors.yellow900,
         count = count.toString(),
         textTip = R.strings.birthday,
@@ -40,7 +44,7 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
     StudentStateFilter.MISSING -> {
       BaseStatusCounter(
         backgroundColor = extendedColors.blue100,
-        painter = R.vectors.ic_question,
+        painter = rememberVectorPainter(Lucide.UserX),
         tint = extendedColors.blue900,
         count = count.toString(),
         textTip = R.strings.missing,

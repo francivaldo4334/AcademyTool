@@ -29,6 +29,8 @@ import br.com.pwrftctrl.core.presenter.ui.dimensions.LocalDimensionsSizeScreen
 import br.com.pwrftctrl.core.presenter.ui.theme.AppTheme
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Construction
 
 
 @Composable
@@ -74,7 +76,7 @@ fun App() {
                                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                                 ) {
                                     Icon(
-                                        painter = R.vectors.ic_construction,
+                                        imageVector = Lucide.Construction,
                                         contentDescription = "Em construção",
                                         modifier = Modifier.size(32.dp),
                                         tint = extendedColors.primary500,

@@ -14,6 +14,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.core.presenter.ui.components.*
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.UserX
+import com.composables.icons.lucide.Cake
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
 fun RowScope.FiltersRow() {
@@ -60,13 +64,13 @@ fun RowScope.FiltersRow() {
                 )
                 CheckboxFilter(
                         checked = isStateBirthday,
-                        painter = R.vectors.ic_cake,
+                        painter = rememberVectorPainter(Lucide.Cake),
                         contentDescription = R.strings.birthdays_of_month,
                         onChange = { isStateBirthday = !isStateBirthday }
                 )
                 CheckboxFilter(
                         checked = isStateMissing,
-                        painter = R.vectors.ic_question,
+                        painter = rememberVectorPainter(Lucide.UserX),
                         contentDescription = R.strings.missing_students,
                         onChange = { isStateMissing = !isStateMissing }
                 )

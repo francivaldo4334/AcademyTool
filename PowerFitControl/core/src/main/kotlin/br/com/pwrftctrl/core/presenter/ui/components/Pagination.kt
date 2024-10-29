@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.ChevronRight
 import com.composables.icons.lucide.ChevronLeft
 
 private const val COUNT_REPEAT = 9
@@ -126,7 +127,7 @@ fun Pagination(
                 value = selectedPage + 1,
                 onChange = ::_onChange,
                 enable = selectedPage < countPage,
-                painter = R.vectors.ic_arrow_right,
+                painter = rememberVectorPainter(Lucide.ChevronRight),
             )
         }
     }
