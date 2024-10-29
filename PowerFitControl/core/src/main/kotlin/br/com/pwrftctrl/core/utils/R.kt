@@ -56,6 +56,5 @@ object R {
     }
 
     val strings = Strings()
-    val vectors = Vectors()
 }
 
