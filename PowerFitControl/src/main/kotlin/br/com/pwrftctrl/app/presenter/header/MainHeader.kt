@@ -8,10 +8,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.app.presenter.header.viewmodels.ProfileManagerViewModel
 import br.com.pwrftctrl.core.presenter.ui.components.IconButton
 import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.LogOut
 
 @Composable
 fun MainHeader() {
@@ -49,7 +52,7 @@ fun MainHeader() {
             ProfilePhoto()
             // Buton Logout
             IconButton(
-                painter = R.vectors.ic_logout,
+                painter = rememberVectorPainter(Lucide.LogOut),
                 contentDescription = "Botão de logout",
                 onClick = {
                     // TODO: Logout action

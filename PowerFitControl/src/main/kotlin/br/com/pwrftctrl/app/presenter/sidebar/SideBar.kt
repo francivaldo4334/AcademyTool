@@ -11,9 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.app.presenter.enums.ModuleSelection
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Users
+import com.composables.icons.lucide.Dumbbell
+import com.composables.icons.lucide.ChartNoAxesCombined
+import com.composables.icons.lucide.HandCoins
 
 @Composable
 fun SideBar(
@@ -33,7 +39,7 @@ fun SideBar(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                iconPainter = R.vectors.ic_clients,
+                iconPainter = rememberVectorPainter(Lucide.Users),
                 textHelp = R.strings.clients_manager,
                 moduleIndex = ModuleSelection.CLIENTS,
                 moduleSelected = moduleSelected,
@@ -42,7 +48,7 @@ fun SideBar(
                 }
             )
             Button(
-                iconPainter = R.vectors.ic_status_up,
+                iconPainter = rememberVectorPainter(Lucide.ChartNoAxesCombined),
                 textHelp = R.strings.show_metrics,
                 moduleIndex = ModuleSelection.METRICS,
                 moduleSelected = moduleSelected,
@@ -51,7 +57,7 @@ fun SideBar(
                 }
             )
             Button(
-                iconPainter = R.vectors.ic_dumbbells,
+                iconPainter = rememberVectorPainter(Lucide.Dumbbell),
                 textHelp = R.strings.equipments_control,
                 moduleIndex = ModuleSelection.DUMBBELLS,
                 moduleSelected = moduleSelected,
@@ -60,7 +66,7 @@ fun SideBar(
                 }
             )
             Button(
-                iconPainter = R.vectors.ic_hand_money,
+                iconPainter = rememberVectorPainter(Lucide.HandCoins),
                 textHelp = R.strings.financial_control,
                 moduleIndex = ModuleSelection.HAND_MONEY,
                 moduleSelected = moduleSelected,

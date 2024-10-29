@@ -4,24 +4,6 @@ import androidx.compose.runtime.Composable
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.Dumbbell
 class Vectors() {
-    val ic_image
-        @Composable
-        get() = R.getVector("ic_image.svg")//Image
-    val ic_user
-        @Composable
-        get() = R.getVector("ic_user.svg")//User
-    val ic_clients
-        @Composable
-        get() = R.getVector("ic_users.svg")//Users
-
-    val ic_dumbbells
-        @Composable
-        get() = R.getVector("ic_dumbbell.svg")//Dumbbell
-
-    val ic_hand_money
-        @Composable
-        get() = R.getVector("ic_hand_coins.svg")//HandCoins
-
     val ic_status_up
         @Composable
         get() = R.getVector("ic_chart_no_axes_combined.svg")//ChartNoAxesCombined
