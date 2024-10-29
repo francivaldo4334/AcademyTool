@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.ChevronDown
 
 @Composable
 fun SelectField(
@@ -92,7 +94,7 @@ fun SelectField(
                 lineHeight = 12.sp
             )
             Icon(
-                painter = R.vectors.ic_arrow_down,
+                imageVector = Lucide.ChevronDown,
                 tint = extendedColors.secondary600,
                 contentDescription = "Icone de dropdown",
                 modifier = Modifier.size(16.dp)

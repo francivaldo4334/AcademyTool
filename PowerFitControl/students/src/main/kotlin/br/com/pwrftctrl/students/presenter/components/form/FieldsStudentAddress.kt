@@ -38,6 +38,7 @@ fun LazyListScope.FieldsStudentAddress(formStudentAddress: FormStudentAddress) {
         form = formStudentAddress,
         key = FormStudentAddress.Field.STREET.name,
         modifier = Modifier.fillMaxWidth()
+        
       )
       TextField(
         label = R.strings.evenue,

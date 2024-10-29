@@ -23,5 +23,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.xerial:sqlite-jdbc:3.46.1.0")
     implementation(project(":core"))
+    implementation("com.composables:icons-lucide:1.0.0")
 }
 

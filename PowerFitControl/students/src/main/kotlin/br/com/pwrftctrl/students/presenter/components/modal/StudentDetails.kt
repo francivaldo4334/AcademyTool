@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.core.utils.R
 import br.com.pwrftctrl.core.presenter.ui.components.BaseModal
 import br.com.pwrftctrl.core.presenter.ui.components.TextButton
@@ -41,6 +42,8 @@ import br.com.pwrftctrl.students.presenter.components.form.FieldsStudentData
 import br.com.pwrftctrl.students.presenter.components.form.FieldsStudentRegistrationData
 import br.com.pwrftctrl.students.presenter.forms.*
 import javax.swing.Box
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.X
 
 @Composable
 private fun RowBottomButtons(
@@ -109,7 +112,7 @@ fun StudentDetails(
                 containerColor = Color.Transparent,
                 contentColor = LocalExtendedColors.current.secondary900,
                 modifier = Modifier.size(48.dp).align(Alignment.End).padding(8.dp),
-                painter = R.vectors.ic_x,
+                painter = rememberVectorPainter(Lucide.X),
                 contentDescription = "Botao de fechar",
                 onClick = onDismissRequest
             )

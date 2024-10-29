@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.core.utils.R
 import br.com.pwrftctrl.students.presenter.forms.FormStudentData
 import br.com.pwrftctrl.core.presenter.ui.components.TextField
@@ -22,6 +23,8 @@ import br.com.pwrftctrl.core.presenter.ui.theme.extendedColorScheme
 import br.com.pwrftctrl.core.presenter.ui.components.CompanyLogo
 import br.com.pwrftctrl.core.presenter.ui.components.IconButton
 import br.com.pwrftctrl.core.presenter.ui.components.TextField
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Upload
 
 fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
     item {
@@ -69,7 +72,7 @@ fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
                         modifier = Modifier.size(avatarSize)
                     )
                     IconButton(
-                        painter = R.vectors.ic_upload,
+                        painter = rememberVectorPainter(Lucide.Upload),
                         contentDescription = "Botão de upload",
                         modifier = Modifier
                             .size(24.dp)

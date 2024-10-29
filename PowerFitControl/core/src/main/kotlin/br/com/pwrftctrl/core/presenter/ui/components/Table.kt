@@ -28,6 +28,9 @@ import androidx.compose.ui.graphics.Color
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.presenter.ui.components.RowCell
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.ChevronDown
+import com.composables.icons.lucide.ChevronUp
 
 data class HeaderItem(
     val title: String,
@@ -81,10 +84,10 @@ inline private fun RowScope.HeaderItemLayout(
         )
         if (props.onSortAction != null) {
             Icon(
-                painter = if (sorted)
-                    R.vectors.ic_arrow_up_bold
+                imageVector = if (sorted)
+                    Lucide.ChevronUp
                 else
-                    R.vectors.ic_arrow_down_bold,
+                    Lucide.ChevronDown,
                 contentDescription = "Ordenação de lista",
                 modifier = Modifier.size(16.dp)
             )

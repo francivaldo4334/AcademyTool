@@ -17,6 +17,8 @@ import androidx.compose.runtime.Composable
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 import androidx.compose.ui.graphics.Color
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Undo
 
 @Composable
 fun BackButton(
@@ -41,7 +43,7 @@ fun BackButton(
                 Text(R.strings.go_to_back)
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
-                        painter = R.vectors.ic_go_to_back,
+                        imageVector = Lucide.Undo,
                         contentDescription = "Voltar"
                 )
         }

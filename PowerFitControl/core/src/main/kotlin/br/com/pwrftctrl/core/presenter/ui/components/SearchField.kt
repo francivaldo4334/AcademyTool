@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.Search
 
 @Composable
 fun SearchField() {
@@ -38,7 +40,7 @@ fun SearchField() {
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Icon(
-                    painter = R.vectors.ic_search,
+                    imageVector = Lucide.Search,
                     contentDescription = "Icone de Pesquisa",
                     tint = extendedColors.secondary600,
                     modifier = Modifier.size(18.dp)
