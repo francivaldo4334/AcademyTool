@@ -17,6 +17,8 @@ import br.com.pwrftctrl.core.utils.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.UserX
 import com.composables.icons.lucide.Cake
+import com.composables.icons.lucide.BookmarkX
+import com.composables.icons.lucide.BookmarkCheck
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
@@ -52,13 +54,13 @@ fun RowScope.FiltersRow() {
             CheckboxexFilterRow {
                 CheckboxFilter(
                         checked = isStateNoPaid,
-                        painter = R.vectors.ic_no_money,
+                        painter = rememberVectorPainter(Lucide.BookmarkX),
                         contentDescription = R.strings.students_in_debt,
                         onChange = { isStateNoPaid = !isStateNoPaid }
                 )
                 CheckboxFilter(
                         checked = isStatePaid,
-                        painter = R.vectors.ic_money,
+                        painter = rememberVectorPainter(Lucide.BookmarkCheck),
                         contentDescription = R.strings.students_checkeds,
                         onChange = { isStatePaid = !isStatePaid }
                 )

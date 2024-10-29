@@ -7,7 +7,9 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.UserX
-import com.composables.icons.lucide.Cake
+import com.composables.icons.lucide.Cake 
+import com.composables.icons.lucide.BookmarkX
+import com.composables.icons.lucide.BookmarkCheck
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
@@ -18,7 +20,7 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
       BaseStatusCounter(
         backgroundColor = extendedColors.red100,
         tint = extendedColors.red900,
-        painter = R.vectors.ic_no_money,
+        painter = rememberVectorPainter(Lucide.BookmarkX),
         count = count.toString(),
         textTip = R.strings.in_debt,
       )
@@ -26,7 +28,7 @@ fun StatusCounter(status: StudentStateFilter, count: Int) {
     StudentStateFilter.PAID -> {
       BaseStatusCounter(
         backgroundColor = extendedColors.green100,
-        painter = R.vectors.ic_money,
+        painter = rememberVectorPainter(Lucide.BookmarkCheck),
         tint = extendedColors.green900,
         count = count.toString(),
         textTip = R.strings.checked,

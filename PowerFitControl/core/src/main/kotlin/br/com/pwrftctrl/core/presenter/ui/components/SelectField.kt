@@ -27,6 +27,7 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.utils.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.ChevronDown
+import com.composables.icons.lucide.Check
 
 @Composable
 fun SelectField(
@@ -153,7 +154,7 @@ fun SelectField(
                                 )
                                 if (item == selectedItem)
                                     Icon(
-                                        painter = R.vectors.ic_checked,
+                                        imageVector = Lucide.Check,
                                         contentDescription = "icon de check",
                                         tint = extendedColors.secondary600,
                                         modifier = Modifier.size(16.dp)

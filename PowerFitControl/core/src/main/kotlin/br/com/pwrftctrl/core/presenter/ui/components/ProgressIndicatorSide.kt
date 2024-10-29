@@ -20,6 +20,7 @@ import br.com.pwrftctrl.core.presenter.utils.Form
 import br.com.pwrftctrl.core.utils.R
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.CircleAlert
+import com.composables.icons.lucide.Check
 
 @Composable
 fun ProgressIndicatorSide(
@@ -104,7 +105,7 @@ fun ProgressIndicatorSide(
                             exit = fadeOut() + shrinkVertically(),
                         ) {
                             Icon(
-                                painter = R.vectors.ic_checked,
+                                imageVector = Lucide.Check,
                                 contentDescription = null,
                                 tint = extendedColor.secondary50,
                                 modifier = Modifier.size(16.dp)

@@ -8,12 +8,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import br.com.pwrftctrl.students.presenter.components.ClientsTable
 import br.com.pwrftctrl.students.presenter.components.FiltersRow
 import br.com.pwrftctrl.core.presenter.ui.components.Pagination
 import br.com.pwrftctrl.core.utils.R
 import br.com.pwrftctrl.students.presenter.components.form.ModalCreateStudent
 import br.com.pwrftctrl.core.presenter.ui.components.IconButton
+import com.composables.icons.lucide.Lucide
+import com.composables.icons.lucide.UserPlus
 
 @Composable
 fun ColumnScope.StudentsScreen() {
@@ -26,7 +29,7 @@ fun ColumnScope.StudentsScreen() {
     ) {
         FiltersRow()
         IconButton(
-                painter = R.vectors.ic_profile_add,
+                painter = rememberVectorPainter(Lucide.UserPlus),
                 contentDescription = "Adicionar novo aluno",
                 onClick = {
                     openModalAddStudent = true
