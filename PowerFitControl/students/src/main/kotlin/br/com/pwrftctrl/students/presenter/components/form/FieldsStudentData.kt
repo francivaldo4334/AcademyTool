@@ -28,31 +28,16 @@ import com.composables.icons.lucide.Upload
 
 fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
     item {
-        var avatarSize by remember {
-            mutableStateOf(0.dp)
-        }
-        var columnHeight by remember {
-            mutableStateOf(0.dp)
-        }
-        val extendedColor = LocalExtendedColors.current
-        LaunchedEffect(columnHeight) {
-            if (avatarSize == 0.dp) {
-                avatarSize = columnHeight
-            }
-        }
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.padding(16.dp)
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentWidth()
-                        .drawBehind {
-                            columnHeight = this.size.height.toDp()
-                        }
                 ) {
                     TextField(
                         label = R.strings.name,
@@ -69,7 +54,7 @@ fun LazyListScope.FieldsStudentData(formStudent: FormStudentData) {
                 }
                 Box() {
                     CompanyLogo(
-                        modifier = Modifier.size(avatarSize)
+                        modifier = Modifier.size(130.dp)
                     )
                     IconButton(
                         painter = rememberVectorPainter(Lucide.Upload),

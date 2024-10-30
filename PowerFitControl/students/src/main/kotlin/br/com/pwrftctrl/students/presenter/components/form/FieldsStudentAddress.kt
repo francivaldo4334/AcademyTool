@@ -18,7 +18,7 @@ import br.com.pwrftctrl.students.presenter.forms.FormStudentAddress
 fun LazyListScope.FieldsStudentAddress(formStudentAddress: FormStudentAddress) {
   item {
     Column(
-      verticalArrangement = Arrangement.spacedBy(16.dp),
+      verticalArrangement = Arrangement.spacedBy(8.dp),
       modifier = Modifier.padding(16.dp)
     ) {
       TextField(

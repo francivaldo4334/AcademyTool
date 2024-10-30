@@ -29,9 +29,10 @@ fun TextFieldLarge(
     ) {
         Text(
             text = label,
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             color = extendedColors.primary500,
-            modifier = Modifier.fillMaxWidth().padding(start = 12.dp)
+            maxLines = 1,
+            modifier = Modifier.fillMaxWidth()
         )
         BaseTextField(
             value = value,

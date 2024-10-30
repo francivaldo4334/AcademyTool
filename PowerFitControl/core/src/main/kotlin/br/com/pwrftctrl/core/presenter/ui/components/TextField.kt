@@ -22,15 +22,6 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 import br.com.pwrftctrl.core.presenter.utils.Form
 
 @Composable
-private fun animateAlignmentAsState(targetAlignment: Alignment, durationMillis: Int = 300): State<Alignment> {
-    val yOffset by animateFloatAsState(
-        targetValue = if (targetAlignment == Alignment.CenterStart) 0.5f else 0.9f,
-        animationSpec = tween(durationMillis)
-    )
-    return remember { derivedStateOf { Alignment{size, spacer,_ -> IntOffset(0, ((spacer.height / 2) - (size.height * yOffset)).toInt())} }}
-}
-
-@Composable
 fun TextField(
     label: String,
     value: String,
@@ -40,55 +31,32 @@ fun TextField(
     onValueChange: (String) -> Unit,
 ) {
     val extendedColors = LocalExtendedColors.current
-    var isFocused by remember { mutableStateOf(false)}
-    val scaleLabel by animateFloatAsState(
-        targetValue = if (isFocused || value.isNotEmpty()) 0.8f else 1f,
-        animationSpec = tween(300)
-    )
-    val labelAlignment by animateAlignmentAsState(
-        targetAlignment = if (isFocused || value.isNotEmpty()) Alignment.TopStart else Alignment.CenterStart
-    )
-    BaseTextField(
-        onFocusChange = {
-            isFocused = it.isFocused
-        },
-        enabled = enabled,
-        value = value,
-        onValueChange = onValueChange,
-        errorMessage = errorMessage,
-        modifier =  modifier.wrapContentWidth(),
-        decorationBox = { fieldBox ->
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 40.dp)
-                    .widthIn(min = 150.dp)
-                    .padding(horizontal = 12.dp, vertical = 8.dp),
-            ) {
+    Column{
+        Text(
+            text = label,
+            fontSize = 14.sp,
+            color = extendedColors.primary500,
+            maxLines = 1
+        )
+        BaseTextField(
+            enabled = enabled,
+            value = value,
+            onValueChange = onValueChange,
+            errorMessage = errorMessage,
+            modifier =  modifier.wrapContentWidth(),
+            decorationBox = { fieldBox ->
                 Box(
-                    modifier = Modifier.align(labelAlignment)
-                        .graphicsLayer{
-                            scaleX = scaleLabel
-                            scaleY = scaleLabel 
-                            transformOrigin = TransformOrigin(0f,0f)
-                        },
-                    contentAlignment = Alignment.TopStart
-                ){
-                    Text(
-                        text = label,
-                        fontSize = 14.sp,
-                        color = extendedColors.primary500,
-                        maxLines = 1
-                    )
-                }
-                Box(
-                    modifier = Modifier.align(Alignment{size, spacer, _ -> IntOffset(0, (spacer.height * 0.3f).toInt())})
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(min = 40.dp)
+                        .widthIn(min = 150.dp)
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                 ) {
                     fieldBox()
                 }
             }
-        }
-    )
+        )
+    }
 }
 
 @Composable
