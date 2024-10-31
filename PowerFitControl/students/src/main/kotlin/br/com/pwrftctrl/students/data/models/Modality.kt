@@ -1,9 +1,9 @@
 package br.com.pwrftctrl.students.data.models
 
-import org.jetbrains.exposed.sql.Table
 import br.com.pwrftctrl.core.data.utils.centsField
+import org.jetbrains.exposed.sql.Table
 
-object Modality: Table() {
+object Modality : Table() {
   val id = integer("id").autoIncrement().entityId()
   val value = centsField()
   val description = varchar("description", 255)

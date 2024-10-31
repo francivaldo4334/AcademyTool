@@ -17,17 +17,19 @@ fun TextButton(
         onClick: () -> Unit,
         content: @Composable RowScope.() -> Unit
 ) {
-    val extendedColors = LocalExtendedColors.current
-    materialTextButton(
-            enabled = enabled,
-            onClick = onClick,
-            content = content,
-            shape = RoundedCornerShape(8.dp),
-            colors =
-                    ButtonDefaults.textButtonColors(
-                        backgroundColor = if (enabled) extendedColors.primary500 else extendedColors.secondary200,
-                        contentColor = MaterialTheme.colors.background,
-                   ),
-            modifier = Modifier.height(40.dp)
-    )
+        val extendedColors = LocalExtendedColors.current
+        materialTextButton(
+                enabled = enabled,
+                onClick = onClick,
+                content = content,
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                        ButtonDefaults.textButtonColors(
+                                backgroundColor =
+                                        if (enabled) extendedColors.primary500
+                                        else extendedColors.secondary200,
+                                contentColor = MaterialTheme.colors.background,
+                        ),
+                modifier = Modifier.height(40.dp)
+        )
 }

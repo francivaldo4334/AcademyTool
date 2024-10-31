@@ -15,28 +15,36 @@ import androidx.compose.ui.unit.dp
 import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
-fun CheckboxFilter(painter: Painter, checked: Boolean, contentDescription: String, onChange: (Boolean) -> Unit) {
+fun CheckboxFilter(
+        painter: Painter,
+        checked: Boolean,
+        contentDescription: String,
+        onChange: (Boolean) -> Unit
+) {
     val extendedColors = LocalExtendedColors.current
     PopoverTip(
-        offset = IntOffset(0, 4),
-        alignment = Alignment.BottomStart,
-        contentComponent = {
-            Box(
-                modifier = Modifier
-                    .clickable { onChange(!checked) }
-                    .size(32.dp)
-                    .background(if (checked) extendedColors.primary500 else extendedColors.secondary200),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    painter = painter,
-                    contentDescription = contentDescription,
-                    modifier = Modifier.size(24.dp),
-                    tint = if (checked) extendedColors.primary50 else extendedColors.secondary500
-                )
-            }
-        },
-    ) {
-        Text(contentDescription, color = extendedColors.secondary900)
-    }
+            offset = IntOffset(0, 4),
+            alignment = Alignment.BottomStart,
+            contentComponent = {
+                Box(
+                        modifier =
+                                Modifier.clickable { onChange(!checked) }
+                                        .size(32.dp)
+                                        .background(
+                                                if (checked) extendedColors.primary500
+                                                else extendedColors.secondary200
+                                        ),
+                        contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                            painter = painter,
+                            contentDescription = contentDescription,
+                            modifier = Modifier.size(24.dp),
+                            tint =
+                                    if (checked) extendedColors.primary50
+                                    else extendedColors.secondary500
+                    )
+                }
+            },
+    ) { Text(contentDescription, color = extendedColors.secondary900) }
 }

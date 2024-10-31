@@ -1,10 +1,10 @@
 package br.com.pwrftctrl.schedule.data.models
 
-import org.jetbrains.exposed.sql.Table
 import br.com.pwrftctrl.core.data.utils.dateField
 import br.com.pwrftctrl.core.data.utils.timeInMinutesField
+import org.jetbrains.exposed.sql.Table
 
-class Unavailability: Table() {
+class Unavailability : Table() {
   val id = integer("id").autoIncrement().entityId()
   val date = dateField("date")
   val startTime = timeInMinutesField("start_time")

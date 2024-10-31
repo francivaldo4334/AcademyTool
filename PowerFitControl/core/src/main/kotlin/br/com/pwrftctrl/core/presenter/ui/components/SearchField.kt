@@ -22,37 +22,35 @@ fun SearchField() {
     val (value, onValueChange) = remember { mutableStateOf("") }
     val extendedColors = LocalExtendedColors.current
     BasicTextField(
-        value = value,
-        onValueChange = onValueChange,
-        singleLine = true,
-        decorationBox = { fieldBox ->
-            Row(
-                modifier =
-                Modifier.border(
-                    width = 2.dp,
-                    color = extendedColors.secondary100,
-                    shape = RoundedCornerShape(8.dp)
-                )
-                    .height(40.dp)
-                    .widthIn(min = 272.dp, max = 400.dp)
-                    .padding(horizontal = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Icon(
-                    imageVector = Lucide.Search,
-                    contentDescription = "Icone de Pesquisa",
-                    tint = extendedColors.secondary600,
-                    modifier = Modifier.size(18.dp)
-                )
-                Box(
-                    contentAlignment = Alignment.CenterStart
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            decorationBox = { fieldBox ->
+                Row(
+                        modifier =
+                                Modifier.border(
+                                                width = 2.dp,
+                                                color = extendedColors.secondary100,
+                                                shape = RoundedCornerShape(8.dp)
+                                        )
+                                        .height(40.dp)
+                                        .widthIn(min = 272.dp, max = 400.dp)
+                                        .padding(horizontal = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    fieldBox()
-                    if (value.isEmpty())
-                        Text(R.strings.search, color = extendedColors.secondary500)
+                    Icon(
+                            imageVector = Lucide.Search,
+                            contentDescription = "Icone de Pesquisa",
+                            tint = extendedColors.secondary600,
+                            modifier = Modifier.size(18.dp)
+                    )
+                    Box(contentAlignment = Alignment.CenterStart) {
+                        fieldBox()
+                        if (value.isEmpty())
+                                Text(R.strings.search, color = extendedColors.secondary500)
+                    }
                 }
             }
-        }
     )
 }

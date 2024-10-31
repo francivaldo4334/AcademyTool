@@ -3,10 +3,8 @@ package br.com.pwrftctrl.students.presenter.forms
 import br.com.pwrftctrl.core.presenter.utils.Form
 import br.com.pwrftctrl.core.utils.R
 
-class FormStudentData : Form(
-    formName=R.strings.student,
-    *Field.values().map{it.name}.toTypedArray()
-) {
+class FormStudentData :
+        Form(formName = R.strings.student, *Field.values().map { it.name }.toTypedArray()) {
     enum class Field {
         FIRST_NAME,
         LAST_NAME,
@@ -19,34 +17,27 @@ class FormStudentData : Form(
     }
 
     override fun getValidateFieldMessage(fieldName: String, value: String): String? {
-        return when(fieldName) {
+        return when (fieldName) {
             Field.FIRST_NAME.name,
             Field.LAST_NAME.name,
             Field.CPF.name,
             Field.BIRTHDATE.name,
-            Field.PHONE_1.name
-            -> {
+            Field.PHONE_1.name -> {
                 val errors = mutableListOf<String>()
-                if (value.isEmpty()){
+                if (value.isEmpty()) {
                     errors.add("Este campo é obrigatorio!")
                 }
-                if (errors.isNotEmpty())
-                    errors.joinToString(",")
-                else null
+                if (errors.isNotEmpty()) errors.joinToString(",") else null
             }
             else -> null
-
         }
     }
 
-    override fun onAction() {
-
-    }
+    override fun onAction() {}
 }
-class FormStudentAddress : Form(
-    formName=R.strings.address,
-    *Field.values().map{it.name}.toTypedArray()
-) {
+
+class FormStudentAddress :
+        Form(formName = R.strings.address, *Field.values().map { it.name }.toTypedArray()) {
     enum class Field {
         ADDRESS,
         NEIGHBORHOOD,
@@ -58,14 +49,14 @@ class FormStudentAddress : Form(
         REFERENCE,
     }
 
-    override fun onAction() {
-
-    }
+    override fun onAction() {}
 }
-class FormStudentRegistrationData : Form(
-    formName=R.strings.student_register,
-    *Field.values().map{it.name}.toTypedArray()
-) {
+
+class FormStudentRegistrationData :
+        Form(
+                formName = R.strings.student_register,
+                *Field.values().map { it.name }.toTypedArray()
+        ) {
     enum class Field {
         START_DATE,
         END_DATE,
@@ -73,22 +64,18 @@ class FormStudentRegistrationData : Form(
         OBSERVATION,
     }
 
-    override fun getValidateFieldMessage(fieldName:String, value:String): String? {
-        return when(fieldName) {
-            Field.OBSERVATION.name,
-            -> {
+    override fun getValidateFieldMessage(fieldName: String, value: String): String? {
+        return when (fieldName) {
+            Field.OBSERVATION.name, -> {
                 val errors = mutableListOf<String>()
-                if (value.isEmpty()){
+                if (value.isEmpty()) {
                     errors.add("Este campo é obrigatorio!")
                 }
-                if (errors.isNotEmpty())
-                    errors.joinToString(",")
-                else null
+                if (errors.isNotEmpty()) errors.joinToString(",") else null
             }
             else -> null
-
         }
     }
 
-    override fun onAction() { }
+    override fun onAction() {}
 }

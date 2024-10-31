@@ -62,23 +62,25 @@ data class Strings(
         val conclude: String = R.getString("conclude"),
         val student_registration: String = R.getString("student_registration"),
 ) {
-    fun getDatabasePath(): String {
-        val os = System.getProperty("os.name").lowercase()
-        val appName = R.strings.app_name
-        val databaseName = "database.db"
+        fun getDatabasePath(): String {
+                val os = System.getProperty("os.name").lowercase()
+                val appName = R.strings.app_name
+                val databaseName = "database.db"
 
-        val path =
-                when {
-                    os.contains("win") ->
-                            Paths.get(System.getenv("APPDATA"), appName, databaseName).toString()
-                    os.contains("nix") || os.contains("nux") || os.contains("mac") ->
-                            Paths.get(System.getenv("HOME"), ".$appName", databaseName).toString()
-                    else -> databaseName
+                val path =
+                        when {
+                                os.contains("win") ->
+                                        Paths.get(System.getenv("APPDATA"), appName, databaseName)
+                                                .toString()
+                                os.contains("nix") || os.contains("nux") || os.contains("mac") ->
+                                        Paths.get(System.getenv("HOME"), ".$appName", databaseName)
+                                                .toString()
+                                else -> databaseName
+                        }
+                val directory = File(path).parentFile
+                if (directory != null && !directory.exists()) {
+                        directory.mkdirs()
                 }
-        val directory = File(path).parentFile
-        if (directory != null && !directory.exists()) {
-            directory.mkdirs()
+                return path
         }
-        return path
-    }
 }

@@ -14,30 +14,26 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun PaginationButton(
-    selected: Boolean = false,
-    enable: Boolean = true,
-    onClick: () -> Unit = {},
-    content: @Composable () -> Unit
+        selected: Boolean = false,
+        enable: Boolean = true,
+        onClick: () -> Unit = {},
+        content: @Composable () -> Unit
 ) {
     val extendedColors = LocalExtendedColors.current
     Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(8.dp))
-            .clickable(enable) {
-                onClick()
-            }
-            .size(40.dp)
-            .background(
-                if (selected) {
-                    extendedColors.primary500
-                } else if (enable) {
-                    extendedColors.secondary200
-                } else {
-                    extendedColors.secondary50
-                }
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        content()
-    }
+            modifier =
+                    Modifier.clip(RoundedCornerShape(8.dp))
+                            .clickable(enable) { onClick() }
+                            .size(40.dp)
+                            .background(
+                                    if (selected) {
+                                        extendedColors.primary500
+                                    } else if (enable) {
+                                        extendedColors.secondary200
+                                    } else {
+                                        extendedColors.secondary50
+                                    }
+                            ),
+            contentAlignment = Alignment.Center
+    ) { content() }
 }

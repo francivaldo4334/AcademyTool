@@ -23,7 +23,10 @@ fun BaseModal(
         Dialog(
                 onDismissRequest = onDismissRequest,
                 properties =
-                        DialogProperties(dismissOnBackPress = autoDimiss, dismissOnClickOutside = autoDimiss),
+                        DialogProperties(
+                                dismissOnBackPress = autoDimiss,
+                                dismissOnClickOutside = autoDimiss
+                        ),
         ) {
                 Box(
                         modifier =

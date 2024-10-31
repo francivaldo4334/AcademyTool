@@ -2,7 +2,7 @@ package br.com.pwrftctrl.students.data.models
 
 import org.jetbrains.exposed.sql.Table
 
-object Anthropometry: Table() {
+object Anthropometry : Table() {
   val id = integer("id").autoIncrement().entityId()
   val neck = double("neck")
   val thoracic = double("thoracic")

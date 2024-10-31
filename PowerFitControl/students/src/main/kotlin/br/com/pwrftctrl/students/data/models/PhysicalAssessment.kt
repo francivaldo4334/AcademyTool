@@ -1,10 +1,10 @@
 package br.com.pwrftctrl.students.data.models
 
-import org.jetbrains.exposed.sql.Table
-import br.com.pwrftctrl.core.data.utils.dateField
 import br.com.pwrftctrl.core.data.models.Users
+import br.com.pwrftctrl.core.data.utils.dateField
+import org.jetbrains.exposed.sql.Table
 
-class PhysicalAssessment: Table() {
+class PhysicalAssessment : Table() {
   val id = integer("id").autoIncrement().entityId()
   val student = integer("student").references(Users.id)
   val instructor = varchar("instructor", 11)

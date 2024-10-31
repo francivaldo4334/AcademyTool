@@ -2,24 +2,23 @@ package br.com.pwrftctrl.students.presenter.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.pwrftctrl.core.presenter.ui.components.*
 import br.com.pwrftctrl.core.utils.R
+import com.composables.icons.lucide.BookmarkCheck
+import com.composables.icons.lucide.BookmarkX
+import com.composables.icons.lucide.Cake
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.UserX
-import com.composables.icons.lucide.Cake
-import com.composables.icons.lucide.BookmarkX
-import com.composables.icons.lucide.BookmarkCheck
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
 fun RowScope.FiltersRow() {

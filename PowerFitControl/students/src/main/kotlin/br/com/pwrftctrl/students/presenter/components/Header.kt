@@ -11,11 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.pwrftctrl.students.presenter.enums.OptionsType
-import br.com.pwrftctrl.students.presenter.viewmodels.ClientsViewModel
 import br.com.pwrftctrl.core.presenter.ui.components.TextBottomSelectionItem
 import br.com.pwrftctrl.core.presenter.viewmodels.MyViewModelFactory
 import br.com.pwrftctrl.core.utils.R
+import br.com.pwrftctrl.students.presenter.enums.OptionsType
+import br.com.pwrftctrl.students.presenter.viewmodels.ClientsViewModel
 
 @Composable
 fun Header() {
@@ -25,16 +25,16 @@ fun Header() {
         Text(R.strings.clients, fontSize = 25.sp, fontWeight = FontWeight.Normal)
         Row() {
             TextBottomSelectionItem(
-                R.strings.clients_option_students,
-                selected = OptionsType.STUDENTS == selectedOption.value,
+                    R.strings.clients_option_students,
+                    selected = OptionsType.STUDENTS == selectedOption.value,
             ) { clientsManagerViewModel.selectOption(OptionsType.STUDENTS) }
             TextBottomSelectionItem(
-                R.strings.clients_option_classes,
-                selected = OptionsType.CLASSES == selectedOption.value,
+                    R.strings.clients_option_classes,
+                    selected = OptionsType.CLASSES == selectedOption.value,
             ) { clientsManagerViewModel.selectOption(OptionsType.CLASSES) }
             TextBottomSelectionItem(
-                R.strings.clients_option_birthdays,
-                selected = OptionsType.BIRTHDAYS == selectedOption.value,
+                    R.strings.clients_option_birthdays,
+                    selected = OptionsType.BIRTHDAYS == selectedOption.value,
             ) { clientsManagerViewModel.selectOption(OptionsType.BIRTHDAYS) }
         }
     }

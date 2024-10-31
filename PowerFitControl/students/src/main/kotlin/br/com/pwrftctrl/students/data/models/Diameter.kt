@@ -2,7 +2,7 @@ package br.com.pwrftctrl.students.data.models
 
 import org.jetbrains.exposed.sql.Table
 
-object Diameter: Table() {
+object Diameter : Table() {
   val id = integer("id").autoIncrement().entityId()
   val humeral = double("humeral")
   val radioUlnarDiameter = double("radio_ulnar_diameter")

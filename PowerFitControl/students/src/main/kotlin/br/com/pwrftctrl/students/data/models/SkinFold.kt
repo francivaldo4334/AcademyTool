@@ -2,7 +2,7 @@ package br.com.pwrftctrl.students.data.models
 
 import org.jetbrains.exposed.sql.Table
 
-object SkinFold: Table() {
+object SkinFold : Table() {
   val id = integer("id").autoIncrement().entityId()
   val subscapularis = double("subscapularis")
   val triceps = double("triceps")

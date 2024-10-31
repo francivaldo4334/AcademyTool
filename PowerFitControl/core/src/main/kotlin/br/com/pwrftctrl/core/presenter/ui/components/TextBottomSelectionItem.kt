@@ -20,48 +20,47 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 
 @Composable
 fun TextBottomSelectionItem(
-    text: String,
-    selected: Boolean,
-    onClick: () -> Unit,
+        text: String,
+        selected: Boolean,
+        onClick: () -> Unit,
 ) {
     val lineLengh = animateFloatAsState(targetValue = if (selected) 1f else 0f)
 
     val extendedColors = LocalExtendedColors.current
     Text(
-        text = text,
-        textAlign = TextAlign.Center,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.SemiBold,
-        modifier =
-        Modifier.drawBehind {
-            if (selected) {
-                val strokeWidth = 4.dp.toPx()
-                val centerHorizontal = size.width / 2
-                drawLine(
-                    color = extendedColors.primary500,
-                    start =
-                    Offset(
-                        centerHorizontal -
-                                (lineLengh.value *
-                                        centerHorizontal),
-                        size.height
-                    ),
-                    end =
-                    Offset(
-                        centerHorizontal +
-                                (centerHorizontal *
-                                        lineLengh
-                                            .value),
-                        size.height
-                    ),
-                    strokeWidth = strokeWidth,
-                    cap = StrokeCap.Round
-                )
-            }
-        }
-            .clip(RoundedCornerShape(12.dp))
-            .clickable { onClick() }
-            .widthIn(min = 72.dp)
-            .padding(vertical = 12.dp, horizontal = 16.dp)
+            text = text,
+            textAlign = TextAlign.Center,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.SemiBold,
+            modifier =
+                    Modifier.drawBehind {
+                                if (selected) {
+                                    val strokeWidth = 4.dp.toPx()
+                                    val centerHorizontal = size.width / 2
+                                    drawLine(
+                                            color = extendedColors.primary500,
+                                            start =
+                                                    Offset(
+                                                            centerHorizontal -
+                                                                    (lineLengh.value *
+                                                                            centerHorizontal),
+                                                            size.height
+                                                    ),
+                                            end =
+                                                    Offset(
+                                                            centerHorizontal +
+                                                                    (centerHorizontal *
+                                                                            lineLengh.value),
+                                                            size.height
+                                                    ),
+                                            strokeWidth = strokeWidth,
+                                            cap = StrokeCap.Round
+                                    )
+                                }
+                            }
+                            .clip(RoundedCornerShape(12.dp))
+                            .clickable { onClick() }
+                            .widthIn(min = 72.dp)
+                            .padding(vertical = 12.dp, horizontal = 16.dp)
     )
 }

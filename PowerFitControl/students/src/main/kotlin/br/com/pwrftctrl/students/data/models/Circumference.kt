@@ -2,7 +2,7 @@ package br.com.pwrftctrl.students.data.models
 
 import org.jetbrains.exposed.sql.Table
 
-object Circumference: Table() {
+object Circumference : Table() {
   val id = integer("id").autoIncrement().entityId()
   val gluteus = double("gluteus")
   val calf = double("calf")

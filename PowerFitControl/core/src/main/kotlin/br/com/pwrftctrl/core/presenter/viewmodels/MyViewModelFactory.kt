@@ -10,13 +10,12 @@ object MyViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     fun <T : ViewModel> create(modelClass: Class<T>): T {
 
-        return viewModelInstances.getOrPut(modelClass) {
-            modelClass.getDeclaredConstructor().newInstance()
-        }.let {
-            if (modelClass.isInstance(it)) it as T
-            else throw IllegalArgumentException("Unknow  ViewModel class")
-
-        }
+        return viewModelInstances
+                .getOrPut(modelClass) { modelClass.getDeclaredConstructor().newInstance() }
+                .let {
+                    if (modelClass.isInstance(it)) it as T
+                    else throw IllegalArgumentException("Unknow  ViewModel class")
+                }
     }
 }
 

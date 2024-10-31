@@ -1,10 +1,10 @@
 package br.com.pwrftctrl.schedule.data.models
 
-import org.jetbrains.exposed.sql.Table
 import br.com.pwrftctrl.core.data.utils.dateField
 import br.com.pwrftctrl.core.data.utils.timeInMinutesField
+import org.jetbrains.exposed.sql.Table
 
-class Availablity: Table() {
+object Availablity : Table() {
   val id = integer("id").autoIncrement().entityId()
   val assignedObjectSlug = varchar("assigned_object", 80)
   val startDate = dateField("start_date")

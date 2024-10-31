@@ -15,9 +15,9 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 fun ProfilePhoto() {
     val extendedColors = LocalExtendedColors.current
     Box(
-        modifier =
-        Modifier.size(48.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(extendedColors.primary500)
+            modifier =
+                    Modifier.size(48.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(extendedColors.primary500)
     ) {}
 }

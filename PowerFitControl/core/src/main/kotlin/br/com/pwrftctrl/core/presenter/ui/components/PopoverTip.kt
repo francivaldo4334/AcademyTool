@@ -22,10 +22,10 @@ import br.com.pwrftctrl.core.presenter.ui.theme.LocalExtendedColors
 @Composable
 @OptIn(ExperimentalComposeUiApi::class)
 fun PopoverTip(
-    alignment: Alignment = Alignment.TopStart,
-    offset: IntOffset = IntOffset(0, 0),
-    contentComponent: @Composable () -> Unit,
-    content: @Composable () -> Unit
+        alignment: Alignment = Alignment.TopStart,
+        offset: IntOffset = IntOffset(0, 0),
+        contentComponent: @Composable () -> Unit,
+        content: @Composable () -> Unit
 ) {
     val extendedColors = LocalExtendedColors.current
     var isHover by remember { mutableStateOf(false) }
@@ -34,49 +34,54 @@ fun PopoverTip(
     var contentWidth by remember { mutableStateOf(0) }
     var contentHeight by remember { mutableStateOf(0) }
     Box {
-        Box(modifier = Modifier
-            .onPointerEvent(PointerEventType.Enter) { isHover = true }
-            .onPointerEvent(PointerEventType.Exit) { isHover = false }
-            .drawBehind {
-                contentWidth = size.width.toInt()
-                contentHeight = size.height.toInt()
-            }
-        ) {
-            contentComponent()
-        }
+        Box(
+                modifier =
+                        Modifier.onPointerEvent(PointerEventType.Enter) { isHover = true }
+                                .onPointerEvent(PointerEventType.Exit) { isHover = false }
+                                .drawBehind {
+                                    contentWidth = size.width.toInt()
+                                    contentHeight = size.height.toInt()
+                                }
+        ) { contentComponent() }
         Popup(
-            alignment = Alignment.TopStart,
-            properties = PopupProperties(
-                dismissOnBackPress = true,
-                dismissOnClickOutside = true,
-            ),
-            offset = when (alignment) {
-                Alignment.CenterEnd -> IntOffset(offset.x + contentWidth, (contentHeight - tipHeight) / 2 + offset.y)
-                Alignment.TopEnd -> IntOffset(offset.x + contentWidth, offset.y)
-                Alignment.BottomCenter -> IntOffset(-(tipWidth - contentWidth) / 2 + offset.x, contentHeight + offset.y)
-                Alignment.BottomStart -> IntOffset(offset.x, contentHeight + offset.y)
-                else -> offset
-            }
+                alignment = Alignment.TopStart,
+                properties =
+                        PopupProperties(
+                                dismissOnBackPress = true,
+                                dismissOnClickOutside = true,
+                        ),
+                offset =
+                        when (alignment) {
+                            Alignment.CenterEnd ->
+                                    IntOffset(
+                                            offset.x + contentWidth,
+                                            (contentHeight - tipHeight) / 2 + offset.y
+                                    )
+                            Alignment.TopEnd -> IntOffset(offset.x + contentWidth, offset.y)
+                            Alignment.BottomCenter ->
+                                    IntOffset(
+                                            -(tipWidth - contentWidth) / 2 + offset.x,
+                                            contentHeight + offset.y
+                                    )
+                            Alignment.BottomStart -> IntOffset(offset.x, contentHeight + offset.y)
+                            else -> offset
+                        }
         ) {
             AnimatedVisibility(
-                visible = isHover,
-                enter = scaleIn() + expandIn() + fadeIn(),
-                exit = scaleOut() + shrinkOut() + fadeOut(),
+                    visible = isHover,
+                    enter = scaleIn() + expandIn() + fadeIn(),
+                    exit = scaleOut() + shrinkOut() + fadeOut(),
             ) {
                 Box(
-                    modifier = Modifier
-                        .drawBehind {
-                            tipWidth = size.width.toInt()
-                            tipHeight = size.height.toInt()
-                        }
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(
-                            color = extendedColors.secondary300.copy(0.5f)
-                        )
-                        .padding(4.dp)
-                ) {
-                    content()
-                }
+                        modifier =
+                                Modifier.drawBehind {
+                                            tipWidth = size.width.toInt()
+                                            tipHeight = size.height.toInt()
+                                        }
+                                        .clip(RoundedCornerShape(4.dp))
+                                        .background(color = extendedColors.secondary300.copy(0.5f))
+                                        .padding(4.dp)
+                ) { content() }
             }
         }
     }

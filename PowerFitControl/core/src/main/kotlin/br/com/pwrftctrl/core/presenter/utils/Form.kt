@@ -4,12 +4,17 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
 fun loadFields(vararg fieldName: String): Map<String, MutableState<String>> {
-    return fieldName.associateWith{mutableStateOf("")}
+    return fieldName.associateWith { mutableStateOf("") }
 }
 
-abstract class Form(private val formName: String? = null, vararg fieldName: String, isOnlyRead: Boolean = false) {
+abstract class Form(
+        private val formName: String? = null,
+        vararg fieldName: String,
+        isOnlyRead: Boolean = false
+) {
     private val fields: Map<String, MutableState<String>> = loadFields(*fieldName)
-    private var errorMessages: MutableMap<String, MutableState<String>> = loadFields(*fieldName).toMutableMap()
+    private var errorMessages: MutableMap<String, MutableState<String>> =
+            loadFields(*fieldName).toMutableMap()
     private val forms: MutableMap<String, Form> = mutableMapOf()
     var isValid = mutableStateOf(false)
     var isOnlyRead = mutableStateOf(isOnlyRead)
@@ -18,19 +23,17 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
         this.forms[form.toString()] = form
         return this
     }
-    fun setIsOnlyRead(value: Boolean){
+    fun setIsOnlyRead(value: Boolean) {
         this.isOnlyRead.value = value
-        this.forms.forEach { _, it ->
-            it.setIsOnlyRead(value)
-        }
+        this.forms.forEach { _, it -> it.setIsOnlyRead(value) }
     }
     open fun getValidateFieldMessage(fieldName: String, value: String): String? = null
 
     fun validateField(fieldName: String, value: String, setMessageErrors: Boolean = true): Boolean {
         var isValid = true
-        getValidateFieldMessage(fieldName, value)?.let{ message -> 
-            if (setMessageErrors){
-                errorMessages[fieldName]?.value = message 
+        getValidateFieldMessage(fieldName, value)?.let { message ->
+            if (setMessageErrors) {
+                errorMessages[fieldName]?.value = message
             }
             isValid = false
         }
@@ -40,16 +43,18 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
 
     fun getForm(formName: String): Form {
         return getForms()[formName]!!
-    } 
+    }
 
     fun getForms(): Map<String, Form> {
-        return linkedMapOf<String, Form>().apply { 
-            this[this@Form.toString()] = this@Form 
-            this.putAll(this@Form.forms)
-        }.toMap()
+        return linkedMapOf<String, Form>()
+                .apply {
+                    this[this@Form.toString()] = this@Form
+                    this.putAll(this@Form.forms)
+                }
+                .toMap()
     }
     fun getFormNames(): List<String> {
-        return this.getForms().map{ it.value.toString()}
+        return this.getForms().map { it.value.toString() }
     }
 
     fun getField(fieldName: String): MutableState<String>? {
@@ -66,22 +71,19 @@ abstract class Form(private val formName: String? = null, vararg fieldName: Stri
 
     fun getErrorMessages(): MutableMap<String, MutableState<String>> {
         val allErrorMessages = this.errorMessages
-        this.forms.forEach { (_, form) ->
-            allErrorMessages.putAll(form.getErrorMessages())
-        }
+        this.forms.forEach { (_, form) -> allErrorMessages.putAll(form.getErrorMessages()) }
         return allErrorMessages
     }
 
     fun validation(setMessageErrors: Boolean = true): Boolean {
         var isValid = true
-        this.getFields().forEach{ (key, value) ->
-            if (!this@Form.validateField(key, value.value,setMessageErrors)){
+        this.getFields().forEach { (key, value) ->
+            if (!this@Form.validateField(key, value.value, setMessageErrors)) {
                 isValid = false
             }
         }
         this.isValid.value = isValid
         return isValid
-
     }
 
     fun onSubmit() {

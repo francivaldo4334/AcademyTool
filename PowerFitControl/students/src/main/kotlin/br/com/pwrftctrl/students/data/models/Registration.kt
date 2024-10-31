@@ -1,9 +1,9 @@
 package br.com.pwrftctrl.students.data.models
 
-import org.jetbrains.exposed.sql.Table
-import br.com.pwrftctrl.core.data.utils.dateField
-import br.com.pwrftctrl.core.data.utils.CurrentDate
 import br.com.pwrftctrl.core.data.models.Users
+import br.com.pwrftctrl.core.data.utils.CurrentDate
+import br.com.pwrftctrl.core.data.utils.dateField
+import org.jetbrains.exposed.sql.Table
 
 object Registration : Table() {
   val id = integer("id").autoIncrement().entityId()
