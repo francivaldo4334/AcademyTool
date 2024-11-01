@@ -54,11 +54,9 @@ data class User(
 fun InsertStatement<Number>.map(model: User) {
   this[Users.id] = model.id
   this[Users.cpf] = model.cpf
-  this[Users.active] = model.active
   this[Users.firstName] = model.firstName
   this[Users.lastName] = model.lastName
   this[Users.email] = model.email
-  this[Users.registrationDate] = model.registrationDate
   this[Users.dateOfBirth] = model.dateOfBirth
   this[Users.gender] = model.gender
   this[Users.phone1] = model.phone1
@@ -79,7 +77,6 @@ fun UpdateStatement.map(model: User) {
   this[Users.firstName] = model.firstName
   this[Users.lastName] = model.lastName
   this[Users.email] = model.email
-  this[Users.registrationDate] = model.registrationDate
   this[Users.dateOfBirth] = model.dateOfBirth
   this[Users.gender] = model.gender
   this[Users.phone1] = model.phone1
