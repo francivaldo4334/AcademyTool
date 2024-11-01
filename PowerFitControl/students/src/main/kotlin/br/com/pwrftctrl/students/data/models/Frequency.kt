@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.Table
 
 object Frequency : Table() {
   val id = integer("id").autoIncrement().entityId()
-  val registration = integer("registration").references(Registration.id)
+  val registration = integer("registration").references(Registrations.id)
   val student = integer("student").references(Users.id)
   val date = dateField("date").defaultExpression(CurrentDate())
   val enter = timeInMinutesField("enter").defaultExpression(CurrentTimeInMinutesTime())

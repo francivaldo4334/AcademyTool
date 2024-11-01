@@ -7,5 +7,5 @@ object RegistrationDiscount : Table() {
   val id = integer("id").autoIncrement().entityId()
   val value = centsField()
   val description = varchar("description", 255)
-  val registration = integer("registration").references(Registration.id)
+  val registration = integer("registration").references(Registrations.id)
 }
