@@ -9,15 +9,16 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.update
 
-class UserDao {
-  fun getById(pk: Int) = transaction {
+class UserDao : IBaseDao<User> {
+  override fun getAll() = transaction { Users.select(Users.columns) }
+  override fun getById(pk: Int) = transaction {
     Users.select(Users.columns).where { Users.id eq pk }.limit(1)
   }
-  fun insert(model: User): Int {
-    return (Users.insert { it.map(model) } get Users.id).value
+  override fun insert(model: User): Int = transaction {
+    (Users.insert { it.map(model) } get Users.id).value
   }
-  fun update(model: User) {
+  override fun update(model: User) = transaction {
     Users.update({ Users.id eq model.id }) { it.map(model) }
   }
-  fun delete(pk: Int) = transaction { Users.deleteWhere { id eq pk } }
+  override fun delete(pk: Int) = transaction { Users.deleteWhere { id eq pk } }
 }
