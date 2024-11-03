@@ -1,7 +1,7 @@
 package br.com.pwrftctrl.core.domain.models
 
 import br.com.pwrftctrl.core.data.models.User
-import br.com.pwrftctrl.core.domain.utils.toDateTimeDays
+import br.com.pwrftctrl.core.domain.utils.toDateDays
 import br.com.pwrftctrl.core.domain.utils.toDateTimeMinutes
 import br.com.pwrftctrl.core.domain.utils.toHash
 import java.time.LocalDate
@@ -9,23 +9,22 @@ import java.time.LocalDate
 data class UserModel(
         val id: Int,
         val cpf: String,
-        val active: Boolean,
+        val active: Boolean = true,
         val firstName: String,
         val lastName: String,
         val email: String,
-        val registrationDate: LocalDate,
+        val registrationDate: LocalDate? = null,
         val dateOfBirth: LocalDate,
         val gender: String,
         val phone1: String,
         val phone2: String,
         val whatsapp: String,
         val photo: String,
-        val addressString: String,
         val neighborhood: String,
         val zipCode: String,
         val city: String,
-        val lastLogin: Long,
-        val password: String,
+        val lastLogin: LocalDate? = null,
+        val password: String? = null,
 )
 
 fun UserModel.toDaoModel(): User =
@@ -36,17 +35,19 @@ fun UserModel.toDaoModel(): User =
                 firstName = this.firstName,
                 lastName = this.lastName,
                 email = this.email,
-                registrationDate = this.registrationDate.toDateTimeMinutes(),
-                dateOfBirth = this.dateOfBirth.toDateTimeDays(),
+                registrationDate =
+                        if (this.registrationDate != null) this.registrationDate.toDateTimeMinutes()
+                        else LocalDate.now().toDateTimeMinutes(),
+                dateOfBirth = this.dateOfBirth.toDateDays(),
                 gender = this.gender,
                 phone1 = this.phone1,
                 phone2 = this.phone2,
                 whatsapp = this.whatsapp,
                 photo = this.photo,
-                addressString = this.addressString,
+                addressString = "",
                 neighborhood = this.neighborhood,
                 zipCode = this.zipCode,
                 city = this.city,
-                lastLogin = this.lastLogin,
-                hash = password.toHash(),
+                lastLogin = this.lastLogin?.toDateTimeMinutes(),
+                hash = password?.toHash(),
         )

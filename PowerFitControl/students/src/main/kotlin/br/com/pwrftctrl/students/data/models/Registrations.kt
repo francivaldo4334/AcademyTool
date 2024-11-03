@@ -22,21 +22,23 @@ object Registrations : Table() {
 
 data class Registration(
         val id: Int,
-        val active: Boolean,
+        val active: Boolean = true,
         val student: Int,
-        val registrationDate: Long,
+        val registrationDate: Long?,
         val startDate: Long,
         val dueDate: Long,
         val situation: String,
         val modality: Int,
         val observation: String,
-        val inDebit: Boolean,
+        val inDebit: Boolean = false,
 )
 
 fun InsertStatement<Number>.map(model: Registration) {
   this[Registrations.id] = model.id
   this[Registrations.active] = model.active
-  this[Registrations.student] = model.student
+  if (model.student != null) {
+    this[Registrations.student] = model.student
+  }
   this[Registrations.startDate] = model.startDate
   this[Registrations.dueDate] = model.dueDate
   this[Registrations.situation] = model.situation

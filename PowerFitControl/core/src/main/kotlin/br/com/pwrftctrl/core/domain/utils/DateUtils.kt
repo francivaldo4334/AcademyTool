@@ -9,6 +9,6 @@ fun LocalDate.toDateTimeMinutes(): Long {
   return ChronoUnit.MINUTES.between(EPOCH_DATE, this)
 }
 
-fun LocalDate.toDateTimeDays(): Long {
+fun LocalDate.toDateDays(): Long {
   return ChronoUnit.DAYS.between(EPOCH_DATE, this)
 }

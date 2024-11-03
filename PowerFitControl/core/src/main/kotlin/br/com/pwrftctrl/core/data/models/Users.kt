@@ -25,8 +25,8 @@ object Users : Table("users") {
   val neighborhood = varchar("neighborhood", 120)
   val zipCode = varchar("zip_code", 50)
   val city = varchar("city", 50)
-  val lastLogin = dateTimeField("last_login")
-  val hash = varchar("hash", 64)
+  val lastLogin = dateTimeField("last_login").nullable()
+  val hash = varchar("hash", 64).nullable()
 }
 
 data class User(
@@ -47,8 +47,8 @@ data class User(
         val neighborhood: String,
         val zipCode: String,
         val city: String,
-        val lastLogin: Long,
-        val hash: String,
+        val lastLogin: Long?,
+        val hash: String?,
 )
 
 fun InsertStatement<Number>.map(model: User) {
