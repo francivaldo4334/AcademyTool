@@ -15,13 +15,29 @@
       </v-btn>
     </v-col>
   </v-navigation-drawer>
+  <students-screen v-if="selected === 'students'"/>
+  <metrics-screen v-if="selected === 'metrics'"/>
+  <financial-screen v-if="selected === 'financial'"/>
+  <equipments-screen v-if="selected === 'equipments'"/>
 </template>
 
 <script>
 import { Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
+import StudentsScreen from "./students/MainScreen.vue"
+import MetricsScreen from "./metrics/MainScreen.vue"
+import FinancialScreen from "./financial/MainScreen.vue"
+import EquipmentsScreen from "./equipments/MainScreen.vue"
+ 
 export default {
   components: {
-    Users, ChartNoAxesCombined, Dumbbell, HandCoins
+    Users,
+    ChartNoAxesCombined,
+    Dumbbell,
+    HandCoins,
+    StudentsScreen,
+    MetricsScreen,
+    FinancialScreen,
+    EquipmentsScreen,
   },
   data(){
     return{
@@ -47,6 +63,7 @@ export default {
 
 .selected-btn {
   background: rgb(var(--v-theme-primary))!important;
+  transition: background-color 0.3s ease; 
 }
 
 .v-btn--icon {
