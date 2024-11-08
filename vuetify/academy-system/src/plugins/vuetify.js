@@ -4,7 +4,19 @@ import 'vuetify/styles'
 
 // Vuetify
 import { createVuetify } from 'vuetify'
-
 export default createVuetify(
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+  {
+    theme: {
+      themes: {
+        light: {
+          dark: false,
+          colors: {
+            primary: '#39AC36',
+            surface: '#262626',
+            "on-background": '#000000'
+          }
+        },
+      },
+    },
+  }
 )
