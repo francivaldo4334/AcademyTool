@@ -3,6 +3,7 @@
     <v-col class="d-flex flex-column align-center justify-center h-100 pa-0">
       <v-btn icon :size="40" :class="getClass('students')" @click="setSelected('students')">
         <users />
+        <v-tooltip activator="parent" location="end">{{$t('clients')}}</v-tooltip>
       </v-btn>
       <v-btn icon :size="40" :class="getClass('metrics')" @click="setSelected('metrics')">
         <chart-no-axes-combined />
@@ -15,22 +16,22 @@
       </v-btn>
     </v-col>
   </v-navigation-drawer>
-  <v-layout>
-    <v-col>
-      <app-bar />
-      <v-col>
-        <students-screen v-if="selected === 'students'" />
-        <metrics-screen v-if="selected === 'metrics'" />
-        <financial-screen v-if="selected === 'financial'" />
-        <equipments-screen v-if="selected === 'equipments'" />
-      </v-col>
-    </v-col>
-  </v-layout>
+  <v-col class="pa-4 fill-height">
+    <app-bar />
+    <div class="d-flex justify-center fill-width">
+      <v-responsive max-width="1024">
+        <clients-screen v-if="selected === 'students'" />
+        <metrics-screen v-else-if="selected === 'metrics'" />
+        <financial-screen v-else-if="selected === 'financial'" />
+        <equipments-screen v-else-if="selected === 'equipments'" />
+      </v-responsive>
+    </div>
+  </v-col>
 </template>
 
 <script>
 import { Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
-import StudentsScreen from "./students/MainScreen.vue"
+import ClientsScreen from "./clients/MainScreen.vue"
 import MetricsScreen from "./metrics/MainScreen.vue"
 import FinancialScreen from "./financial/MainScreen.vue"
 import EquipmentsScreen from "./equipments/MainScreen.vue"
@@ -43,7 +44,7 @@ export default {
     Dumbbell,
     HandCoins,
     AppBar,
-    StudentsScreen,
+    ClientsScreen,
     MetricsScreen,
     FinancialScreen,
     EquipmentsScreen,
@@ -70,13 +71,13 @@ export default {
   margin: 8px;
 }
 
+.v-btn--icon {
+  background: rgb(var(--v-theme-on-background)) !important;
+}
+
 .selected-btn {
   background: rgb(var(--v-theme-primary)) !important;
   transition: background-color 0.3s ease;
-}
-
-.v-btn--icon {
-  background: rgb(var(--v-theme-on-background));
 }
 
 .v-btn--icon:hover {

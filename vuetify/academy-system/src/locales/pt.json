@@ -1,0 +1,11 @@
+{
+  "clients": "Clientes",
+  "students": "Alunos",
+  "classes": "Turmas",
+  "birthdays": "Aniversariantes",
+  "logout": "Encerrar seção",
+  "debtors": "Devedores",
+  "debited": "Debitados",
+  "absent": "Ausentes",
+  "add-new-student": "Novo Estudante"
+}

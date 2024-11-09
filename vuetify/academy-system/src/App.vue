@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MenuMdules from "./components/MenuMdules.vue"
+import MenuMdules from "./components/MenuSideModules.vue"
 export default {
   name: 'App',
   components: {
@@ -20,11 +20,12 @@ export default {
 }
 </script>
 <style>
-.v-btn--icon {
-  background: rgb(var(--v-theme-primary));
+.v-btn--icon,
+.v-btn--variant-elevated {
+  background: rgb(var(--v-theme-primary)) !important;
 }
 
-.v-btn__content {
+.v-btn--icon>.v-btn__content {
   color: rgb(var(--v-theme-background))
 }
 </style>

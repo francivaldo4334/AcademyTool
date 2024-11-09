@@ -1,6 +1,6 @@
 <template>
-  <v-row class="pa-4 align-center">
-    <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-4">
+  <div class="align-center d-flex fill-widht">
+    <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
       <v-img v-if="urlCompanyPhoto" :src="urlCompanyPhoto" />
       <Image v-else />
     </v-avatar>
@@ -14,11 +14,12 @@
     <v-btn icon :size="40">
       <log-out />
     </v-btn>
-  </v-row>
+  </div>
 </template>
 
 <script>
 import { Image, LogOut } from "lucide-vue-next"
+
 export default {
   components: {
     Image,
