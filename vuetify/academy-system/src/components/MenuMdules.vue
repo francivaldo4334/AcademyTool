@@ -2,27 +2,38 @@
   <v-navigation-drawer :rail="true" permanent rail-width="56">
     <v-col class="d-flex flex-column align-center justify-center h-100 pa-0">
       <v-btn icon :size="40" :class="getClass('students')" @click="setSelected('students')">
-        <Users />
+        <users />
       </v-btn>
       <v-btn icon :size="40" :class="getClass('metrics')" @click="setSelected('metrics')">
-        <ChartNoAxesCombined />
+        <chart-no-axes-combined />
       </v-btn>
       <v-btn icon :size="40" :class="getClass('financial')" @click="setSelected('financial')">
-        <HandCoins />
+        <hand-coins />
       </v-btn>
       <v-btn icon :size="40" :class="getClass('equipments')" @click="setSelected('equipments')">
-        <Dumbbell />
+        <dumbbell />
       </v-btn>
     </v-col>
   </v-navigation-drawer>
-  <students-screen v-if="selected === 'students'"/>
-  <metrics-screen v-if="selected === 'metrics'"/>
-  <financial-screen v-if="selected === 'financial'"/>
-  <equipments-screen v-if="selected === 'equipments'"/>
+  <v-layout>
+    <v-col>
+      <v-row class="pa-4">
+        <v-img rounded :max-width="40" aspect-ratio="1/1" cover  :src="urlCompanyPhoto" class="w-40 h-40 bg-red">
+          <Image v-if="!urlCompanyPhoto" />
+        </v-img>
+      </v-row>
+      <v-col>
+        <students-screen v-if="selected === 'students'"/>
+        <metrics-screen v-if="selected === 'metrics'"/>
+        <financial-screen v-if="selected === 'financial'"/>
+        <equipments-screen v-if="selected === 'equipments'"/>
+      </v-col>
+    </v-col>
+  </v-layout>
 </template>
 
 <script>
-import { Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
+import { Users, ChartNoAxesCombined, Dumbbell, HandCoins, Image } from "lucide-vue-next";
 import StudentsScreen from "./students/MainScreen.vue"
 import MetricsScreen from "./metrics/MainScreen.vue"
 import FinancialScreen from "./financial/MainScreen.vue"
@@ -34,6 +45,7 @@ export default {
     ChartNoAxesCombined,
     Dumbbell,
     HandCoins,
+    Image,
     StudentsScreen,
     MetricsScreen,
     FinancialScreen,
@@ -41,7 +53,9 @@ export default {
   },
   data(){
     return{
-      selected: 'students'
+      selected: 'students',
+      // urlCompanyPhoto: "https://www.github.com/francivaldo4334.png",
+      urlCompanyPhoto: "",
     }
   },
   methods:{
