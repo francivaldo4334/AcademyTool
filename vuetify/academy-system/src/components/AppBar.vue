@@ -27,7 +27,6 @@ export default {
   data() {
     return {
       urlCompanyPhoto: "",
-      //urlCompanyPhoto: "",
       urlCompanySystem: "",
       user: {
         name: "User Name",
