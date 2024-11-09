@@ -23,8 +23,8 @@ export default {
 .v-btn--icon {
   background: rgb(var(--v-theme-primary));
 }
+
 .v-btn__content {
   color: rgb(var(--v-theme-background))
 }
-
 </style>

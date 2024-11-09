@@ -17,48 +17,43 @@
   </v-navigation-drawer>
   <v-layout>
     <v-col>
-      <v-row class="pa-4">
-        <v-img rounded :max-width="40" aspect-ratio="1/1" cover  :src="urlCompanyPhoto" class="w-40 h-40 bg-red">
-          <Image v-if="!urlCompanyPhoto" />
-        </v-img>
-      </v-row>
+      <app-bar />
       <v-col>
-        <students-screen v-if="selected === 'students'"/>
-        <metrics-screen v-if="selected === 'metrics'"/>
-        <financial-screen v-if="selected === 'financial'"/>
-        <equipments-screen v-if="selected === 'equipments'"/>
+        <students-screen v-if="selected === 'students'" />
+        <metrics-screen v-if="selected === 'metrics'" />
+        <financial-screen v-if="selected === 'financial'" />
+        <equipments-screen v-if="selected === 'equipments'" />
       </v-col>
     </v-col>
   </v-layout>
 </template>
 
 <script>
-import { Users, ChartNoAxesCombined, Dumbbell, HandCoins, Image } from "lucide-vue-next";
+import { Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
 import StudentsScreen from "./students/MainScreen.vue"
 import MetricsScreen from "./metrics/MainScreen.vue"
 import FinancialScreen from "./financial/MainScreen.vue"
 import EquipmentsScreen from "./equipments/MainScreen.vue"
- 
+import AppBar from "./AppBar.vue"
+
 export default {
   components: {
     Users,
     ChartNoAxesCombined,
     Dumbbell,
     HandCoins,
-    Image,
+    AppBar,
     StudentsScreen,
     MetricsScreen,
     FinancialScreen,
     EquipmentsScreen,
   },
-  data(){
-    return{
+  data() {
+    return {
       selected: 'students',
-      // urlCompanyPhoto: "https://www.github.com/francivaldo4334.png",
-      urlCompanyPhoto: "",
     }
   },
-  methods:{
+  methods: {
     setSelected(icon) {
       this.selected = icon;
     },
@@ -76,8 +71,8 @@ export default {
 }
 
 .selected-btn {
-  background: rgb(var(--v-theme-primary))!important;
-  transition: background-color 0.3s ease; 
+  background: rgb(var(--v-theme-primary)) !important;
+  transition: background-color 0.3s ease;
 }
 
 .v-btn--icon {

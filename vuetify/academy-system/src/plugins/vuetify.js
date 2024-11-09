@@ -12,7 +12,7 @@ export default createVuetify(
           dark: false,
           colors: {
             primary: '#39AC36',
-            surface: '#262626',
+            surface: '#E9E9E9',
             "on-background": '#000000'
           }
         },
