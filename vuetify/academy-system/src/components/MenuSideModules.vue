@@ -7,12 +7,15 @@
       </v-btn>
       <v-btn icon :size="40" :class="getClass('metrics')" @click="setSelected('metrics')">
         <chart-no-axes-combined />
+        <v-tooltip activator="parent" location="end">{{$t('metrics')}}</v-tooltip>
       </v-btn>
       <v-btn icon :size="40" :class="getClass('financial')" @click="setSelected('financial')">
         <hand-coins />
+        <v-tooltip activator="parent" location="end">{{$t('financial')}}</v-tooltip>
       </v-btn>
       <v-btn icon :size="40" :class="getClass('equipments')" @click="setSelected('equipments')">
         <dumbbell />
+        <v-tooltip activator="parent" location="end">{{$t('equipments')}}</v-tooltip>
       </v-btn>
     </v-col>
   </v-navigation-drawer>

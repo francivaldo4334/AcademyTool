@@ -1,7 +1,11 @@
 <template>
   <v-col class="ma-0 pa-0">
-    <p class="text-h5 mb-4">Estudantes</p>
-    <menu-selection :list="['Alunos', 'Turmas', 'Aniversariantes']">
+    <p class="text-h5 mb-4">{{$t('clients')}}</p>
+    <menu-selection :list="[
+        $t('students'),
+        $t('classes'), 
+        $t('birthdays')
+    ]">
       <template #default="{ option }">
         <students-screen v-if="option === 0"/>
       </template>

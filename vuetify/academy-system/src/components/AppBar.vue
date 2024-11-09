@@ -11,8 +11,11 @@
     <v-spacer />
     <v-list-item class="text-right" lines="two" :append-avatar="user.urlAvatar" :subtitle="user.profile"
       :title="user.name"></v-list-item>
-    <v-btn icon :size="40">
+    <v-btn v-bind="props" icon :size="40">
       <log-out />
+      <v-tooltip activator="parent" location="bottom">
+        {{$t('logout')}}
+      </v-tooltip>
     </v-btn>
   </div>
 </template>
