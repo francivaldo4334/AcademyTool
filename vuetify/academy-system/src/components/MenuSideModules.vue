@@ -25,14 +25,12 @@
   </v-navigation-drawer>
   <v-col class="pa-4 fill-height">
     <app-bar />
-    <div class="d-flex justify-center fill-width">
-      <v-responsive max-width="1024">
-        <clients-screen v-if="selected === 'students'" />
-        <metrics-screen v-else-if="selected === 'metrics'" />
-        <financial-screen v-else-if="selected === 'financial'" />
-        <equipments-screen v-else-if="selected === 'equipments'" />
-      </v-responsive>
-    </div>
+    <v-col lg="8" offset-lg="2">
+      <clients-screen v-if="selected === 'students'" />
+      <metrics-screen v-else-if="selected === 'metrics'" />
+      <financial-screen v-else-if="selected === 'financial'" />
+      <equipments-screen v-else-if="selected === 'equipments'" />
+    </v-col>
   </v-col>
 </template>
 
