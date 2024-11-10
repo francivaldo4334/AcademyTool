@@ -3,6 +3,13 @@
     <v-text-field v-model="inputSearch" :prepend-inner-icon="iconSearch" :label="$t('search')" variant="outlined" hide-details single-line density="compact" max-width="240"/>
     <v-btn class="ml-2 height-40 ma-0"><span style="color: rgb(var(--v-theme-background));">{{$t('search')}}</span></v-btn>
     <v-spacer/>
+    <v-select
+        label="Itens por pagina"
+        density="compact"
+        variant="outlined"
+        :items="['5', '10', '15']"
+        class="mr-4"
+    ></v-select>
     <filter-selection :list="filters"/>
     <v-btn icon :size="40" class="ml-2" rounded>
       <user-round-plus/>
@@ -23,15 +30,19 @@ export default {
       iconSearch: Search,
       inputSearch: "",
       filters: [
-        { icon: BookmarkX, tip: 'debtors' },
-        { icon: BookmarkCheck, tip: 'debited' },
-        { icon: Cake, tip: 'birthdays' },
-        { icon: UserRoundX, tip: 'absent' },
+        { icon: BookmarkX, tip: 'debtors', checked: false },
+        { icon: BookmarkCheck, tip: 'debited', checked: false },
+        { icon: Cake, tip: 'birthdays', checked: false },
+        { icon: UserRoundX, tip: 'absent', checked: false },
       ]
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.v-select {
+  transform: translateY(11px);
+  max-width: 180px;
+}
 </style>
