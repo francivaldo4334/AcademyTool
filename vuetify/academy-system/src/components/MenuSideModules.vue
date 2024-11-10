@@ -1,6 +1,6 @@
 <template>
-  <v-navigation-drawer :rail="true" permanent rail-width="56">
-    <v-col class="d-flex flex-column align-center justify-center h-100 pa-0">
+  <v-navigation-drawer :rail="true" permanent rail-width="56" class="d-flex flex-column">
+    <v-col class="fill-height d-flex flex-column align-center justify-center pa-0 main-options">
       <v-btn icon :size="40" :class="getClass('students')" @click="setSelected('students')">
         <users />
         <v-tooltip activator="parent" location="end">{{$t('clients')}}</v-tooltip>
@@ -18,6 +18,10 @@
         <v-tooltip activator="parent" location="end">{{$t('equipments')}}</v-tooltip>
       </v-btn>
     </v-col>
+    <v-btn icon :size="40" :class="getClass('settings')" @click="setSelected('settings')" class="position-absolute bottom-0">
+      <Settings />
+      <v-tooltip activator="parent" location="end">{{$t('settings')}}</v-tooltip>
+    </v-btn>
   </v-navigation-drawer>
   <v-col class="pa-4 fill-height">
     <app-bar />
@@ -33,7 +37,7 @@
 </template>
 
 <script>
-import { Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
+import { Settings, Users, ChartNoAxesCombined, Dumbbell, HandCoins } from "lucide-vue-next";
 import ClientsScreen from "./clients/MainScreen.vue"
 import MetricsScreen from "./metrics/MainScreen.vue"
 import FinancialScreen from "./financial/MainScreen.vue"
@@ -46,6 +50,7 @@ export default {
     ChartNoAxesCombined,
     Dumbbell,
     HandCoins,
+    Settings,
     AppBar,
     ClientsScreen,
     MetricsScreen,
