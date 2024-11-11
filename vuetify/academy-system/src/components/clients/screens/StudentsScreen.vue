@@ -6,18 +6,8 @@
   </v-col>
 </template>
 
-<script>
+<script setup lang="ts">
 import StudentHeader from "./StudentHeader.vue"
-export default {
-  components: {
-    StudentHeader,
-  },
-  data() {
-    return {
-      inputSearch: "", 
-    }
-  },
-}
 </script>
 
 <style>
