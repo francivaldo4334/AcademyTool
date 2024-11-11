@@ -1,22 +1,23 @@
 <template>
-  <v-dialog v-model="isOpenModalCreate" width="auto">
+  <v-dialog v-model="state.isOpenCreateModal" width="auto">
     <v-card min-widht="400" min-height="400">
+      <v-card-actions class="d-flex justify-end">
+        <v-btn class="text-none" rounded text="cancel" @click="state.closeCreateModal"></v-btn>
+        <v-btn class="text-none" rounded text="Send" variant="flat" @click="state.closeCreateModal"></v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
-<script>
-import { useClientStore } from "@/components/clients/ClientsState"
+<script lang="ts">
+import { useClientsStore } from "@/stores/ClientsStore"
 export default {
-  setup() {
-    const useState = useClientStore()
+  data() {
     return {
-      isOpenModalCreate: useState.isOpenModalCreate
+      state: useClientsStore(),
     }
   }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
