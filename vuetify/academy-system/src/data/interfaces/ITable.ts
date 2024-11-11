@@ -1,40 +1,44 @@
+import { Database } from "../Database";
 import PkManager from "../utils/PkManager";
 import IModel from "./IModel";
-import localforage from "localforage"
 
 export default abstract class ITable<M extends IModel> {
   tableName: string;
-  constructor(tableName: string) {
+  db: IDBDatabase | undefined;
+  constructor(db: Database, tableName: string) {
     this.tableName = tableName;
+    this.db = db.db;
   }
   async getAll() {
-    const models = (await localforage.getItem(this.tableName) || []) as M[];
-    return models;
+    const models = localStorage.getItem(this.tableName)
+    if (models) {
+      return JSON.parse(models) as M[]
+    }
+    return []
   }
   async getById(pk: number) {
-    const models = await this.getAll();
-    return models.find(it => it.pk === pk);
+    if (!this.db) return;
+    const transaction = this.db.transaction([this.tableName], 'readonly');
+    const store = transaction.objectStore(this.tableName);
+    return store.get(pk);
   }
-  async add(model: M) {
-    const models = await this.getAll();
-    model.pk = await PkManager.getNextId(this.tableName);
-    models.push(model);
-    await localforage.setItem(this.tableName, models)
-    return model
+  async create(model: M) {
+    if (!this.db) return;
+    const transaction = this.db.transaction([this.tableName], "readwrite");
+    const store = transaction.objectStore(this.tableName);
+    model.id = PkManager.getNextId(this.tableName)
+    return store.add(model)
   }
   async remove(pk: number) {
-    const models = await this.getAll();
-    const updatedModels = models.filter(it => it.pk !== pk);
-    await localforage.setItem(this.tableName, updatedModels);
+    if (!this.db) return;
+    const transaction = this.db.transaction([this.tableName], 'readwrite');
+    const store = transaction.objectStore(this.tableName);
+    store.delete(pk)
   }
   async update(model: M) {
-    const models = await this.getAll();
-    const updatedModels = models.map(it => {
-      if (it.pk === model.pk) {
-        return models
-      }
-      return it
-    })
-    await localforage.setItem(this.tableName, updatedModels);
+    if (!this.db) return;
+    const transaction = this.db.transaction([this.tableName], 'readwrite');
+    const store = transaction.objectStore(this.tableName);
+    store.put(model)
   }
 }

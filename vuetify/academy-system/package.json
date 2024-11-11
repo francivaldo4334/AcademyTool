@@ -18,8 +18,11 @@
     "@mdi/font": "5.9.55",
     "core-js": "^3.8.3",
     "lucide-vue-next": "^0.455.0",
+    "pinia": "^2.1.4",
     "roboto-fontface": "*",
+    "uuid": "^11.0.3",
     "vue": "^3.2.13",
+    "vue-class-component": "^8.0.0-0",
     "vue-cli": "^2.9.6",
     "vue-i18n": "^9.1.0",
     "vuetify": "^3.0.0-beta.0",
@@ -29,15 +32,21 @@
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@intlify/vue-i18n-loader": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
     "electron": "^13.0.0",
     "electron-devtools-installer": "^3.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "typescript": "^5.1.6",
     "vue-cli-plugin-electron-builder": "~2.1.1",
     "vue-cli-plugin-i18n": "~2.3.2",
+    "vue-cli-plugin-pinia": "~0.2.4",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "webpack-plugin-vuetify": "^2.0.0-alpha.0"
   },
@@ -48,10 +57,11 @@
     },
     "extends": [
       "plugin:vue/vue3-essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "@vue/typescript"
     ],
     "parserOptions": {
-      "parser": "@babel/eslint-parser"
+      "parser": "@typescript-eslint/parser"
     },
     "rules": {}
   },
