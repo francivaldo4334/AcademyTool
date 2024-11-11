@@ -10,5 +10,5 @@
 import StudentHeader from "./StudentHeader.vue"
 </script>
 
-<style>
+<style >
 </style>

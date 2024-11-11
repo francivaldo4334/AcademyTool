@@ -11,7 +11,7 @@
         class="mr-4"
     ></v-select>
     <filter-selection :list="filters"/>
-    <v-btn icon :size="40" class="ml-2" rounded>
+    <v-btn icon :size="40" class="ml-2" @click="openModalCreate" rounded>
       <user-round-plus/>
       <v-tooltip activator="parent" location="bottom">
         {{$t('add-new-student')}}
@@ -20,12 +20,14 @@
   </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import { Search, BookmarkX, BookmarkCheck, Cake, UserRoundX, UserRoundPlus } from "lucide-vue-next"
 import FilterSelection from "@/components/fields/FilterSelection.vue"
+import { useClientsStore } from "@/stores/ClientsStore"
 export default {
   components: { UserRoundPlus, FilterSelection },
   data(){
+    const { openModalCreate } = useClientsStore()
     return{
       iconSearch: Search,
       inputSearch: "",
@@ -34,7 +36,8 @@ export default {
         { icon: BookmarkCheck, tip: 'debited', checked: false },
         { icon: Cake, tip: 'birthdays', checked: false },
         { icon: UserRoundX, tip: 'absent', checked: false },
-      ]
+      ],
+      openModalCreate
     }
   }
 }
