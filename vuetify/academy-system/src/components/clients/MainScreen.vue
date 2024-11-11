@@ -1,25 +1,33 @@
 <template>
   <v-col class="ma-0 pa-0">
-    <p class="text-h5 mb-4">{{$t('clients')}}</p>
-    <menu-selection :list="[
-        $t('students'),
-        $t('classes'), 
-        $t('birthdays')
-    ]">
-      <template #default="{ option }">
-        <students-screen v-if="option === 0"/>
-      </template>
-    </menu-selection>
+    <p class="text-h5 mb-4">{{ $t('clients') }}</p>
+    <v-tabs v-model="screen" color="primary">
+      <v-tab v-for="it in screens" :key="it" :value="it">{{ $t(it) }}</v-tab>
+    </v-tabs>
+    <v-tabs-window v-model="screen">
+      <v-tabs-window-item value="students">
+        <students-screen />
+      </v-tabs-window-item>
+    </v-tabs-window>
+    <!-- <menu-selection :list="[ -->
+    <!-- ]"> </menu-selection> -->
+    <!-- <template #default="{ option }"> -->
+    <!--   <students-screen v-if="option === 0" /> -->
+    <!-- </template> -->
   </v-col>
 </template>
 
 <script>
-import MenuSelection from "@/components/MenuSelection.vue"
 import StudentsScreen from "./screens/StudentsScreen.vue"
 export default {
-  components:{
-    MenuSelection,
-    StudentsScreen
+  components: {
+    StudentsScreen,
+  },
+  data() {
+    return {
+      screen: null,
+      screens: ['students', 'classes', 'birthdays']
+    }
   },
 }
 </script>

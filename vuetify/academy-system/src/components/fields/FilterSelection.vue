@@ -1,9 +1,10 @@
 <template>
   <div class="overflow-hidden v-btn--variant-elevated" style="border-radius: 4px; height: 36px;">
-    <v-btn v-for="(it,id) in list" :key="id" :class="getBtnColor(it)" class="rounded-0" size="36" icon variant="text" @click="toggle(it)">
-      <component v-bind="props" :is="it.icon"/>
+    <v-btn v-for="(it, id) in list" :key="id" :class="getBtnColor(it)" class="rounded-0" size="36" icon variant="text"
+      @click="toggle(it)">
+      <component v-bind="props" :is="it.icon" />
       <v-tooltip activator="parent" location="bottom">
-        {{$t(it.tip)}}
+        {{ $t(it.tip) }}
       </v-tooltip>
     </v-btn>
   </div>
@@ -13,7 +14,7 @@
 export default {
   data() {
     return {
-      toggle(it){
+      toggle(it) {
         it.checked = !it.checked
       },
       getBtnColor(it) {
@@ -24,7 +25,7 @@ export default {
       }
     }
   },
-  props:{
+  props: {
     list: {
       type: Array,
       required: true,
@@ -45,6 +46,7 @@ export default {
 .check-btn-selected {
   background: rgb(var(--v-theme-primary)) !important;
 }
+
 .check-btn-selected .lucide {
   color: rgb(var(--v-theme-background)) !important;
 

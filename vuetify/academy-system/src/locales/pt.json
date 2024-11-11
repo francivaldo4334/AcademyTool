@@ -1,6 +1,7 @@
 {
   "clients": "Clientes",
   "students": "Alunos",
+  "student": "Aluno",
   "classes": "Turmas",
   "birthdays": "Aniversariantes",
   "logout": "Encerrar seção",
@@ -12,5 +13,10 @@
   "metrics": "Metricas",
   "financial": "Financeiro",
   "search": "Pesquisar",
-  "settings": "Configurações"
+  "settings": "Configurações",
+  "regiter": "Matricula",
+  "address": "Endereço",
+  "to-back": "Voltar",
+  "save": "Salvar",
+  "cancel": "Cancelar"
 }
