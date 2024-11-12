@@ -5,6 +5,7 @@ import { loadFonts } from './plugins/webfontloader'
 import i18n from './i18n'
 import { Database } from './data/Database'
 import { createPinia } from "pinia"
+
 loadFonts()
 
 createApp(App)

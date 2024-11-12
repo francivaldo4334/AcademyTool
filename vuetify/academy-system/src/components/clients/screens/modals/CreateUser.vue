@@ -1,19 +1,23 @@
 <template>
-  <v-dialog v-model="state.isOpenCreateModal" width="auto">
+  <v-dialog v-model="state.isOpenCreateModal" width="700px">
     <v-card>
-      <v-row class="ma-0">
-        <v-col class="pa-12">
-          <v-range-slider direction="vertical" :model-value="[2, 2]" :ticks="seasons" max="2" show-ticks="always"
-            readonly="true" hide-details>
+      <div class="ma-0 d-flex align-center">
+        <div style="width: 120px; margin: 32px 0 32px 32px;">
+          <v-range-slider color="primary" max-width="20" direction="vertical" :model-value="[2, 2]" :ticks="seasons"
+            max="2" show-ticks="always" readonly="true" hide-details>
             <template v-slot:tick-label="{ tick }">
-              {{ $t(tick.label) }}
+              <div style="width: 100px;">
+                {{ $t(tick.label) }}
+              </div>
             </template>
           </v-range-slider>
-        </v-col>
-        <v-divider vertical class="ml-12"></v-divider>
+        </div>
+        <v-divider vertical />
         <v-col class="d-flex flex-column justify-end">
-          <Form />
-          <v-card-actions class="d-flex justify-end">
+          <v-card-tex class="fill-height">
+            <Form />
+          </v-card-tex>
+          <v-card-actions class="d-flex justify-end pa-0 align-end">
             <v-btn variant="plain" :text="$t('to-back')" :prepend-icon="toBackIcon"
               @click="state.closeCreateModal"></v-btn>
             <v-spacer />
@@ -21,7 +25,7 @@
             <v-btn color="primary" variant="tonal" :text="$t('save')" @click="state.closeCreateModal"></v-btn>
           </v-card-actions>
         </v-col>
-      </v-row>
+      </div>
     </v-card>
   </v-dialog>
 </template>
@@ -48,4 +52,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>

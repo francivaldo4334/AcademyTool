@@ -18,5 +18,13 @@
   "address": "Endereço",
   "to-back": "Voltar",
   "save": "Salvar",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  "name": "Nome",
+  "last-name": "Sobrenome",
+  "cpf": "Cpf",
+  "birthday": "Data de nascimento",
+  "e-mail": "E-mail",
+  "use-the-phone-as-a-whatsapp-number": "Usar telefone como número de whatsapp",
+  "phone": "Telefone",
+  "whatsapp": "Númer de whatsapp"
 }
