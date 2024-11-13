@@ -29,5 +29,6 @@
   "whatsapp": "Númer de whatsapp",
   "image-upload": "Carregar imagem",
   "example-mail": "exemplo{'@'}.gmail.com",
-  "next": "Avançar"
+  "next": "Avançar",
+  "required-field":"Este campo é obrigatorio"
 }
