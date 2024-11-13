@@ -1,7 +1,7 @@
 {
   "clients": "Clientes",
   "students": "Alunos",
-  "student": "Aluno",
+  "student-data": "Dados do Aluno",
   "classes": "Turmas",
   "birthdays": "Aniversariantes",
   "logout": "Encerrar seção",
@@ -14,7 +14,7 @@
   "financial": "Financeiro",
   "search": "Pesquisar",
   "settings": "Configurações",
-  "regiter": "Matricula",
+  "register": "Matricula",
   "address": "Endereço",
   "to-back": "Voltar",
   "save": "Salvar",
@@ -26,5 +26,8 @@
   "e-mail": "E-mail",
   "use-the-phone-as-a-whatsapp-number": "Usar telefone como número de whatsapp",
   "phone": "Telefone",
-  "whatsapp": "Númer de whatsapp"
+  "whatsapp": "Númer de whatsapp",
+  "image-upload": "Carregar imagem",
+  "example-mail": "examplo",
+  "next": "Avançar"
 }

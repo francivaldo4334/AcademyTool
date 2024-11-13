@@ -25,6 +25,7 @@ export default {
   background: rgb(var(--v-theme-primary)) !important;
 }
 
+
 .v-btn--icon>.v-btn__content {
   color: rgb(var(--v-theme-background));
 }

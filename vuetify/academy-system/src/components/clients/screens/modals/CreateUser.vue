@@ -1,55 +1,62 @@
 <template>
-  <v-dialog v-model="state.isOpenCreateModal" width="700px">
+  <v-dialog v-model="state.isOpenCreateModal" width="600px">
+
     <v-card>
-      <div class="ma-0 d-flex align-center">
-        <div style="width: 120px; margin: 32px 0 32px 32px;">
-          <v-range-slider color="primary" max-width="20" direction="vertical" :model-value="[2, 2]" :ticks="seasons"
-            max="2" show-ticks="always" readonly="true" hide-details>
-            <template v-slot:tick-label="{ tick }">
-              <div style="width: 100px;">
-                {{ $t(tick.label) }}
-              </div>
-            </template>
-          </v-range-slider>
-        </div>
-        <v-divider vertical />
-        <v-col class="d-flex flex-column justify-end">
-          <v-card-tex class="fill-height">
-            <Form />
-          </v-card-tex>
-          <v-card-actions class="d-flex justify-end pa-0 align-end">
-            <v-btn variant="plain" :text="$t('to-back')" :prepend-icon="toBackIcon"
-              @click="state.closeCreateModal"></v-btn>
-            <v-spacer />
-            <v-btn variant="plain" :text="$t('cancel')" @click="state.closeCreateModal"></v-btn>
-            <v-btn color="primary" variant="tonal" :text="$t('save')" @click="state.closeCreateModal"></v-btn>
-          </v-card-actions>
-        </v-col>
-      </div>
+      <v-card-title class="text-h6 font-weight-regular justify-space-between d-flex">
+        <span>{{ $t(seasons[step]) }}</span>
+        <v-item-group v-model="step">
+          <v-item v-for="(it, id) in seasons" :key="it" v-slot="{ isSelected, toggle }" :value="id">
+            <v-btn icon class="btn-record" @click="toggle" variant="text" size="32">
+              <DotIcon v-if="!isSelected" color="rgb(var(--v-theme-on-surface))" />
+              <CircleDot v-else color="rgb(var(--v-theme-on-surface))" />
+            </v-btn>
+          </v-item>
+        </v-item-group>
+      </v-card-title>
+      <v-card-tex>
+        <v-window v-model="step">
+          <v-window-item :value="0">
+            <StudentForm class="fill-height" />
+          </v-window-item>
+          <v-window-item :value="1">
+            <StudentForm class="fill-height" />
+          </v-window-item>
+          <v-window-item :value="2">
+            <StudentForm class="fill-height" />
+          </v-window-item>
+        </v-window>
+      </v-card-tex>
+      <v-divider />
+      <v-card-actions>
+        <v-btn v-if="step > 0" variant="plain" :text="$t('to-back')" :prepend-icon="Undo" @click="step--"></v-btn>
+        <v-spacer />
+        <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="state.closeCreateModal"></v-btn>
+        <v-btn v-if="step > 1" color="primary" variant="tonal" :text="$t('save')"
+          @click="state.closeCreateModal"></v-btn>
+        <v-btn v-else color="primary" variant="tonal" :text="$t('next')" @click="step++"></v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { useClientsStore } from "@/stores/ClientsStore"
-import { Undo } from "lucide-vue-next"
-import Form from "./forms/CreateClient.vue"
-export default {
-  components: {
-    Form
-  },
-  data() {
-    return {
-      state: useClientsStore(),
-      seasons: {
-        0: 'register',
-        1: 'address',
-        2: 'student',
-      },
-      toBackIcon: Undo
-    }
-  }
+import { Undo, DotIcon, CircleDot } from "lucide-vue-next"
+import { ref } from "vue"
+import StudentForm from "./forms/CreateClient.vue"
+
+const state = useClientsStore()
+const seasons = {
+  0: 'student-data',
+  1: 'address',
+  2: 'register',
 }
+const step = ref(0)
 </script>
 
-<style scoped></style>
+
+<style scoped>
+.btn-record {
+  background: rgb(var(--v-theme-surface)) !important;
+}
+</style>
