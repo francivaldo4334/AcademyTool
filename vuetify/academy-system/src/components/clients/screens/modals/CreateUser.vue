@@ -43,7 +43,7 @@
 import { useClientsStore } from "@/stores/ClientsStore"
 import { Undo, DotIcon, CircleDot } from "lucide-vue-next"
 import { ref } from "vue"
-import StudentForm from "./forms/CreateClient.vue"
+import StudentForm from "@/components/clients/screens/modals/forms/CreateClient.vue"
 
 const state = useClientsStore()
 const seasons = {

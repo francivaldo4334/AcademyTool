@@ -3,7 +3,7 @@
     <v-row class="pa-0 ma-0">
       <v-col class="fill-width pa-0 ma-0">
         <v-text-field variant="outlined" density="compact" :label="$t('name')" hide-details="auto" class="mb-4"
-          :prepend-inner-icon="Smile" />
+          :prepend-inner-icon="Smile" :rules="[rules.required]" />
         <v-text-field variant="outlined" density="compact" :label="$t('last-name')" hide-details="auto"
           :prepend-inner-icon="Smile" />
       </v-col>
@@ -16,7 +16,7 @@
         :prepend-inner-icon="Cake" type="date" />
     </v-row>
     <v-text-field variant="outlined" density="compact" :label="$t('e-mail')" hide-details="auto" class="mt-4 mb-4"
-      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail') + '@gmail.com'" />
+      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" />
     <v-text-field variant="outlined" density="compact" :label="$t('phone')" hide-details="auto"
       :prepend-inner-icon="Phone" placeholder="(XX) X XXXX-XXXX" />
     <v-checkbox :label="$t('use-the-phone-as-a-whatsapp-number')" hide-details />
@@ -28,6 +28,12 @@
 <script setup lang="ts">
 import InputImageFile from "@/components/fields/InputImageFile.vue"
 import { MessageCircle, Smile, Mail, IdCard, Phone, Cake } from "lucide-vue-next"
+import { ref } from "vue"
+import { useI18n } from "vue-i18n"
+const { t } = useI18n()
+const rules = ref({
+  required: (it: string) => !!it || t("required")
+})
 </script>
 <style>
 .v-date-picker .v-btn--icon {
