@@ -1,20 +1,24 @@
 <template>
-  <v-navigation-drawer color="rgb(var(--v-theme-on-background))" :rail="true" permanent rail-width="56" class="d-flex flex-column">
+  <v-navigation-drawer color="rgb(var(--v-theme-on-background))" :rail="true" permanent rail-width="56"
+    class="d-flex flex-column">
     <v-col class="fill-height d-flex flex-column align-center justify-center pa-0" style="gap: 16px;">
-      <BtnSelection v-btn v-for="it in options" :key="it.id" :option="it" :isSelected="selected === it.tag" onClick="() => {selected = it.tag}"/>
+      <BtnOption v-for="option in options" :option="option" :key="option.id" :isSelected="selected === option.id"
+        @click="selected = option.id" @mouseover="option.isHover = true" @mouseleave="option.isHover = false">
+      </BtnOption>
     </v-col>
-    <v-btn icon :size="40" @click="selected = 'settings'" class="position-absolute bottom-0">
-      <Settings />
-      <v-tooltip activator="parent" location="end">{{$t('settings')}}</v-tooltip>
-    </v-btn>
+    <BtnOption :option="lastOption" :key="lastOption.id" :isSelected="selected === lastOption.tag"
+      @click="selected = lastOption.tag" @mouseover="lastOption.isHover = true" @mouseleave="lastOption.isHover = false"
+      class="position-absolute bottom-0">
+    </BtnOption>
   </v-navigation-drawer>
   <v-col class="pa-4 fill-height">
     <app-bar />
     <v-col lg="8" offset-lg="2">
-      <clients-screen v-if="selected === 'students'" />
-      <metrics-screen v-else-if="selected === 'metrics'" />
-      <financial-screen v-else-if="selected === 'financial'" />
-      <equipments-screen v-else-if="selected === 'equipments'" />
+      <clients-screen v-if="selected === 0" />
+      <metrics-screen v-else-if="selected === 1" />
+      <financial-screen v-else-if="selected === 2" />
+      <equipments-screen v-else-if="selected === 3" />
+      <equipments-screen v-else-if="selected === 4" />
     </v-col>
   </v-col>
 </template>
@@ -27,36 +31,46 @@ import FinancialScreen from "./financial/MainScreen.vue"
 import EquipmentsScreen from "./equipments/MainScreen.vue"
 import AppBar from "./AppBar.vue"
 import { FunctionalComponent } from "vue"
-import { ref } from "vue"
-import BtnSelection from "./fields/BtnSelection.vue"
-const selected = ref('students')
+import { ref, reactive } from "vue"
+import BtnOption from "./fields/BtnOption.vue"
+const selected = ref(0)
 type Option = {
   icon: FunctionalComponent,
   tag: string,
+  isHover: boolean,
   id: number
 }
-const options: Option[] = [
+const lastOption = ref({
+  icon: Settings,
+  tag: "setting",
+  isHover: false,
+  id: 4,
+})
+const options: Option[] = reactive([
   {
     icon: Users,
-    tag: 'students',
+    tag: 'student',
+    isHover: false,
     id: 0
   },
   {
     icon: ChartNoAxesCombined,
-    tag: 'metrics',
+    tag: 'metric',
+    isHover: false,
     id: 1
   },
   {
     icon: HandCoins,
     tag: 'financial',
+    isHover: false,
     id: 2
   },
   {
     icon: Dumbbell,
-    tag: 'equipments',
+    tag: 'equipment',
+    isHover: false,
     id: 3
   }
-]
+])
 </script>
-<style>
-</style>
+<style></style>
