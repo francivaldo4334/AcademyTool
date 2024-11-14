@@ -40,36 +40,27 @@
   </v-dialog>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { useClientsStore } from "@/stores/ClientsStore"
 import { Undo, DotIcon, CircleDot } from "lucide-vue-next"
+import { useTemplateRef } from "vue"
+import { VForm } from "vuetify/components"
 import AddressForm from "@/components/clients/screens/modals/forms/AddressForm.vue"
 import StudentForm from "@/components/clients/screens/modals/forms/StudentForm.vue"
-export default {
-  components: {
-    StudentForm,
-    AddressForm,
-    DotIcon, CircleDot
-  },
-  data() {
-    return {
-      state: useClientsStore(),
-      seasons: {
-        0: 'student-data',
-        1: 'address',
-        2: 'register',
-      },
-      Undo,
-    }
-  },
-  methods: {
-    async toNext() {
-      const { valid } = await this.$refs.form.validate()
-      if (valid) {
-        this.state.nextStep()
-      }
-    }
-  },
+
+const form = useTemplateRef<VForm>("form")
+const state = useClientsStore()
+const seasons = {
+  0: 'student-data',
+  1: 'address',
+  2: 'register',
+}
+async function toNext() {
+  if (!form.value) return;
+  const { valid } = await form.value.validate()
+  if (valid) {
+    state.nextStep()
+  }
 }
 </script>
 

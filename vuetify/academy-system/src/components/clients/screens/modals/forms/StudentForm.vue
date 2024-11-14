@@ -25,15 +25,11 @@
   </v-card-tex>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import InputImageFile from "@/components/fields/InputImageFile.vue"
 import { MessageCircle, Smile, Mail, IdCard, Phone, Cake } from "lucide-vue-next"
 import { ref } from "vue"
 import { useI18n } from "vue-i18n"
-// import { Undo } from "lucide-vue-next"
-// import { useClientsStore } from "@/stores/ClientsStore"
-
-// const state = useClientsStore()
 const { t } = useI18n()
 const rules = ref({
   required: (it: string) => !!it || t("required-field"),
