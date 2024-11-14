@@ -30,5 +30,7 @@
   "image-upload": "Carregar imagem",
   "example-mail": "exemplo{'@'}.gmail.com",
   "next": "Avançar",
-  "required-field":"Este campo é obrigatorio"
+  "required-field":"Este campo é obrigatorio",
+  "invalid-email": "E-mail invalido",
+  "invalid-phone": "Telefone invalido"
 }
