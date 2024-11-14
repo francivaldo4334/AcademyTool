@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer color="rgb(var(--v-theme-on-background))" :rail="true" permanent rail-width="56"
     class="d-flex flex-column">
-    <v-col class="fill-height d-flex flex-column align-center justify-center pa-0" style="gap: 16px;">
+    <v-col class="fill-height d-flex flex-column align-center justify-center pa-0 gy-4">
       <BtnOption v-for="option in options" :option="option" :key="option.id" :isSelected="selected === option.id"
         @click="selected = option.id" @mouseover="option.isHover = true" @mouseleave="option.isHover = false">
       </BtnOption>
