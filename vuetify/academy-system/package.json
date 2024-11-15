@@ -17,6 +17,7 @@
     "@lucide/lab": "^0.1.2",
     "@mdi/font": "5.9.55",
     "core-js": "^3.8.3",
+    "localbase": "^0.7.7",
     "lucide-vue-next": "^0.455.0",
     "pinia": "^2.2.6",
     "roboto-fontface": "*",
