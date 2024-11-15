@@ -14,7 +14,7 @@
         </v-item-group>
       </v-card-title>
       <v-form ref="form">
-        <v-window v-model="state.formStep" class="pa-3 fill-height">
+        <v-window v-model="state.formStep" class="pa-3 fill-height" style="min-height: 400px;">
           <v-window-item :value="0">
             <StudentForm />
           </v-window-item>
@@ -22,7 +22,7 @@
             <AddressForm />
           </v-window-item>
           <v-window-item :value="2">
-            <StudentForm />
+            <RegisterForm />
           </v-window-item>
         </v-window>
         <v-divider />
@@ -47,6 +47,7 @@ import { useTemplateRef } from "vue"
 import { VForm } from "vuetify/components"
 import AddressForm from "@/components/clients/screens/modals/forms/AddressForm.vue"
 import StudentForm from "@/components/clients/screens/modals/forms/StudentForm.vue"
+import RegisterForm from "@/components/clients/screens/modals/forms/RegisterForm.vue"
 
 const form = useTemplateRef<VForm>("form")
 const state = useClientsStore()
