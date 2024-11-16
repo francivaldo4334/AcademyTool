@@ -11,9 +11,9 @@
       class="position-absolute bottom-0">
     </BtnOption>
   </v-navigation-drawer>
-  <v-col class="pa-4 h-screen">
+  <v-col class="px-4 py-0 h-100">
     <app-bar />
-    <v-col lg="8" offset-lg="2" class="h-100">
+    <v-col lg="8" offset-lg="2" class="pa-0 my-0">
       <clients-screen v-if="selected === 0" />
       <metrics-screen v-else-if="selected === 1" />
       <financial-screen v-else-if="selected === 2" />
