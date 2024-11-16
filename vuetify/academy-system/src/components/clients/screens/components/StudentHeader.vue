@@ -22,7 +22,7 @@
 import { Search, BookmarkX, BookmarkCheck, Cake, UserRoundX, UserRoundPlus } from "lucide-vue-next"
 import FilterSelection from "@/components/fields/FilterSelection.vue"
 import { useClientsStore } from "@/stores/ClientsStore"
-import CreateUser from "./modals/CreateUser.vue"
+import CreateUser from "@/components/clients/screens/modals/CreateUser.vue"
 export default {
   components: { UserRoundPlus, FilterSelection, CreateUser },
   data() {

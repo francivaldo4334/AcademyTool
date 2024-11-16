@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n, DefaultDateTimeFormatSchema } from 'vue-i18n'
 
 /**
  * Load locale messages
@@ -23,5 +23,21 @@ export default createI18n({
   legacy: false,
   locale: process.env.VUE_APP_I18N_LOCALE || 'en',
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
-  messages: loadLocaleMessages()
+  messages: loadLocaleMessages(),
+  datetimeFormats: {
+    "en-US": {
+      short: {
+        day: 'numeric', month: 'short', year: 'numeric'
+      },
+    },
+    "pt-BR": {
+      short: {
+        day: 'numeric', month: 'numeric', year: 'numeric'
+      },
+      long: {
+        year: 'numeric', month: 'short', day: 'numeric',
+        weekday: 'short', hour: 'numeric', minute: 'numeric'
+      }
+    },
+  }
 })

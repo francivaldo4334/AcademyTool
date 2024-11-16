@@ -18,7 +18,8 @@
     "baseUrl": ".",
     "ignoreDeprecations": "5.0",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "vite/client"
     ],
     "paths": {
       "@/*": [

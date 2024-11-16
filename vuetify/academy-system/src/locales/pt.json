@@ -38,5 +38,12 @@
   "street": "Rua",
   "zip-cod": "Cep",
   "address-number": "Numero da residência",
-  "reference": "Referencia"
+  "reference": "Referencia",
+  "age": "Idade | {count} Anos",
+  "status": "Status",
+  "contact": "Contato",
+  "photo": "Foto",
+  "whatsapp-url": "https://wa.me/{number}",
+  "create-at": "Registro",
+  "copied": "Copiado"
 }
