@@ -5,12 +5,13 @@ import { loadFonts } from './plugins/webfontloader'
 import i18n from './i18n'
 import { createPinia } from "pinia"
 import LocalBaseAdapter from "./composables/data/LocalBaseAdapter"
+import Domain from './composables/domain/Domain'
 
 loadFonts()
 
 createApp(App)
   .use(createPinia())
   .use(i18n)
-  .provide("$db", new LocalBaseAdapter())
+  .provide("$domain", new Domain(new LocalBaseAdapter()))
   .use(vuetify)
   .mount('#app')

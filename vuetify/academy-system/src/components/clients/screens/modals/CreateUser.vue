@@ -32,7 +32,7 @@
           <v-spacer />
           <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="state.closeCreateModal"></v-btn>
           <v-btn v-if="state.formStep > 1" color="primary" variant="tonal" :text="$t('save')"
-            @click="state.closeCreateModal"></v-btn>
+            @click="onSave"></v-btn>
           <v-btn v-else color="primary" variant="tonal" :text="$t('next')" @click="toNext"></v-btn>
         </v-card-actions>
       </v-form>
@@ -43,11 +43,13 @@
 <script lang="ts" setup>
 import { useClientsStore } from "@/stores/ClientsStore"
 import { Undo, DotIcon, CircleDot } from "lucide-vue-next"
-import { useTemplateRef } from "vue"
+import { useTemplateRef, inject } from "vue"
 import { VForm } from "vuetify/components"
 import AddressForm from "@/components/clients/screens/modals/forms/AddressForm.vue"
 import StudentForm from "@/components/clients/screens/modals/forms/StudentForm.vue"
 import RegisterForm from "@/components/clients/screens/modals/forms/RegisterForm.vue"
+import Domain from "@/composables/domain/Domain"
+import StudentModel from "@/composables/domain/models/StudentModel"
 
 const form = useTemplateRef<VForm>("form")
 const state = useClientsStore()
@@ -62,6 +64,31 @@ async function toNext() {
   if (valid) {
     state.nextStep()
   }
+}
+function onSave() {
+  const domain = inject("$domain") as Domain 
+  domain.users.add(
+    new StudentModel({
+      cpf: "",
+      active: true,
+      firstName: "",
+      lastName: "",
+      email: "",
+      dateOfBirth: new Date(),
+      gender: "",
+      phone: "",
+      whatsapp: "",
+      photo: "",
+      addressString: "",
+      neighborhood: "",
+      zipCode: "",
+      city: "",
+    }),
+    it => {
+      state.closeCreateModal()
+      console.log(it)
+    }
+  )
 }
 </script>
 

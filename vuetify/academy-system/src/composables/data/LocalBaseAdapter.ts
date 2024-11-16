@@ -1,8 +1,10 @@
 import Localbase from 'localbase';
-import IDatabaseAdapter from './interfaces/IDatabaseAdapter';
+import IDatabaseAdapter, { Constructor } from './interfaces/IDatabaseAdapter';
 import IModel from './interfaces/IModel';
 import User from './models/User';
 import Users from './tables/Users';
+import ITable from './interfaces/ITable';
+
 
 export default class implements IDatabaseAdapter {
   readonly DB_NAME = "academySystem"
@@ -12,6 +14,12 @@ export default class implements IDatabaseAdapter {
   constructor() {
     this.db = new Localbase(this.DB_NAME)
     this.users = new Users(this)
+  }
+  getInstance<T extends ITable<IModel>>(type: Constructor<T>): T {
+    if (this.users instanceof type) {
+      return this.users
+    }
+    throw new Error('Method not implemented.');
   }
   get(tableName: string, response?: ((it: IModel[]) => void) | undefined): void {
     this.db
