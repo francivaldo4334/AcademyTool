@@ -1,7 +1,7 @@
 import IModel from "../interfaces/IModel";
 
 export default class User implements IModel {
-  id!: string;
+  id!: number;
   cpf: string;
   active: boolean;
   firstName: string;

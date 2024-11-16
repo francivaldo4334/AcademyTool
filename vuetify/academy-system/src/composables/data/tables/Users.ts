@@ -1,9 +1,10 @@
-import { Database } from "../Database";
-import ITable from "../interfaces/ITable";
+import IDatabaseAdapter from "../interfaces/IDatabaseAdapter";
+import IModel from "../interfaces/IModel";
+import ITable, { BaseTable } from "../interfaces/ITable";
 import User from "../models/User";
 
-export default class Users extends ITable<User> {
-  constructor(db: Database) {
-    super(db, "users");
+export default class Users extends BaseTable<User> {
+  constructor(db: IDatabaseAdapter<IModel>) {
+    super(db, "users")
   }
 }

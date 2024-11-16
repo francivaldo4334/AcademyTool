@@ -1,44 +1,40 @@
-import { Database } from "../Database";
-import PkManager from "../utils/PkManager";
+import IDatabaseAdapter from "./IDatabaseAdapter";
 import IModel from "./IModel";
 
-export default abstract class ITable<M extends IModel> {
+export default interface ITable<M extends IModel> {
   tableName: string;
-  db: IDBDatabase | undefined;
-  constructor(db: Database, tableName: string) {
+  db: IDatabaseAdapter<M>;
+  get(response: (it: M[]) => void): void
+  getItemById(id: number, response: (it: M) => void): void
+  filter(params: any, response: (it: M[]) => void): void
+  create(model: M, response: (it: M) => void): void
+  delete(pk: number): void
+  update(model: M, pk: number, response: (it: M) => void): void
+}
+
+export abstract class BaseTable<M extends IModel> implements ITable<M> {
+  tableName: string;
+  db: IDatabaseAdapter<M>;
+  constructor(db: IDatabaseAdapter<IModel>, tableName: string) {
+    this.db = db as IDatabaseAdapter<M>;
     this.tableName = tableName;
-    this.db = db.db;
   }
-  async getAll() {
-    const models = localStorage.getItem(this.tableName)
-    if (models) {
-      return JSON.parse(models) as M[]
-    }
-    return []
+  getItemById(id: number, response: (it: M) => void): void {
+    this.db.getItemById(this.tableName, id, response)
   }
-  async getById(pk: number) {
-    if (!this.db) return;
-    const transaction = this.db.transaction([this.tableName], 'readonly');
-    const store = transaction.objectStore(this.tableName);
-    return store.get(pk);
+  filter(params: any, response: (it: M[]) => void): void {
+    this.db.filter(this.tableName, params, response)
   }
-  async create(model: M) {
-    if (!this.db) return;
-    const transaction = this.db.transaction([this.tableName], "readwrite");
-    const store = transaction.objectStore(this.tableName);
-    model.id = PkManager.getNextId(this.tableName)
-    return store.add(model)
+  create(model: M, response: (it: M) => void): void {
+    this.db.create(this.tableName, model, response)
   }
-  async remove(pk: number) {
-    if (!this.db) return;
-    const transaction = this.db.transaction([this.tableName], 'readwrite');
-    const store = transaction.objectStore(this.tableName);
-    store.delete(pk)
+  delete(pk: number): void {
+    this.db.delete(this.tableName, pk)
   }
-  async update(model: M) {
-    if (!this.db) return;
-    const transaction = this.db.transaction([this.tableName], 'readwrite');
-    const store = transaction.objectStore(this.tableName);
-    store.put(model)
+  update(model: M, pk: number, response: (it: M) => void): void {
+    this.db.update(this.tableName, model, pk, response)
+  }
+  get(response: ((it: M[]) => void)): void {
+    this.db.get(this.tableName, response)
   }
 }
