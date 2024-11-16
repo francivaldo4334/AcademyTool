@@ -4,15 +4,9 @@ export const useClientsStore = defineStore('clients', () => {
   const isOpenCreateModal = ref(false)
   const formStep = ref(0)
   const formSteps = reactive({
-    student: {
-      firstName: "",
-      lastName: "",
-      avatar: "",
-      cpf: "",
-      birthday: "",
-      email: "",
-      whatsapp: ""
-    }
+    student: {},
+    address: {},
+    register: {},
   })
   function openCreateModal() {
     isOpenCreateModal.value = true;

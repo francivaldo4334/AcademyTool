@@ -3,25 +3,28 @@
     <div class="d-flex">
       <v-col class="fill-width pa-0 ma-0 h-auto">
         <v-text-field variant="outlined" density="compact" :label="$t('name')" hide-details="auto" class="mb-4"
-          :prepend-inner-icon="Smile" :rules="[rules.required]" />
+          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.formSteps.student.name"/>
         <v-text-field variant="outlined" density="compact" :label="$t('last-name')" hide-details="auto"
-          :prepend-inner-icon="Smile" :rules="[rules.required]" />
+          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.formSteps.student.lastName"/>
       </v-col>
-      <InputImageFile class="ml-4" />
+      <InputImageFile class="ml-4" v-model="store.formSteps.student.avatar"/>
     </div>
     <v-row class="fill-width d-flex pa-0 ma-0 ga-4">
       <v-text-field variant="outlined" density="compact" :label="$t('cpf')" hide-details="auto"
-        :prepend-inner-icon="IdCard" placeholder="XX.XXX.XXX-XX" :rules="[rules.required]" />
+        :prepend-inner-icon="IdCard" placeholder="XX.XXX.XXX-XX" :rules="[rules.required]" v-model="store.formSteps.student.cpf"/>
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
-        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" />
+        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="store.formSteps.student.birthday"/>
     </v-row>
     <v-text-field variant="outlined" density="compact" :label="$t('e-mail')" hide-details="auto"
-      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" :rules="[rules.email]" />
+      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" :rules="[rules.email]" 
+      v-model="store.formSteps.student.email"/>
     <v-text-field variant="outlined" density="compact" :label="$t('phone')" hide-details="auto"
-      :prepend-inner-icon="Phone" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" />
-    <v-checkbox :label="$t('use-the-phone-as-a-whatsapp-number')" hide-details density="compact" />
+      :prepend-inner-icon="Phone" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" 
+      v-model="store.formSteps.student.phone"/>
+    <v-checkbox :label="$t('use-the-phone-as-a-whatsapp-number')" hide-details density="compact"/>
     <v-text-field variant="outlined" density="compact" :label="$t('whatsapp')" hide-details="auto"
-      :prepend-inner-icon="MessageCircle" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" />
+      :prepend-inner-icon="MessageCircle" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" 
+      v-model="store.formSteps.student.whatsapp"/>
   </v-card-tex>
 </template>
 
@@ -30,6 +33,9 @@ import InputImageFile from "@/components/fields/InputImageFile.vue"
 import { MessageCircle, Smile, Mail, IdCard, Phone, Cake } from "lucide-vue-next"
 import { ref } from "vue"
 import { useI18n } from "vue-i18n"
+import { useClientsStore } from "@/stores/ClientsStore"
+
+const store = useClientsStore()
 const { t } = useI18n()
 const rules = ref({
   required: (it: string) => !!it || t("required-field"),
