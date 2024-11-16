@@ -7,11 +7,11 @@ import { createPinia } from "pinia"
 import LocalBaseAdapter from "./composables/data/LocalBaseAdapter"
 import Domain from './composables/domain/Domain'
 
+const domain = new Domain(new LocalBaseAdapter())
 loadFonts()
-
 createApp(App)
+  .provide("db", domain)
   .use(createPinia())
   .use(i18n)
-  .provide("$domain", new Domain(new LocalBaseAdapter()))
   .use(vuetify)
   .mount('#app')

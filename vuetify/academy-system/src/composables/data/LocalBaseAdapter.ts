@@ -21,7 +21,7 @@ export default class implements IDatabaseAdapter {
     }
     throw new Error('Method not implemented.');
   }
-  get(tableName: string, response?: ((it: IModel[]) => void) | undefined): void {
+  get(tableName: string, response?: ((it: IModel[]) => void)): void {
     this.db
       .collection(tableName)
       .get()
@@ -50,9 +50,16 @@ export default class implements IDatabaseAdapter {
         }
       })
   }
-  create(tableName: string, model: IModel, response?: ((it: IModel) => void) | undefined): void {
-    this.db.collection(tableName)
-      .add(model)
+  async create(tableName: string, model: IModel, response?: ((it: IModel) => void) | undefined): Promise<void> {
+    try {
+      await this.db.collection(tableName).add(model);
+      console.log('Document added successfully');
+      if (response) {
+        response(model);
+      }
+    } catch (error) {
+      console.error('Error adding document:', error);
+    }
   }
   delete(tableName: string, pk: number): void {
     this.db.collection(tableName)

@@ -58,6 +58,7 @@ const seasons = {
   1: 'address',
   2: 'register',
 }
+const domain = inject("db") as Domain 
 async function toNext() {
   if (!form.value) return;
   const { valid } = await form.value.validate()
@@ -66,7 +67,6 @@ async function toNext() {
   }
 }
 function onSave() {
-  const domain = inject("$domain") as Domain 
   domain.users.add(
     new StudentModel({
       cpf: "",

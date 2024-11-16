@@ -11,8 +11,8 @@ import StudentTable from "./components/StudentTable.vue"
 import { reactive, onMounted, inject } from "vue"
 import Domain from "@/composables/domain/Domain"
 const clients = reactive([] as any[])
+const domain = inject('db') as Domain
 onMounted(() => {
-  const domain = inject('$domain') as Domain
   if (!domain) {
     console.error('Domain not provided via inject!');
     return
