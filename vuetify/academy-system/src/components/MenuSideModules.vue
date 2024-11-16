@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer color="rgb(var(--v-theme-on-background))" :rail="true" permanent rail-width="56"
+  <v-navigation-drawer color="rgb(var(--v-theme-on-background))" :rail="true" permanent rail-width="56px"
     class="d-flex flex-column">
     <v-col class="fill-height d-flex flex-column align-center justify-center pa-0 gy-4">
       <BtnOption v-for="option in options" :option="option" :key="option.id" :isSelected="selected === option.id"
@@ -11,9 +11,9 @@
       class="position-absolute bottom-0">
     </BtnOption>
   </v-navigation-drawer>
-  <v-col class="px-4 py-0 h-100">
+  <v-col class="px-0 py-0 pl-16 pr-2">
     <app-bar />
-    <v-col lg="8" offset-lg="2" class="pa-0 my-0">
+    <v-col lg="8" offset-lg="2" class="pa-4 my-0">
       <clients-screen v-if="selected === 0" />
       <metrics-screen v-else-if="selected === 1" />
       <financial-screen v-else-if="selected === 2" />

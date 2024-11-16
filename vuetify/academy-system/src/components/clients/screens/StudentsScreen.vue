@@ -3,18 +3,12 @@
   <v-card variant="outlined" color="surface" >
     <StudentTable :clients="clients"/>
   </v-card>
-  <v-pagination
-    v-model="page"
-    :length="4"
-    rounded="circle"
-  ></v-pagination>
 </template>
 
 <script setup lang="ts">
 import StudentHeader from "./components/StudentHeader.vue"
 import StudentTable from "./components/StudentTable.vue"
-import { reactive, ref } from "vue"
-const page = ref(1)
+import { reactive } from "vue"
 const clients = reactive([
   {
     avatar: "https://github.com/francivaldo4334.png",
