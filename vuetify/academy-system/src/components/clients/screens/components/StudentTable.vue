@@ -1,5 +1,5 @@
 <template>
-    <v-data-table-virtual :items="props.clients" :headers="headers" class="bg-background" >
+    <v-data-table-virtual :items="props.clients" :headers="headers.filter(header => !header.hidden)" class="bg-background" >
       <template v-slot:[`item.avatar`]="{value}">
         <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
           <v-img v-if="value" :src="value" />
@@ -51,14 +51,16 @@
 import { useI18n } from "vue-i18n"
 import { reactive, ref, defineProps } from "vue"
 import { Copy, BookmarkX, BookmarkCheck, Cake, UserRoundX, Phone, MessageCircle } from "lucide-vue-next"
+import { useDisplay } from "vuetify"
 
+const { mobile } = useDisplay()
 const { t } = useI18n()
 const snackbar = ref(false)
 const headers = reactive([
   {title: t('photo'), align: "start", key: "avatar", sortable: false},
   {title: t("name"), align: "center", key: "name"},
-  {title: t("create-at"), align: "center", key: "createat"},
-  {title: t("age"), align: "center", key: "age"},
+  {title: t("create-at"), align: "center", key: "createat", hidden: mobile},
+  {title: t("age"), align: "center", key: "age", hidden: mobile},
   {title: t("e-mail"), align: "start", key: "email", sortable: false, minWidth: "200px"},
   {title: t("status"), align: "center", key: "chips", sortable: false},
   {title: t("contact"), align: "end", key: "contact", sortable: false, maxWidth: "200px"},
