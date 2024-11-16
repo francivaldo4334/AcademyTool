@@ -1,15 +1,13 @@
 <template>
-  <v-col class="pa-0 d-flex flex-column">
-    <student-header class="top-0"/>
-    <v-card variant="outlined" color="surface" >
-      <StudentTable :clients="clients"/>
-    </v-card>
-    <v-pagination
-      v-model="page"
-      :length="4"
-      rounded="circle"
-    ></v-pagination>
-  </v-col>
+  <student-header class="top-0"/>
+  <v-card variant="outlined" color="surface" >
+    <StudentTable :clients="clients"/>
+  </v-card>
+  <v-pagination
+    v-model="page"
+    :length="4"
+    rounded="circle"
+  ></v-pagination>
 </template>
 
 <script setup lang="ts">

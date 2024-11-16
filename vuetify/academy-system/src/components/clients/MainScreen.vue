@@ -3,7 +3,7 @@
     <v-tabs v-model="screen" color="primary">
       <v-tab v-for="it in screens" :key="it" :value="it">{{ $t(it, 2) }}</v-tab>
     </v-tabs>
-    <v-tabs-window v-model="screen">
+    <v-tabs-window v-model="screen" >
       <v-tabs-window-item value="student">
         <students-screen />
       </v-tabs-window-item>
