@@ -13,9 +13,7 @@ export default class implements IRepository<StudentModel> {
 	add(m: StudentModel, onResponse: (it: StudentModel) => void): void {
 		const newUser = StudentDomainToModel(m);
 		newUser.active = true;
-		this.table.create(newUser, (it) => {
-			onResponse(StudentModelToDomain(it));
-		});
+		this.table.create(newUser, (it) => onResponse(StudentModelToDomain(it)));
 	}
 	geAll(onResponse: (it: StudentModel[]) => void): void {
 		this.table.get((it) => {

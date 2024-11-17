@@ -2,7 +2,7 @@ import IModelDomain from "./IModelDomain";
 
 export default class implements IModelDomain {
 	id?: number;
-	active: boolean;
+	active?: boolean;
 	firstName: string;
 	lastName: string;
 	avatar?: File;
@@ -13,6 +13,7 @@ export default class implements IModelDomain {
 	phone: string;
 	whatsapp: string;
 	usePhone: boolean;
+	//
 	addressString: string;
 	city: string;
 	neighborhood: string;
@@ -20,12 +21,13 @@ export default class implements IModelDomain {
 	zipCode: string;
 	addressNumber: string;
 	reference: string;
+	//
 	startDate?: Date;
 	endDate?: Date;
 	modality: string;
 	observation: string;
 	constructor(data: {
-		active: boolean;
+		active?: boolean;
 		firstName: string;
 		lastName: string;
 		avatar?: File;

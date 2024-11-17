@@ -23,7 +23,8 @@
             @click="state.prevStep"></v-btn>
           <v-spacer />
           <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="state.closeCreateModal"></v-btn>
-          <v-btn v-if="state.formStep > 1" color="primary" variant="tonal" :text="$t('save')" @click="onSave"></v-btn>
+          <v-btn v-if="state.formStep > 1" color="primary" variant="tonal" :text="$t('save')"
+            @click="state.onCreateStudent"></v-btn>
           <v-btn v-else color="primary" variant="tonal" :text="$t('next')" @click="toNext"></v-btn>
         </v-card-actions>
       </v-form>
@@ -34,9 +35,8 @@
 <script lang="ts" setup>
 import { useClientsStore } from "@/stores/ClientsStore"
 import { Undo } from "lucide-vue-next"
-import { useTemplateRef, inject } from "vue"
+import { useTemplateRef } from "vue"
 import { VForm } from "vuetify/components"
-import Domain from "@/composables/domain/Domain"
 import StudentForm from "./forms/StudentForm.vue"
 import AddressForm from "./forms/AddressForm.vue"
 import RegisterForm from "./forms/RegisterForm.vue"
@@ -48,16 +48,12 @@ const seasons = {
   1: 'address',
   2: 'register',
 }
-const domain = inject("db") as Domain
 async function toNext() {
   if (!form.value) return;
   const { valid } = await form.value.validate()
   if (valid) {
     state.nextStep()
   }
-}
-function onSave() {
-  domain.users.add(state.form)
 }
 </script>
 

@@ -30,7 +30,7 @@ export const StudentModelToDomain = (m: User) => {
 export const StudentDomainToModel = (m: StudentModel) => {
 	return new User({
 		cpf: m.cpf,
-		active: m.active,
+		active: m.active || true,
 		firstName: m.firstName,
 		lastName: m.lastName,
 		email: m.mail,
