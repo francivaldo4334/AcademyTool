@@ -2,12 +2,12 @@ import IModelDomain from "./IModelDomain";
 
 export default class implements IModelDomain {
   id?: number
-  cpf: string;
-  active: boolean;
   firstName: string;
   lastName: string;
-  email: string;
+  cpf: string;
   dateOfBirth: Date;
+  active: boolean;
+  email: string;
   gender: string;
   phone: string;
   whatsapp: string;

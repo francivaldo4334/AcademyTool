@@ -15,6 +15,9 @@
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
         :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="store.formSteps.student.birthday"/>
     </v-row>
+    <v-text-field variant="outlined" density="compact" :label="$t('gender')" hide-details="auto"
+      :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" :rules="[]" 
+      v-model="store.formSteps.student.gender"/>
     <v-text-field variant="outlined" density="compact" :label="$t('e-mail')" hide-details="auto"
       :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" :rules="[rules.email]" 
       v-model="store.formSteps.student.email"/>
@@ -30,7 +33,7 @@
 
 <script lang="ts" setup>
 import InputImageFile from "@/components/fields/InputImageFile.vue"
-import { MessageCircle, Smile, Mail, IdCard, Phone, Cake } from "lucide-vue-next"
+import { MessageCircle, Smile, Mail, IdCard, Phone, Cake, Blend } from "lucide-vue-next"
 import { ref } from "vue"
 import { useI18n } from "vue-i18n"
 import { useClientsStore } from "@/stores/ClientsStore"

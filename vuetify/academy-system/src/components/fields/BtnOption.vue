@@ -1,5 +1,5 @@
 <template>
-  <v-btn icon :size="40" :color="(isSelected) ? 'primary' : option.isHover ? 'secondary' : 'transparent'" class="ma-2">
+  <v-btn icon :size="40" :color="(isSelected) ? 'primary' : option.isHover ? 'secondary' : 'transparent'" class="ma-2" elevation="0">
     <v-icon color="background" :icon="option.icon" />
     <v-tooltip activator="parent" location="end">{{ $t(option.tag, 2) }}</v-tooltip>
   </v-btn>
