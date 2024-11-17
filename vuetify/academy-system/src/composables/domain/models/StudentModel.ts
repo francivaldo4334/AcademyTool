@@ -1,52 +1,74 @@
 import IModelDomain from "./IModelDomain";
 
 export default class implements IModelDomain {
-  id?: number
-  firstName: string;
-  lastName: string;
-  cpf: string;
-  dateOfBirth: Date;
-  active: boolean;
-  email: string;
-  gender: string;
-  phone: string;
-  whatsapp: string;
-  photo: string;
-  addressString: string;
-  neighborhood: string;
-  zipCode: string;
-  city: string;
-  constructor(
-    data: {
-      cpf: string,
-      active: boolean,
-      firstName: string,
-      lastName: string,
-      email: string,
-      dateOfBirth: Date,
-      gender: string,
-      phone: string,
-      whatsapp: string,
-      photo: string,
-      addressString: string,
-      neighborhood: string,
-      zipCode: string,
-      city: string,
-    }
-  ) {
-    this.cpf = data.cpf;
-    this.active = data.active;
-    this.firstName = data.firstName;
-    this.lastName = data.lastName;
-    this.email = data.email;
-    this.dateOfBirth = data.dateOfBirth;
-    this.gender = data.gender;
-    this.phone = data.phone;
-    this.whatsapp = data.whatsapp;
-    this.photo = data.photo;
-    this.addressString = data.addressString;
-    this.neighborhood = data.neighborhood;
-    this.zipCode = data.zipCode;
-    this.city = data.city;
-  }
+	id?: number;
+	active: boolean;
+	firstName: string;
+	lastName: string;
+	avatar?: File;
+	cpf: string;
+	birthday?: Date;
+	gender: string;
+	mail: string;
+	phone: string;
+	whatsapp: string;
+	usePhone: boolean;
+	addressString: string;
+	city: string;
+	neighborhood: string;
+	street: string;
+	zipCode: string;
+	addressNumber: string;
+	reference: string;
+	startDate?: Date;
+	endDate?: Date;
+	modality: string;
+	observation: string;
+	constructor(data: {
+		active: boolean;
+		firstName: string;
+		lastName: string;
+		avatar?: File;
+		cpf: string;
+		birthday?: Date;
+		gender: string;
+		mail: string;
+		phone: string;
+		whatsapp: string;
+		usePhone: boolean;
+		addressString: string;
+		city: string;
+		neighborhood: string;
+		street: string;
+		zipCode: string;
+		addressNumber: string;
+		reference: string;
+		startDate?: Date;
+		endDate?: Date;
+		modality: string;
+		observation: string;
+	}) {
+		this.active = data.active;
+		this.firstName = data.firstName;
+		this.lastName = data.lastName;
+		this.avatar = data.avatar;
+		this.cpf = data.cpf;
+		this.birthday = data.birthday;
+		this.gender = data.gender;
+		this.mail = data.mail;
+		this.phone = data.phone;
+		this.whatsapp = data.whatsapp;
+		this.usePhone = data.usePhone;
+		this.addressString = data.addressString;
+		this.city = data.city;
+		this.neighborhood = data.neighborhood;
+		this.street = data.street;
+		this.zipCode = data.zipCode;
+		this.addressNumber = data.addressNumber;
+		this.reference = data.reference;
+		this.startDate = data.startDate;
+		this.endDate = data.endDate;
+		this.modality = data.modality;
+		this.observation = data.observation;
+	}
 }

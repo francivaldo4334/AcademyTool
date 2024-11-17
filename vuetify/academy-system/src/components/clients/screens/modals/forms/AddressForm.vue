@@ -1,23 +1,23 @@
 <template>
   <v-col class="pa-0 ma-0 d-flex flex-column ga-3">
     <v-text-field :label="$t('address')" density="compact" variant="outlined" hide-details="auto"
-      v-model="store.formSteps.address.strAddress"/>
+      v-model="store.form.addressString" />
     <v-row class="ga-3 ma-0 pa-0">
       <v-text-field :label="$t('city')" density="compact" variant="outlined" hide-details="auto"
-        v-model="store.formSteps.address.city"/>
+        v-model="store.form.city" />
       <v-text-field :label="$t('neighborhood')" density="compact" variant="outlined" hide-details="auto"
-        v-model="store.formSteps.address.neighborhood"/>
+        v-model="store.form.neighborhood" />
     </v-row>
     <v-text-field :label="$t('street')" density="compact" variant="outlined" hide-details="auto"
-      v-model="store.formSteps.address.street"/>
+      v-model="store.form.street" />
     <v-row class="ga-3 ma-0 pa-0">
       <v-text-field :label="$t('zip-code')" density="compact" variant="outlined" hide-details="auto"
-        v-model="store.formSteps.address.zipCode"/>
+        v-model="store.form.zipCode" />
       <v-text-field :label="$t('address-number')" density="compact" variant="outlined" hide-details="auto"
-        v-model="store.formSteps.address.addressNumber"/>
+        v-model="store.form.addressNumber" />
     </v-row>
     <v-text-field :label="$t('reference')" density="compact" variant="outlined" hide-details="auto"
-      v-model="store.formSteps.address.reference"/>
+      v-model="store.form.reference" />
   </v-col>
 </template>
 

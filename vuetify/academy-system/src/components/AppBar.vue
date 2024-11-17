@@ -14,7 +14,7 @@
     <v-btn v-bind="props" icon :size="40" color="primary">
       <log-out />
       <v-tooltip activator="parent" location="bottom">
-        {{$t('logout')}}
+        {{ $t('logout') }}
       </v-tooltip>
     </v-btn>
   </div>

@@ -3,31 +3,29 @@
     <div class="d-flex">
       <v-col class="fill-width pa-0 ma-0 h-auto">
         <v-text-field variant="outlined" density="compact" :label="$t('name')" hide-details="auto" class="mb-4"
-          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.formSteps.student.name"/>
+          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.form.firstName" />
         <v-text-field variant="outlined" density="compact" :label="$t('last-name')" hide-details="auto"
-          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.formSteps.student.lastName"/>
+          :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.form.lastName" />
       </v-col>
-      <InputImageFile class="ml-4" v-model="store.formSteps.student.avatar"/>
+      <InputImageFile class="ml-4" v-model="store.form.avatar" />
     </div>
     <v-row class="fill-width d-flex pa-0 ma-0 ga-4">
       <v-text-field variant="outlined" density="compact" :label="$t('cpf')" hide-details="auto"
-        :prepend-inner-icon="IdCard" placeholder="XX.XXX.XXX-XX" :rules="[rules.required]" v-model="store.formSteps.student.cpf"/>
+        :prepend-inner-icon="IdCard" placeholder="XX.XXX.XXX-XX" :rules="[rules.required]" v-model="store.form.cpf" />
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
-        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="store.formSteps.student.birthday"/>
+        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="store.form.birthday" />
     </v-row>
     <v-text-field variant="outlined" density="compact" :label="$t('gender')" hide-details="auto"
-      :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" :rules="[]" 
-      v-model="store.formSteps.student.gender"/>
+      :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" :rules="[]" v-model="store.form.gender" />
     <v-text-field variant="outlined" density="compact" :label="$t('e-mail')" hide-details="auto"
-      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" :rules="[rules.email]" 
-      v-model="store.formSteps.student.email"/>
+      :prepend-inner-icon="Mail" type="email" :placeholder="$t('example-mail')" :rules="[rules.email]"
+      v-model="store.form.mail" />
     <v-text-field variant="outlined" density="compact" :label="$t('phone')" hide-details="auto"
-      :prepend-inner-icon="Phone" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" 
-      v-model="store.formSteps.student.phone"/>
-    <v-checkbox :label="$t('use-the-phone-as-a-whatsapp-number')" hide-details density="compact"/>
+      :prepend-inner-icon="Phone" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" v-model="store.form.phone" />
     <v-text-field variant="outlined" density="compact" :label="$t('whatsapp')" hide-details="auto"
-      :prepend-inner-icon="MessageCircle" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]" 
-      v-model="store.formSteps.student.whatsapp"/>
+      :prepend-inner-icon="MessageCircle" placeholder="(XX) X XXXX-XXXX" :rules="[rules.phone]"
+      v-model="store.form.whatsapp" />
+    <v-checkbox :label="$t('use-the-phone-as-a-whatsapp-number')" hide-details density="compact" />
   </v-card-tex>
 </template>
 
