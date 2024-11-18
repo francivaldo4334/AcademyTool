@@ -1,20 +1,23 @@
 <template>
   <div>
     <div :style="btnUploadStyle" class="bg-primary rounded-xl position-absolute">
-      <v-file-input hide-input :prepend-icon="MUpload" name="avatar" accept="image/png, image/jpeg"
-        class="w-100 h-100 d-flex align-center" :v-model="props.file">
+      <v-btn v-if="localFile" icon class="w-100 h-100 d-flex align-center" color="primary">
+        <Trash2 size="20" class="opacity-50" @click="localFile = null" />
+      </v-btn>
+      <v-file-input v-else hide-input :prepend-icon="MUpload" name="avatar" accept="image/png, image/jpeg"
+        class="w-100 h-100 d-flex align-center" v-model="localFile">
       </v-file-input>
     </div>
     <v-avatar :size="96" color="surface-light" rounded>
-      <v-img v-if="urlCompanyPhoto" :src="urlCompanyPhoto" />
+      <v-img v-if="imageUrl" :src="imageUrl" />
       <Image v-else color="rgb(var(--v-theme-on-surface))" />
     </v-avatar>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Upload, Image } from "lucide-vue-next"
-import { h, defineProps } from "vue"
+import { Upload, Image, Trash2 } from "lucide-vue-next"
+import { h, defineProps, ref, computed } from "vue"
 const MUpload = h(Upload, {
   size: 20,
   color: "background"
@@ -32,6 +35,8 @@ const props = defineProps({
     required: true
   }
 })
+const localFile = ref<File | null>(props.file)
+const imageUrl = computed(() => localFile.value ? URL.createObjectURL(localFile.value) : null)
 </script>
 
 <style></style>

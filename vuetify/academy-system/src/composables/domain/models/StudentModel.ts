@@ -26,6 +26,7 @@ export default class implements IModelDomain {
 	endDate?: Date;
 	modality: string;
 	observation: string;
+	isMonthlyPlan: boolean;
 	constructor(data: {
 		active?: boolean;
 		firstName: string;
@@ -49,6 +50,7 @@ export default class implements IModelDomain {
 		endDate?: Date;
 		modality: string;
 		observation: string;
+		isMonthlyPlan?: boolean;
 	}) {
 		this.active = data.active;
 		this.firstName = data.firstName;
@@ -72,5 +74,6 @@ export default class implements IModelDomain {
 		this.endDate = data.endDate;
 		this.modality = data.modality;
 		this.observation = data.observation;
+		this.isMonthlyPlan = data.isMonthlyPlan || true
 	}
 }

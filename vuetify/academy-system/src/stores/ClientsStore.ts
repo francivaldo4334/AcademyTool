@@ -40,10 +40,11 @@ export const useClientsStore = defineStore("clients", () => {
 		form.addressNumber = "";
 		form.reference = "";
 		//
-		form.startDate = undefined;
+		form.startDate = new Date();
 		form.endDate = undefined;
 		form.modality = "";
 		form.observation = "";
+		form.isMonthlyPlan = true;
 	}
 	function openCreateModal() {
 		isOpenCreateModal.value = true;

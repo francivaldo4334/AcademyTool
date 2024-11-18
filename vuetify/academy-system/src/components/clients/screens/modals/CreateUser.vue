@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="state.isOpenCreateModal" width="600px">
+  <v-dialog v-model="state.isOpenCreateModal" width="600px" persistent>
 
     <v-card>
       <v-card-title class="text-h6 font-weight-bold font-weight-regular justify-space-between d-flex mt-4">
