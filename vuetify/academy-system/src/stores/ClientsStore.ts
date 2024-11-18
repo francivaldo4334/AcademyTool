@@ -48,6 +48,7 @@ export const useClientsStore = defineStore("clients", () => {
 	}
 	function openCreateModal() {
 		isOpenCreateModal.value = true;
+		setDefautForm();
 	}
 	function closeCreateModal() {
 		isOpenCreateModal.value = false;
@@ -55,9 +56,9 @@ export const useClientsStore = defineStore("clients", () => {
 		setDefautForm();
 	}
 	function onCreateStudent() {
-		closeCreateModal();
 		domain.users.add(form, (it) => {
 			students.push(it);
+			closeCreateModal();
 		});
 	}
 	async function nextStep() {

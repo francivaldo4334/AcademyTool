@@ -22,7 +22,7 @@ export default class implements IModelDomain {
 	addressNumber: string;
 	reference: string;
 	//
-	startDate?: Date;
+	startDate: Date;
 	endDate?: Date;
 	modality: string;
 	observation: string;
@@ -70,7 +70,7 @@ export default class implements IModelDomain {
 		this.zipCode = data.zipCode;
 		this.addressNumber = data.addressNumber;
 		this.reference = data.reference;
-		this.startDate = data.startDate;
+		this.startDate = data.startDate || new Date();
 		this.endDate = data.endDate;
 		this.modality = data.modality;
 		this.observation = data.observation;

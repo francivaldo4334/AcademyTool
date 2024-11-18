@@ -7,18 +7,18 @@ export default class User implements IModel {
   firstName: string;
   lastName: string;
   email: string;
-  // registrationDate: DateTime;
   dateOfBirth: Date;
   gender: string;
   phone1: string;
   phone2: string;
   whatsapp: string;
-  photo: string;
+  photo: File | undefined;
   addressString: string;
   neighborhood: string;
   zipCode: string;
   city: string;
-  // lastLogin: DateTime;
+  lastLogin: Date | undefined;
+  registrationDate: Date | undefined;
   hash: string;
   constructor(
     data: {
@@ -27,18 +27,16 @@ export default class User implements IModel {
       firstName: string,
       lastName: string,
       email: string,
-      // registrationDate: DateTime,
       dateOfBirth: Date,
       gender: string,
       phone1: string,
       phone2: string,
       whatsapp: string,
-      photo: string,
+      photo?: File,
       addressString: string,
       neighborhood: string,
       zipCode: string,
       city: string,
-      // lastLogin: DateTime,
       hash: string,
     }
   ) {
@@ -47,7 +45,7 @@ export default class User implements IModel {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.email = data.email;
-    // this.registrationDate = data.registrationDate;
+    this.registrationDate = new Date();
     this.dateOfBirth = data.dateOfBirth;
     this.gender = data.gender;
     this.phone1 = data.phone1;
@@ -58,7 +56,6 @@ export default class User implements IModel {
     this.neighborhood = data.neighborhood;
     this.zipCode = data.zipCode;
     this.city = data.city;
-    // this.lastLogin = data.lastLogin;
     this.hash = data.hash;
   }
 }

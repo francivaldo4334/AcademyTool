@@ -11,6 +11,8 @@ export default class implements IRepository<StudentModel> {
 		this.table = db.getInstance(Users);
 	}
 	add(m: StudentModel, onResponse: (it: StudentModel) => void): void {
+		if (!m.birthday)
+			throw new Error("requred-field")
 		const newUser = StudentDomainToModel(m);
 		newUser.active = true;
 		this.table.create(newUser, (it) => onResponse(StudentModelToDomain(it)));

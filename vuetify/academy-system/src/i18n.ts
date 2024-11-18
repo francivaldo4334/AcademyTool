@@ -27,7 +27,7 @@ export default createI18n({
   datetimeFormats: {
     "en-US": {
       short: {
-        day: 'numeric', month: 'short', year: 'numeric'
+        year: 'numeric', month: 'numeric', day: 'numeric',
       },
     },
     "pt-BR": {

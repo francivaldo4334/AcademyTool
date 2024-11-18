@@ -2,9 +2,9 @@
   <v-col class="pa-0 ma-0 d-flex flex-column ga-3">
     <v-row class="ga-3 ma-0 pa-0">
       <v-text-field :label="$t('start-date')" density="compact" variant="outlined" hide-details="auto" type="date"
-        v-model="store.form.startDate" />
+        v-model="startDate" :rules="[(v) => !!v || $t('required-field')]" />
       <v-text-field :label="$t('end-date')" density="compact" variant="outlined" hide-details="auto" type="date"
-        v-model="store.form.endDate" :disabled="store.form.isMonthlyPlan" />
+        v-model="endDate" :disabled="store.form.isMonthlyPlan" />
     </v-row>
     <v-checkbox hide-details density="compact" v-model="store.form.isMonthlyPlan">
       <template v-slot:label>
@@ -28,7 +28,27 @@
 <script lang="ts" setup>
 import { useClientsStore } from "@/stores/ClientsStore"
 import { HelpCircle } from "lucide-vue-next"
+import { computed } from "vue"
 const store = useClientsStore()
+const startDate = computed({
+  get() {
+    const date = store.form.startDate
+    return date.toLocaleDateString("en-CA")
+  },
+  set(value: string) {
+    store.form.startDate = new Date(value)
+  }
+})
+const endDate = computed({
+  get() {
+    const date = store.form.endDate
+    if (!date) return
+    return date.toLocaleDateString("en-CA")
+  },
+  set(value: string) {
+    store.form.endDate = new Date(value)
+  }
+})
 </script>
 
 <style></style>

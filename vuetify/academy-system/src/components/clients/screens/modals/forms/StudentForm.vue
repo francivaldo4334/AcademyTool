@@ -14,8 +14,7 @@
         :prepend-inner-icon="IdCard" placeholder="XX.XXX.XXX-XX" :rules="[rules.required, rules.cpf]"
         v-model="formattedCpf" @input="store.form.cpf" :max="11" />
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
-        :rules="[rules.required]" :prepend-inner-icon="Cake" type="date" style="max-width: 220px;"
-        v-model="store.form.birthday" />
+        :rules="[rules.required]" :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="birthday" />
     </v-row>
     <v-autocomplete variant="outlined" density="compact" :label="$t('gender')" hide-details="auto"
       :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" :rules="[]" v-model="store.form.gender"
@@ -82,6 +81,16 @@ const usePhoneInWhatsapp = computed({
       store.form.whatsapp = store.form.phone;
     }
     store.form.usePhone = value
+  }
+})
+const birthday = computed({
+  get() {
+    const date = store.form.birthday
+    if (!date) return
+    return date.toLocaleDateString("en-CA")
+  },
+  set(value: string) {
+    store.form.birthday = new Date(value)
   }
 })
 </script>

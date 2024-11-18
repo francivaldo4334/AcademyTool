@@ -23,8 +23,7 @@
             @click="state.prevStep"></v-btn>
           <v-spacer />
           <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="state.closeCreateModal"></v-btn>
-          <v-btn v-if="state.formStep > 1" color="primary" variant="tonal" :text="$t('save')"
-            @click="state.onCreateStudent"></v-btn>
+          <v-btn v-if="state.formStep > 1" color="primary" variant="tonal" :text="$t('save')" @click="onSubmit"></v-btn>
           <v-btn v-else color="primary" variant="tonal" :text="$t('next')" @click="toNext"></v-btn>
         </v-card-actions>
       </v-form>
@@ -53,6 +52,13 @@ async function toNext() {
   const { valid } = await form.value.validate()
   if (valid) {
     state.nextStep()
+  }
+}
+async function onSubmit() {
+  if (!form.value) return;
+  const { valid } = await form.value.validate()
+  if (valid) {
+    state.onCreateStudent()
   }
 }
 </script>
