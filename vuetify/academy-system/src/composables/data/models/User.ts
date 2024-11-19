@@ -2,6 +2,7 @@ import IModel from "../interfaces/IModel";
 
 export default class User implements IModel {
   id!: number;
+  createAt: Date;
   cpf: string;
   active: boolean;
   firstName: string;
@@ -38,8 +39,10 @@ export default class User implements IModel {
       zipCode: string,
       city: string,
       hash: string,
+      createAt: Date,
     }
   ) {
+    this.createAt = data.createAt
     this.cpf = data.cpf;
     this.active = data.active;
     this.firstName = data.firstName;

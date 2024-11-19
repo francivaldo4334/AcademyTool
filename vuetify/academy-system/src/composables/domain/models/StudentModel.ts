@@ -3,6 +3,8 @@ import IModelDomain from "./IModelDomain";
 export default class implements IModelDomain {
 	id?: number;
 	active?: boolean;
+	createAt: Date;
+
 	firstName: string;
 	lastName: string;
 	avatar?: File;
@@ -51,8 +53,10 @@ export default class implements IModelDomain {
 		modality: string;
 		observation: string;
 		isMonthlyPlan?: boolean;
+		createAt: Date;
 	}) {
 		this.active = data.active;
+		this.createAt = data.createAt;
 		this.firstName = data.firstName;
 		this.lastName = data.lastName;
 		this.avatar = data.avatar;

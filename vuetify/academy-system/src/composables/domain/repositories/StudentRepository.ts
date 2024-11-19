@@ -15,6 +15,7 @@ export default class implements IRepository<StudentModel> {
 			throw new Error("requred-field")
 		const newUser = StudentDomainToModel(m);
 		newUser.active = true;
+		newUser.createAt = new Date()
 		this.table.create(newUser, (it) => onResponse(StudentModelToDomain(it)));
 	}
 	geAll(onResponse: (it: StudentModel[]) => void): void {

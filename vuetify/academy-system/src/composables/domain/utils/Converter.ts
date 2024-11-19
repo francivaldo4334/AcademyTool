@@ -3,6 +3,7 @@ import StudentModel from "../models/StudentModel";
 
 export const StudentModelToDomain = (m: User) => {
 	return new StudentModel({
+		createAt: m.createAt,
 		active: m.active,
 		firstName: m.firstName,
 		lastName: m.lastName,
@@ -45,5 +46,6 @@ export const StudentDomainToModel = (m: StudentModel) => {
 		zipCode: m.zipCode,
 		city: m.city,
 		hash: "",
+		createAt: m.createAt
 	});
 };

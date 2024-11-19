@@ -1,5 +1,5 @@
 <template>
-  <v-data-table-virtual :items="props.clients" :headers="headers.filter(header => !header.hidden)"
+  <v-data-table-virtual :items="getClients(props.clients)" :headers="headers.filter(header => !header.hidden)"
     class="bg-background">
     <template v-slot:[`item.avatar`]="{ value }">
       <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
@@ -47,6 +47,7 @@ import { useI18n } from "vue-i18n"
 import { reactive, ref, defineProps } from "vue"
 import { Copy, BookmarkX, BookmarkCheck, Cake, UserRoundX, Phone, MessageCircle } from "lucide-vue-next"
 import { useDisplay } from "vuetify"
+import StudentModel from "@/composables/domain/models/StudentModel"
 
 const { mobile } = useDisplay()
 const { t } = useI18n()
@@ -109,6 +110,14 @@ function redirect(number: string) {
 }
 function AvatarURL(value: File) {
   return value ? URL.createObjectURL(value) : null
+}
+function getClients(clients: StudentModel[]) {
+  return clients.map(it => {
+    return {
+      name: `${it.firstName} ${it.lastName}`.trim(),
+      ...it
+    }
+  })
 }
 
 </script>
