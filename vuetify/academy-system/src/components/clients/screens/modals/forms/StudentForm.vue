@@ -7,7 +7,7 @@
         <v-text-field variant="outlined" density="compact" :label="$t('last-name')" hide-details="auto"
           :prepend-inner-icon="Smile" :rules="[rules.required]" v-model="store.form.lastName" />
       </v-col>
-      <InputImageFile class="ml-4" v-model="store.form.avatar" />
+      <InputImageFile class="ml-4" :onLoadFile="(it) => { store.form.avatar = it }" />
     </div>
     <v-row class="fill-width d-flex pa-0 ma-0 ga-4">
       <v-text-field variant="outlined" density="compact" :label="$t('cpf')" hide-details="auto"

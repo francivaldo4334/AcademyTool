@@ -3,7 +3,7 @@
     class="bg-background">
     <template v-slot:[`item.avatar`]="{ value }">
       <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
-        <v-img v-if="value" :src="value" />
+        <v-img v-if="value" :src="AvatarURL(value)" />
         <Image v-else />
       </v-avatar>
     </template>
@@ -106,6 +106,9 @@ function getChipColor(type: "debting" | "debted" | "birthday" | "absent") {
 }
 function redirect(number: string) {
   window.open(t('whatsapp-url', { number: number }), '_blanc')
+}
+function AvatarURL(value: File) {
+  return value ? URL.createObjectURL(value) : null
 }
 
 </script>

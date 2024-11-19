@@ -30,12 +30,21 @@ const btnUploadStyle = {
   right: '-8px'
 }
 const props = defineProps({
-  file: {
-    type: File,
+  onLoadFile: {
+    type: Function,
     required: true
   }
 })
-const localFile = ref<File | null>(props.file)
+const file = ref<File | null>(null)
+const localFile = computed({
+  get() {
+    return file.value
+  },
+  set(value: File) {
+    file.value = value
+    props.onLoadFile(file.value)
+  }
+})
 const imageUrl = computed(() => localFile.value ? URL.createObjectURL(localFile.value) : null)
 </script>
 

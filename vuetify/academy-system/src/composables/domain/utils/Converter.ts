@@ -6,7 +6,7 @@ export const StudentModelToDomain = (m: User) => {
 		active: m.active,
 		firstName: m.firstName,
 		lastName: m.lastName,
-		avatar: undefined,
+		avatar: m.photo,
 		cpf: m.cpf,
 		birthday: m.dateOfBirth,
 		gender: m.gender,
