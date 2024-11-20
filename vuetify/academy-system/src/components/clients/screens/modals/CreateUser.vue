@@ -6,7 +6,8 @@
         <span>{{ $t(seasons[state.formStep]) }}</span>
       </v-card-title>
       <v-form ref="form">
-        <v-window v-model="state.formStep" class="pa-3 fill-height" style="min-height: 400px;">
+        <v-card variant="outlined" class="ma-2" color="surface-light">
+        <v-window v-model="state.formStep" class="pa-3 fill-height" style="min-height: 400px; color: rgb(var(--v-theme-on-background));">
           <v-window-item :value="0">
             <StudentForm />
           </v-window-item>
@@ -17,6 +18,7 @@
             <RegisterForm />
           </v-window-item>
         </v-window>
+        </v-card>
         <v-divider />
         <v-card-actions>
           <v-btn v-if="state.formStep > 0" variant="plain" :text="$t('to-back')" :prepend-icon="Undo"

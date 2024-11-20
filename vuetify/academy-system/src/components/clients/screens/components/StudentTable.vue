@@ -50,7 +50,7 @@ import { useDisplay } from "vuetify"
 import StudentModel from "@/composables/domain/models/StudentModel"
 
 const { mobile } = useDisplay()
-const { t } = useI18n()
+const { t, d } = useI18n()
 const snackbar = ref(false)
 const headers = reactive([
   { title: t('photo'), align: "start", key: "avatar", sortable: false },
@@ -113,8 +113,29 @@ function AvatarURL(value: File) {
 }
 function getClients(clients: StudentModel[]) {
   return clients.map(it => {
+    const contacts = []
+    if (it.phone){
+      contacts.push(
+        {
+          content: it.phone,
+          type: "phone",
+        }
+      )
+    }
+    if (it.whatsapp){
+      contacts.push(
+        {
+          content: it.whatsapp,
+          type: "whatsapp"
+        }
+      )
+    }
+    console.log(it)
     return {
       name: `${it.firstName} ${it.lastName}`.trim(),
+      createat: d(it.createAt, "short", "pt-BR"),
+      email: it.mail,
+      contact: contacts,
       ...it
     }
   })
