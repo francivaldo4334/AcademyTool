@@ -1,21 +1,22 @@
 <template>
-  <v-row class="ma-0 fill-width align-center pb-4">
+  <div class="ma-0 d-flex fill-width align-center pb-4 ga-4">
     <v-text-field v-model="inputSearch" :prepend-inner-icon="iconSearch" :label="$t('search')" variant="outlined"
       hide-details single-line density="compact" max-width="240" />
-    <v-btn class="ml-2 height-40 ma-0" color="primary"><span style="color: rgb(var(--v-theme-background));">{{ $t('search')
+    <v-btn class="height-40 ma-0" color="primary"><span style="color: rgb(var(--v-theme-background));">{{
+      $t('search')
         }}</span></v-btn>
     <v-spacer />
     <v-select label="Itens por pagina" density="compact" variant="outlined" :items="['5', '10', '15']"
-      class="mr-4"></v-select>
+      hide-details></v-select>
     <filter-selection :list="filters" />
     <create-user />
-    <v-btn icon :size="40" class="ml-2" @click="state.openCreateModal" color="primary" rounded>
+    <v-btn icon :size="40" @click="state.openCreateModal" color="primary" rounded>
       <user-round-plus />
       <v-tooltip activator="parent" location="bottom">
         {{ $t('add-new-student') }}
       </v-tooltip>
     </v-btn>
-  </v-row>
+  </div>
 </template>
 
 <script lang="ts">
@@ -40,10 +41,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.v-select {
-  transform: translateY(11px);
-  max-width: 180px;
-}
-</style>

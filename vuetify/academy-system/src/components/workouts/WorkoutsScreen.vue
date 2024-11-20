@@ -1,6 +1,6 @@
 <template>
   <p class="text-h5 mb-4">{{ $t('workout', 2) }}</p>
-  <v-tabs v-model="screen" color="primary">
+  <v-tabs v-model="screen" color="primary" class="mb-4">
     <v-tab v-for="it in screens" :key="it" :value="it">{{ $t(it, 2) }}</v-tab>
   </v-tabs>
   <v-tabs-window v-model="screen">

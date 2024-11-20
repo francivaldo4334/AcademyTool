@@ -6,4 +6,5 @@
 </template>
 <script setup lang="ts">
 import ModalityHeader from './components/ModalityHeader.vue'
+import StudentTable from './components/ModalityTable.vue'
 </script>

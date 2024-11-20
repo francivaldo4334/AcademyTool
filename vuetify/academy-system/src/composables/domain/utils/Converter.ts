@@ -2,7 +2,24 @@ import User from "@/composables/data/models/User";
 import StudentModel from "../models/StudentModel";
 import Registration from "@/composables/data/models/Registration";
 import Modality from "@/composables/data/models/Modality";
-
+import ModalityModel, { PaymentModality } from "../models/ModalityModel";
+export const ModalityModelToDomain = (m: Modality) => {
+	return new ModalityModel({
+		id: m.id,
+		value: m.value,
+		modalityPayment: m.modalityPayment as PaymentModality,
+		description: m.description,
+		active: m.active,
+	});
+};
+export const ModalityDomainToModel = (m: ModalityModel) => {
+	return new Modality({
+		value: m.value,
+		modalityPayment: m.modalityPayment,
+		description: m.description,
+		active: m.active,
+	});
+};
 export const StudentModelToDomain = (
 	m: User,
 	r: Registration,

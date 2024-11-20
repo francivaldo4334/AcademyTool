@@ -1,8 +1,10 @@
 <template>
-  <student-header class="top-0" />
-  <v-card variant="outlined" color="surface">
-    <StudentTable :clients="state.students" />
-  </v-card>
+  <div class="d-flex flex-column">
+    <student-header class="top-0" />
+    <v-card variant="outlined" color="surface">
+      <StudentTable :clients="state.students" />
+    </v-card>
+  </div>
 </template>
 
 <script setup lang="ts">
