@@ -46,6 +46,9 @@ export const StudentDomainToModel = (m: StudentModel) => {
 		zipCode: m.zipCode,
 		city: m.city,
 		hash: "",
-		createAt: m.createAt
+		createAt: m.createAt,
+		street: m.street,
+		addressNumber: m.addressNumber,
+		reference: m.reference,
 	});
 };

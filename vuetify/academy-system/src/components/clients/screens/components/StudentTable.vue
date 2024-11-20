@@ -1,6 +1,6 @@
 <template>
   <v-data-table-virtual :items="getClients(props.clients)" :headers="headers.filter(header => !header.hidden)"
-    class="bg-background">
+    class="bg-background" :no-data-text="$t('no-data')">
     <template v-slot:[`item.avatar`]="{ value }">
       <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
         <v-img v-if="value" :src="AvatarURL(value)" />
@@ -114,7 +114,7 @@ function AvatarURL(value: File) {
 function getClients(clients: StudentModel[]) {
   return clients.map(it => {
     const contacts = []
-    if (it.phone){
+    if (it.phone) {
       contacts.push(
         {
           content: it.phone,
@@ -122,7 +122,7 @@ function getClients(clients: StudentModel[]) {
         }
       )
     }
-    if (it.whatsapp){
+    if (it.whatsapp) {
       contacts.push(
         {
           content: it.whatsapp,
