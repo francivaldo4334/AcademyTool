@@ -3,29 +3,52 @@ import IModel from "@/composables/data/interfaces/IModel";
 import IRepository from "./IRepository";
 import Users from "@/composables/data/tables/Users";
 import StudentModel from "../models/StudentModel";
-import { StudentDomainToModel, StudentModelToDomain } from "../utils/Converter";
+import {
+	StudentDomainToModel,
+	StudentDomainToRegisterModel,
+	StudentModelToDomain,
+} from "../utils/Converter";
+import Registrations from "@/composables/data/tables/Registrations";
+import Modalities from "@/composables/data/tables/Modalities";
 
 export default class implements IRepository<StudentModel> {
-	table: Users;
+	users: Users;
+	registrations: Registrations;
+	modalities: Modalities;
 	constructor(db: IDatabaseAdapter<IModel>) {
-		this.table = db.getInstance(Users);
+		this.users = db.getInstance(Users);
+		this.registrations = db.getInstance(Registrations);
+		this.modalities = db.getInstance(Modalities);
 	}
 	add(m: StudentModel, onResponse: (it: StudentModel) => void): void {
-		if (!m.birthday)
-			throw new Error("requred-field")
+		if (!m.birthday) throw new Error("requred-field");
 		const newUser = StudentDomainToModel(m);
-		newUser.active = true;
-		newUser.createAt = new Date()
-		this.table.create(newUser, (it) => onResponse(StudentModelToDomain(it)));
+		this.modalities.getItemById(m.modality).then((modality) => {
+			this.users.create(newUser).then((user) => {
+				const newRegister = StudentDomainToRegisterModel(m, user, modality);
+				this.registrations.create(newRegister).then((register) => {
+					onResponse(StudentModelToDomain(user, register, modality));
+				});
+			});
+		});
 	}
 	geAll(onResponse: (it: StudentModel[]) => void): void {
-		this.table.get((it) => {
-			onResponse(it.map((it) => StudentModelToDomain(it)));
+		this.registrations.get().then(async (registers) => {
+			const studentsRespose: StudentModel[] = [];
+			for (let i = 0; i < registers.length; i++) {
+				const register = registers[i];
+				const user = await this.users.getItemById(register.student);
+				const modality = await this.modalities.getItemById(register.modality);
+				studentsRespose.push(StudentModelToDomain(user, register, modality));
+			}
+			onResponse(studentsRespose);
 		});
 	}
 	getById(id: number, onResponse: (it: StudentModel) => void): void {
-		this.table.getItemById(id, (it) => {
-			onResponse(StudentModelToDomain(it));
+		this.registrations.getItemById(id).then(async (register) => {
+			const user = await this.users.getItemById(register.student);
+			const modality = await this.modalities.getItemById(register.modality);
+			onResponse(StudentModelToDomain(user, register, modality));
 		});
 	}
 }

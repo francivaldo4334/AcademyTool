@@ -3,7 +3,7 @@ import IModelDomain from "./IModelDomain";
 export default class implements IModelDomain {
 	id?: number;
 	active?: boolean;
-	createAt: Date;
+	createAt?: Date;
 
 	firstName: string;
 	lastName: string;
@@ -26,7 +26,7 @@ export default class implements IModelDomain {
 	//
 	startDate: Date;
 	endDate?: Date;
-	modality: string;
+	modality: number;
 	observation: string;
 	isMonthlyPlan: boolean;
 	constructor(data: {
@@ -50,10 +50,10 @@ export default class implements IModelDomain {
 		reference: string;
 		startDate?: Date;
 		endDate?: Date;
-		modality: string;
+		modality: number;
 		observation: string;
 		isMonthlyPlan?: boolean;
-		createAt: Date;
+		createAt?: Date;
 	}) {
 		this.active = data.active;
 		this.createAt = data.createAt;
@@ -78,6 +78,6 @@ export default class implements IModelDomain {
 		this.endDate = data.endDate;
 		this.modality = data.modality;
 		this.observation = data.observation;
-		this.isMonthlyPlan = data.isMonthlyPlan || true
+		this.isMonthlyPlan = data.isMonthlyPlan || true;
 	}
 }

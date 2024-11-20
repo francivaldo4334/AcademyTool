@@ -42,7 +42,7 @@ export const useClientsStore = defineStore("clients", () => {
 		//
 		form.startDate = new Date();
 		form.endDate = undefined;
-		form.modality = "";
+		form.modality = 0;
 		form.observation = "";
 		form.isMonthlyPlan = true;
 	}

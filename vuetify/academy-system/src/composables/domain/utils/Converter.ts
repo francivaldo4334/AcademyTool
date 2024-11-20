@@ -1,7 +1,13 @@
 import User from "@/composables/data/models/User";
 import StudentModel from "../models/StudentModel";
+import Registration from "@/composables/data/models/Registration";
+import Modality from "@/composables/data/models/Modality";
 
-export const StudentModelToDomain = (m: User) => {
+export const StudentModelToDomain = (
+	m: User,
+	r: Registration,
+	mt: Modality,
+) => {
 	return new StudentModel({
 		createAt: m.createAt,
 		active: m.active,
@@ -12,20 +18,37 @@ export const StudentModelToDomain = (m: User) => {
 		birthday: m.dateOfBirth,
 		gender: m.gender,
 		mail: m.email,
-		phone: "",
+		phone: m.phone1,
 		whatsapp: m.whatsapp,
 		usePhone: false,
 		addressString: m.addressString,
 		city: m.city,
 		neighborhood: m.neighborhood,
-		street: "",
+		street: m.street,
 		zipCode: m.zipCode,
-		addressNumber: "",
-		reference: "",
-		startDate: undefined,
-		endDate: undefined,
-		modality: "",
-		observation: "",
+		addressNumber: m.addressNumber,
+		reference: m.reference,
+		startDate: r.startDate,
+		endDate: r.endDate,
+		modality: mt.id,
+		observation: r.observation,
+	});
+};
+export const StudentDomainToRegisterModel = (
+	m: StudentModel,
+	u: User,
+	modality: Modality,
+) => {
+	return new Registration({
+		active: true,
+		student: u.id,
+		startDate: m.startDate,
+		endDate: m.endDate,
+		isMonthlyPlan: m.isMonthlyPlan,
+		modality: modality.id,
+		observation: m.observation,
+		status: "debited",
+		createAt: new Date(),
 	});
 };
 export const StudentDomainToModel = (m: StudentModel) => {
@@ -46,7 +69,7 @@ export const StudentDomainToModel = (m: StudentModel) => {
 		zipCode: m.zipCode,
 		city: m.city,
 		hash: "",
-		createAt: m.createAt,
+		createAt: m.createAt || new Date(),
 		street: m.street,
 		addressNumber: m.addressNumber,
 		reference: m.reference,
