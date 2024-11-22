@@ -13,14 +13,17 @@
   </v-navigation-drawer>
   <v-col class="px-0 py-0 pl-16 pr-2">
     <app-bar />
-    <v-col lg="8" offset-lg="2" class="pa-4 my-0">
-      <clients-screen v-if="selected === 0" />
+    <!-- <v-col lg="8" offset-lg="2" class="pa-4 my-0"> -->
+      <!-- <clients-screen v-if="selected === 0" /> -->
+      <clients-screen v-if="false" />
+      <BaseModluleWithLising v-if="selected === 0"/>
       <metrics-screen v-else-if="selected === 1" />
       <financial-screen v-else-if="selected === 2" />
       <equipments-screen v-else-if="selected === 3" />
       <equipments-screen v-else-if="selected === 4" />
       <workouts-screen v-else-if="selected === 5" />
-    </v-col>
+
+    <!-- </v-col> -->
   </v-col>
 </template>
 
@@ -35,6 +38,7 @@ import AppBar from "./AppBar.vue"
 import { FunctionalComponent } from "vue"
 import { ref, reactive } from "vue"
 import BtnOption from "./fields/BtnOption.vue"
+import BaseModluleWithLising from "./BaseModluleWithLising"
 const selected = ref(0)
 type Option = {
   icon: FunctionalComponent,
