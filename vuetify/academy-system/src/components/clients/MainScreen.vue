@@ -61,7 +61,11 @@ import Domain from "@/composables/domain/Domain";
 import StudentForm from "./forms/StudentForm.vue";
 import AddressForm from "./forms/AddressForm.vue";
 import RegisterForm from "./forms/RegisterForm.vue";
+import { useI18n } from "vue-i18n"
 import { z } from "zod";
+import { Mask } from "maska"
+
+const { d } = useI18n()
 
 // Injeção de dependências
 const domain = inject("domain") as Domain;
@@ -118,7 +122,23 @@ const menuOptions: MenuItem<any>[] = [
       }
     ),
     tableScheme: z.object({
-      avatar: z.string().nullable().default(null)
+      avatar: z.string().nullable().default(null),
+      createAt: z.date().transform(it => d(it, 'short', 'pt-BR')),
+      firstName: z.string(),
+      lastName: z.string(),
+      phone: z.string().transform(it => new Mask({ mask: "(##) # ####-####" }).masked(it)),
+      whatsapp: z.string().transform(it => new Mask({ mask: "(##) # ####-####" }).masked(it)),
+    }).transform(it => {
+      const {
+        avatar,
+        firstName,
+        lastName,
+        ...data } = it;
+      return {
+        avatar,
+        name: `${firstName} ${lastName}`.trim(),
+        ...data,
+      }
     }),
   },
   {
