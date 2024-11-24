@@ -8,7 +8,6 @@
 	"debtors": "Devedores",
 	"debited": "Debitados",
 	"absent": "Ausentes",
-	"add-new-student": "Novo Estudante",
 	"equipment": "Equipamento | Equipamentos",
 	"metric": "Métrica | Métricas",
 	"financial": "Financeiro",
@@ -54,8 +53,11 @@
 	"end-date": "Data de fim",
 	"modality": "Modalidade | Modalidades",
 	"observation": "Observação",
-	"recurrent": "Recorrente",
+	"recurrent": "Periodo recorrente",
 	"recurrent-help": "A matrícula será renovada dado um período de tempo seja mensal, anual ou semanal.",
 	"no-data": "Sem Dados",
-	"workout": "Treino | Treinos"
+	"workout": "Treino | Treinos",
+	"add-new-item": "Acionar novo {item}",
+	"field-must-have-a-minimum": "O campo deve ter no minimo {count} caracteres",
+	"field-must-have-a-maximum": "O campo deve ter no maximo {count} caracteres"
 }

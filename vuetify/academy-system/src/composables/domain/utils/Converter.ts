@@ -23,7 +23,7 @@ export const ModalityDomainToModel = (m: ModalityModel) => {
 export const StudentModelToDomain = (
 	m: User,
 	r: Registration,
-	mt: Modality,
+	mt?: Modality,
 ) => {
 	return new StudentModel({
 		createAt: m.createAt,
@@ -47,14 +47,14 @@ export const StudentModelToDomain = (
 		reference: m.reference,
 		startDate: r.startDate,
 		endDate: r.endDate,
-		modality: mt.id,
+		modality: mt?.id,
 		observation: r.observation,
 	});
 };
 export const StudentDomainToRegisterModel = (
 	m: StudentModel,
 	u: User,
-	modality: Modality,
+	modality?: Modality,
 ) => {
 	return new Registration({
 		active: true,
@@ -62,7 +62,7 @@ export const StudentDomainToRegisterModel = (
 		startDate: m.startDate,
 		endDate: m.endDate,
 		isMonthlyPlan: m.isMonthlyPlan,
-		modality: modality.id,
+		modality: modality?.id,
 		observation: m.observation,
 		status: "debited",
 		createAt: new Date(),

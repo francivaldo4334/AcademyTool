@@ -26,7 +26,7 @@ export default class implements IModelDomain {
 	//
 	startDate: Date;
 	endDate?: Date;
-	modality: number;
+	modality?: number;
 	observation: string;
 	isMonthlyPlan: boolean;
 	constructor(data: {
@@ -50,7 +50,7 @@ export default class implements IModelDomain {
 		reference: string;
 		startDate?: Date;
 		endDate?: Date;
-		modality: number;
+		modality?: number;
 		observation: string;
 		isMonthlyPlan?: boolean;
 		createAt?: Date;

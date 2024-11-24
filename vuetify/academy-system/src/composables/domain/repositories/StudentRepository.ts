@@ -23,14 +23,15 @@ export default class implements IRepository<StudentModel> {
 	add(m: StudentModel, onResponse: (it: StudentModel) => void): void {
 		if (!m.birthday) throw new Error("requred-field");
 		const newUser = StudentDomainToModel(m);
-		this.modalities.getItemById(m.modality).then((modality) => {
-			this.users.create(newUser).then((user) => {
-				const newRegister = StudentDomainToRegisterModel(m, user, modality);
-				this.registrations.create(newRegister).then((register) => {
-					onResponse(StudentModelToDomain(user, register, modality));
-				});
+		// this.modalities.getItemById(m.modality).then((modality) => {
+		const modality = undefined;
+		this.users.create(newUser).then((user) => {
+			const newRegister = StudentDomainToRegisterModel(m, user, modality);
+			this.registrations.create(newRegister).then((register) => {
+				onResponse(StudentModelToDomain(user, register, modality));
 			});
 		});
+		// });
 	}
 	geAll(onResponse: (it: StudentModel[]) => void): void {
 		this.registrations.get().then(async (registers) => {
@@ -38,7 +39,8 @@ export default class implements IRepository<StudentModel> {
 			for (let i = 0; i < registers.length; i++) {
 				const register = registers[i];
 				const user = await this.users.getItemById(register.student);
-				const modality = await this.modalities.getItemById(register.modality);
+				// const modality = await this.modalities.getItemById(register.modality);
+				const modality = undefined;
 				studentsRespose.push(StudentModelToDomain(user, register, modality));
 			}
 			onResponse(studentsRespose);
@@ -47,7 +49,8 @@ export default class implements IRepository<StudentModel> {
 	getById(id: number, onResponse: (it: StudentModel) => void): void {
 		this.registrations.getItemById(id).then(async (register) => {
 			const user = await this.users.getItemById(register.student);
-			const modality = await this.modalities.getItemById(register.modality);
+			// const modality = await this.modalities.getItemById(register.modality);
+			const modality = undefined;
 			onResponse(StudentModelToDomain(user, register, modality));
 		});
 	}
