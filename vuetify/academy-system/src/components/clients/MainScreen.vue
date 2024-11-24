@@ -45,7 +45,7 @@
       <v-spacer />
       <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="closeModal(onClose)" />
       <v-btn v-if="formStep > 1" color="primary" variant="tonal" :text="$t('save')"
-        @click="isValid(() => onSubmit())" />
+        @click="isValid(() => closeModal(onSubmit))" />
       <v-btn v-else color="primary" variant="tonal" :text="$t('next')" @click="isValid(() => formStep++)" />
     </template>
   </BaseModluleWithLising>
@@ -160,8 +160,8 @@ const menuOptions: MenuItem<any>[] = [
 ];
 // Funções utilitárias
 function closeModal(onClose: () => void) {
-  onClose();
   formStep.value = 0;
+  onClose();
 }
 </script>
 
