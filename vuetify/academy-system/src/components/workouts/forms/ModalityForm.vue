@@ -1,9 +1,16 @@
 <template>
-  <v-select v-model="localState.modalityPayment" density="compact" variant="outlined" :items="modalityPayments"
-    hide-details>
-  </v-select>
-  <v-text-field density="compact" variant="outlined" hide-details v-model="localState.value" v-money="money">
+  <v-text-field v-model="localState.title" variant="outlined" density="compact"
+    :rules="[it => !!it || $t('required-field'), (it: string) => it.length >= 5 || $t('field-must-have-a-minimum', { count: 5 })]"
+    hide-details="auto" :label="$t('title')">
   </v-text-field>
+  <v-select v-model="localState.modalityPayment" density="compact" variant="outlined" :items="modalityPayments"
+    hide-details="auto" :label="$t('modality-payment')" :rules="[it => !!it || $t('required-field')]">
+  </v-select>
+  <v-text-field density="compact" variant="outlined" hide-details v-model="localState.value" v-money="money"
+    :label="$t('value')">
+  </v-text-field>
+  <v-textarea variant="outlined" v-model="localState.description" :label="$t('description')">
+  </v-textarea>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';

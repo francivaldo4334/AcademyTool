@@ -3,7 +3,7 @@ import StudentModel from "../models/StudentModel";
 import Registration from "@/composables/data/models/Registration";
 import Modality from "@/composables/data/models/Modality";
 import ModalityModel, { PaymentModality } from "../models/ModalityModel";
-import { base64toFile, fileToBase64 } from "./Decoder";
+import { fileToBase64 } from "./Decoder";
 export const ModalityModelToDomain = (m: Modality) => {
 	return new ModalityModel({
 		id: m.id,
@@ -11,6 +11,8 @@ export const ModalityModelToDomain = (m: Modality) => {
 		modalityPayment: m.modalityPayment as PaymentModality,
 		description: m.description,
 		active: m.active,
+		createAt: m.createAt,
+		title: m.title,
 	});
 };
 export const ModalityDomainToModel = (m: ModalityModel) => {
@@ -19,6 +21,8 @@ export const ModalityDomainToModel = (m: ModalityModel) => {
 		modalityPayment: m.modalityPayment,
 		description: m.description,
 		active: m.active,
+		createAt: m.createAt,
+		title: m.title,
 	});
 };
 export const StudentModelToDomain = async (

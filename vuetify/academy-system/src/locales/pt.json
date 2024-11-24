@@ -63,5 +63,9 @@
 	"unique-payment": "Pagamento unico",
 	"monthly": "Pagemento mensal",
 	"weekly": "Pagamento semanal",
-	"biweekly": "Pagamento quinsenal"
+	"biweekly": "Pagamento quinsenal",
+	"description": "Descrição",
+	"value": "Valor",
+	"modality-payment": "Modalidade de pagamento",
+	"title": "Titulo"
 }
