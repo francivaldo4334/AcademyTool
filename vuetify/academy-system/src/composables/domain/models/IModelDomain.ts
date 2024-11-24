@@ -1,3 +1,3 @@
 export default interface IModelDomain {
-	id?: number;
+	id?: string;
 }

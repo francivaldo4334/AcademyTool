@@ -1,7 +1,7 @@
 import IModel from "../interfaces/IModel";
 
 export default class Modality implements IModel {
-	id!: number;
+	id!: string;
 	value: number;
 	description: string;
 	modalityPayment: string;

@@ -3,6 +3,7 @@ import StudentModel from "../models/StudentModel";
 import Registration from "@/composables/data/models/Registration";
 import Modality from "@/composables/data/models/Modality";
 import ModalityModel, { PaymentModality } from "../models/ModalityModel";
+import { base64toFile, fileToBase64 } from "./Decoder";
 export const ModalityModelToDomain = (m: Modality) => {
 	return new ModalityModel({
 		id: m.id,
@@ -20,7 +21,7 @@ export const ModalityDomainToModel = (m: ModalityModel) => {
 		active: m.active,
 	});
 };
-export const StudentModelToDomain = (
+export const StudentModelToDomain = async (
 	m: User,
 	r: Registration,
 	mt?: Modality,
@@ -68,7 +69,7 @@ export const StudentDomainToRegisterModel = (
 		createAt: new Date(),
 	});
 };
-export const StudentDomainToModel = (m: StudentModel) => {
+export const StudentDomainToModel = async (m: StudentModel) => {
 	return new User({
 		cpf: m.cpf,
 		active: m.active || true,
@@ -80,7 +81,7 @@ export const StudentDomainToModel = (m: StudentModel) => {
 		phone1: m.phone,
 		phone2: "",
 		whatsapp: m.whatsapp,
-		photo: m.avatar,
+		photo: m.avatar instanceof File ? await fileToBase64(m.avatar) : m.avatar,
 		addressString: m.addressString,
 		neighborhood: m.neighborhood,
 		zipCode: m.zipCode,

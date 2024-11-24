@@ -3,9 +3,9 @@ import IDatabaseAdapter, { Constructor } from "./interfaces/IDatabaseAdapter";
 import IModel from "./interfaces/IModel";
 import Users from "./tables/Users";
 import ITable from "./interfaces/ITable";
-import Modality from "./models/Modality";
 import Modalities from "./tables/Modalities";
 import Registrations from "./tables/Registrations";
+import { v4 as useUuid } from "uuid";
 
 export default class implements IDatabaseAdapter {
 	readonly DB_NAME = "academySystem";
@@ -38,16 +38,18 @@ export default class implements IDatabaseAdapter {
 	filter(tableName: string, params: any): Promise<IModel[]> {
 		return this.db.collection(tableName).doc(params);
 	}
-	getItemById(tableName: string, id: number): Promise<IModel> {
-		return this.db.collection(tableName).doc({ id: id }).get();
+	getItemById(tableName: string, id: string): Promise<IModel> {
+		return this.db.collection(tableName).doc(id).get();
 	}
 	async create(tableName: string, model: IModel): Promise<IModel> {
-		return this.db.collection(tableName).add(model);
+		model.id = useUuid();
+		const respose = await this.db.collection(tableName).add(model, model.id);
+		return respose.data.data;
 	}
-	delete(tableName: string, pk: number): void {
+	delete(tableName: string, pk: string): void {
 		this.db.collection(tableName).doc({ id: pk }).delete();
 	}
-	update(tableName: string, model: IModel, pk: number): Promise<IModel> {
+	update(tableName: string, model: IModel, pk: string): Promise<IModel> {
 		return this.db.collection(tableName).doc({ id: pk }).update(model);
 	}
 }

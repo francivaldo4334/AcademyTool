@@ -49,6 +49,7 @@ const modalitys = [
 ]
 onMounted(() => {
   localForm.value.isMonthlyPlan = true;
+  localForm.value.startDate = new Date().toISOString().substring(0, 10);
 })
 </script>
 

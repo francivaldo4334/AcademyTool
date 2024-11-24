@@ -1,24 +1,24 @@
 import IModel from "../interfaces/IModel";
 type Status = "debited" | "debitor";
 export default class Registration implements IModel {
-	id!: number;
+	id!: string;
 	active: boolean;
-	student: number;
+	student: string;
 	createAt: Date;
 	startDate: Date;
 	endDate?: Date;
 	isMonthlyPlan: boolean;
 	status: Status;
-	modality?: number;
+	modality?: string;
 	observation: string;
 	constructor(data: {
 		active: boolean;
-		student: number;
+		student: string;
 		createAt: Date;
 		startDate: Date;
 		endDate?: Date;
 		status: Status;
-		modality?: number;
+		modality?: string;
 		observation: string;
 		isMonthlyPlan: boolean;
 	}) {

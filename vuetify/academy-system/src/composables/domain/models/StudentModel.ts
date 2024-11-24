@@ -1,13 +1,13 @@
 import IModelDomain from "./IModelDomain";
 
 export default class implements IModelDomain {
-	id?: number;
+	id?: string;
 	active?: boolean;
 	createAt?: Date;
 
 	firstName: string;
 	lastName: string;
-	avatar?: File;
+	avatar?: string | File;
 	cpf: string;
 	birthday?: Date;
 	gender: string;
@@ -26,14 +26,14 @@ export default class implements IModelDomain {
 	//
 	startDate: Date;
 	endDate?: Date;
-	modality?: number;
+	modality?: string;
 	observation: string;
 	isMonthlyPlan: boolean;
 	constructor(data: {
 		active?: boolean;
 		firstName: string;
 		lastName: string;
-		avatar?: File;
+		avatar?: string | File;
 		cpf: string;
 		birthday?: Date;
 		gender: string;
@@ -50,7 +50,7 @@ export default class implements IModelDomain {
 		reference: string;
 		startDate?: Date;
 		endDate?: Date;
-		modality?: number;
+		modality?: string;
 		observation: string;
 		isMonthlyPlan?: boolean;
 		createAt?: Date;

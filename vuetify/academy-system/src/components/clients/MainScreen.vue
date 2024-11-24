@@ -94,6 +94,7 @@ const menuOptions: MenuItem<any>[] = [
     repository: domain.users,
     scheme: z.object(
       {
+        avatar: z.custom<File>().nullable(),
         firstName: z.string().max(80),
         lastName: z.string().max(80),
         cpf: z.string().transform((it: string) => it.replace(/\D/g, '')),
@@ -116,6 +117,9 @@ const menuOptions: MenuItem<any>[] = [
         observation: z.string().default(""),
       }
     ),
+    tableScheme: z.object({
+      avatar: z.string().nullable().default(null)
+    }),
   },
   {
     key: 1,
@@ -123,6 +127,7 @@ const menuOptions: MenuItem<any>[] = [
     filters: {},
     repository: domain.users,
     scheme: z.object({}),
+    tableScheme: z.object({}),
   },
   {
     key: 2,
@@ -130,6 +135,7 @@ const menuOptions: MenuItem<any>[] = [
     filters: {},
     repository: domain.users,
     scheme: z.object({}),
+    tableScheme: z.object({}),
   },
 ];
 // Funções utilitárias

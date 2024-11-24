@@ -13,12 +13,12 @@ export default class implements IRepository<ModalityModel> {
 	constructor(db: IDatabaseAdapter<IModel>) {
 		this.modalities = db.getInstance(Modalities);
 	}
-	geAll(onResponse: (it: ModalityModel[]) => void): void {
+	getAll(onResponse: (it: ModalityModel[]) => void): void {
 		this.modalities.get().then((modalities) => {
 			onResponse(modalities.map((it) => ModalityModelToDomain(it)));
 		});
 	}
-	getById(id: number, onResponse: (it: ModalityModel) => void): void {
+	getById(id: string, onResponse: (it: ModalityModel) => void): void {
 		throw new Error("Method not implemented.");
 	}
 	add(model: ModalityModel, onResponse: (it: ModalityModel) => void): void {

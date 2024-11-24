@@ -5,11 +5,11 @@ export default interface ITable<M extends IModel> {
 	tableName: string;
 	db: IDatabaseAdapter<M>;
 	get(response: (it: M[]) => void): void;
-	getItemById(id: number): Promise<M>;
+	getItemById(id: string): Promise<M>;
 	filter(params: any): Promise<M[]>;
 	create(model: M): Promise<M>;
-	delete(pk: number): void;
-	update(model: M, pk: number): Promise<M>;
+	delete(pk: string): void;
+	update(model: M, pk: string): Promise<M>;
 }
 
 export abstract class BaseTable<M extends IModel> implements ITable<M> {
@@ -19,7 +19,7 @@ export abstract class BaseTable<M extends IModel> implements ITable<M> {
 		this.db = db as IDatabaseAdapter<M>;
 		this.tableName = tableName;
 	}
-	getItemById(id: number): Promise<M> {
+	getItemById(id: string): Promise<M> {
 		return this.db.getItemById(this.tableName, id);
 	}
 	filter(params: any): Promise<M[]> {
@@ -28,10 +28,10 @@ export abstract class BaseTable<M extends IModel> implements ITable<M> {
 	create(model: M): Promise<M> {
 		return this.db.create(this.tableName, model);
 	}
-	delete(pk: number): void {
+	delete(pk: string): void {
 		this.db.delete(this.tableName, pk);
 	}
-	update(model: M, pk: number): Promise<M> {
+	update(model: M, pk: string): Promise<M> {
 		return this.db.update(this.tableName, model, pk);
 	}
 	get(): Promise<M[]> {

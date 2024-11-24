@@ -5,13 +5,13 @@ export type PaymentModality =
 	| "weekly"
 	| "biweekly";
 export default class implements IModelDomain {
-	id?: number;
+	id?: string;
 	value: number;
 	description: string;
 	modalityPayment: PaymentModality;
 	active: boolean;
 	constructor(data: {
-		id?: number;
+		id?: string;
 		value: number;
 		description: string;
 		modalityPayment: PaymentModality;

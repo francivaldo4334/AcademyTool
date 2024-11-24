@@ -6,7 +6,7 @@
         @click="selected = option.id" @mouseover="option.isHover = true" @mouseleave="option.isHover = false">
       </BtnOption>
     </v-col>
-    <BtnOption :option="lastOption" :key="lastOption.id" :isSelected="selected === lastOption.tag"
+    <BtnOption :option="lastOption" :key="lastOption.id" :isSelected="selected === lastOption.id"
       @click="selected = lastOption.tag" @mouseover="lastOption.isHover = true" @mouseleave="lastOption.isHover = false"
       class="position-absolute bottom-0">
     </BtnOption>

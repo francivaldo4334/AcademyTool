@@ -8,4 +8,5 @@ export type MenuItem<IT extends IModelDomain> = {
 	filters: Record<string, Function>;
 	repository: IRepository<IT>;
 	scheme: ZodSchema;
+	tableScheme: ZodSchema;
 };

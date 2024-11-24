@@ -16,7 +16,8 @@
         :prepend-inner-icon="IdCard" v-mask="'###.###.###-##'" v-model="localForm.cpf" :max="11"
         :rules="[rules.required, it => z.string().min(11).safeParse(it).success || $t('field-must-have-a-minimum', { count: 11 })]" />
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
-        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="localForm.birthday" />
+        :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="localForm.birthday"
+        :rules="[rules.required]" />
     </div>
     <v-autocomplete variant="outlined" density="compact" :label="$t('gender')" hide-details="auto"
       :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" v-model="localForm.gender" ref="gender"

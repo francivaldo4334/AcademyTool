@@ -1,7 +1,7 @@
 import IModel from "../interfaces/IModel";
 
 export default class User implements IModel {
-	id!: number;
+	id!: string;
 	createAt: Date;
 	cpf: string;
 	active: boolean;
@@ -13,7 +13,7 @@ export default class User implements IModel {
 	phone1: string;
 	phone2: string;
 	whatsapp: string;
-	photo: File | undefined;
+	photo: string | undefined;
 	addressString: string;
 	neighborhood: string;
 	zipCode: string;
@@ -35,7 +35,7 @@ export default class User implements IModel {
 		phone1: string;
 		phone2: string;
 		whatsapp: string;
-		photo?: File;
+		photo?: string;
 		addressString: string;
 		neighborhood: string;
 		zipCode: string;

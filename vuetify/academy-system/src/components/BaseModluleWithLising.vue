@@ -46,8 +46,14 @@
           </div>
           <v-divider />
           <v-card variant="outlined" color="surface" class="mt-2">
-            <v-data-table-virtual :items="store.modules[title][opt.name].items" class="bg-background"
-              :no-data-text="$t('no-data')">
+            <v-data-table-virtual :items="mapItemsToTable(store.modules[title][opt.name].items)" class="bg-background"
+              :no-data-text="$t('no-data')" disable-sort>
+              <template #[`item.avatar`]="data">
+                <v-avatar :size="40" color="rgb(var(--v-theme-surface))" class="mr-2">
+                  <v-img v-if="data.value" :src="data.value" />
+                  <Image v-else />
+                </v-avatar>
+              </template>
             </v-data-table-virtual>
           </v-card>
         </v-tabs-window-item>
@@ -61,7 +67,9 @@ import { MenuItem } from "./BaseModluleWithLising"
 import { useMainStore } from '@/stores/MainStore'
 import IModelDomain from "@/composables/domain/models/IModelDomain";
 import { VForm } from "vuetify/components"
+import { useI18n } from "vue-i18n"
 
+const { t } = useI18n()
 const formRefs = ref<Record<string, VForm | null>>({})
 const store = useMainStore()
 const menuSelected = ref(0)
@@ -94,6 +102,26 @@ async function onValidForm(action: Function, refKey: string) {
     action()
   }
 }
+function pascalToKebabCase(input: string): string {
+  return input
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])([A-Z][a-z0-9])/g, "$1-$2")
+    .toLowerCase()
+}
+
+function mapItemsToTable(list: IModelDomain[]): Record<string, any>[] {
+  return list.map(item => {
+    if (!props.menuOptions) throw new Error("menuOptions: indefinido");
+    const option = props.menuOptions[menuSelected.value];
+    const data = option.tableScheme.parse(item);
+    return Object.entries(data).reduce((acc, [key, value]) => {
+      const kebabKey = pascalToKebabCase(key);
+      acc[t(kebabKey)] = value;
+      return acc;
+    }, {})
+  }
+  );
+}
 onBeforeMount(() => {
   store.modules[props.title] = {}
   if (props.menuOptions !== undefined) {
@@ -118,7 +146,7 @@ onBeforeMount(() => {
 onMounted(() => {
   const menuOptions = props.menuOptions!
   for (const opt of menuOptions) {
-    opt.repository.geAll(it => {
+    opt.repository.getAll(it => {
       const items: any[] = store.modules[props.title][opt.name].items
       store.modules[props.title][opt.name].items.splice(0, items.length, ...it)
     })

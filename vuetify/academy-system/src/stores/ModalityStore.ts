@@ -9,7 +9,7 @@ export const useModalityStore = defineStore("modalities", () => {
 	const form: ModalityModel = reactive({} as ModalityModel);
 	const isOpenModalCreate = ref(false);
 	onMounted(() => {
-		domain.modalities.geAll((it) => {
+		domain.modalities.getAll((it) => {
 			modalities.splice(0, modalities.length, ...it);
 		});
 	});
