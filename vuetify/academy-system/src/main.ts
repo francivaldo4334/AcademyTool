@@ -12,7 +12,7 @@ const domain = new Domain(new LocalBaseAdapter());
 loadFonts();
 createApp(App)
 	.directive("mask", vMaska)
-	.provide("db", domain)
+	.provide("domain", domain)
 	.use(createPinia())
 	.use(i18n)
 	.use(vuetify)

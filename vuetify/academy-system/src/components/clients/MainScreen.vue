@@ -64,7 +64,7 @@ import RegisterForm from "./forms/RegisterForm.vue";
 import { z } from "zod";
 
 // Injeção de dependências
-const domain = inject("db") as Domain;
+const domain = inject("domain") as Domain;
 
 // Estados reativos
 const inputSearch = ref("");
@@ -129,9 +129,7 @@ const menuOptions: MenuItem<any>[] = [
     name: "birthday",
     filters: {},
     repository: domain.users,
-    scheme: z.object({
-
-    }),
+    scheme: z.object({}),
   },
 ];
 // Funções utilitárias
