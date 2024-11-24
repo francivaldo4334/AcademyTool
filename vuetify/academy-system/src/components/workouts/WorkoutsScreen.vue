@@ -3,7 +3,10 @@
     <template #icon-btn-add>
       <UserRoundPlus />
     </template>
-    <template #new-item-modal-form="{}">
+    <template #new-item-modal-form="{ formState }">
+      <div class="pa-3 text-on-background">
+        <ModalityForm :form-state="formState" />
+      </div>
     </template>
     <template #new-item-modal-actions="{ onClose, isValid, onSubmit }">
       <v-spacer />
@@ -19,6 +22,8 @@ import BaseModluleWithLising from '../BaseModluleWithLising.vue';
 import { inject } from 'vue';
 import { z } from 'zod';
 import Domain from '@/composables/domain/Domain';
+import ModalityForm from "./forms/ModalityForm.vue"
+
 const domain = inject("domain") as Domain;
 const menuOptions: MenuItem<IModelDomain>[] = [
   {
@@ -32,6 +37,7 @@ const menuOptions: MenuItem<IModelDomain>[] = [
       modalityPayment: z.enum(["unique-payment", "monthly", "weekly", "biweekly"]),
       active: z.boolean().default(true),
     }),
+    tableScheme: z.object({})
   },
 ]
 </script>

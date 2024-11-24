@@ -7,11 +7,14 @@ import { createPinia } from "pinia";
 import LocalBaseAdapter from "./composables/data/LocalBaseAdapter";
 import Domain from "./composables/domain/Domain";
 import { vMaska } from "maska/vue";
+// @ts-ignore
+import { VMoney } from "v-money";
 
 const domain = new Domain(new LocalBaseAdapter());
 loadFonts();
 createApp(App)
 	.directive("mask", vMaska)
+	.directive("money", VMoney)
 	.provide("domain", domain)
 	.use(createPinia())
 	.use(i18n)

@@ -59,5 +59,9 @@
 	"workout": "Treino | Treinos",
 	"add-new-item": "Acionar novo {item}",
 	"field-must-have-a-minimum": "O campo deve ter no minimo {count} caracteres",
-	"field-must-have-a-maximum": "O campo deve ter no maximo {count} caracteres"
+	"field-must-have-a-maximum": "O campo deve ter no maximo {count} caracteres",
+	"unique-payment": "Pagamento unico",
+	"monthly": "Pagemento mensal",
+	"weekly": "Pagamento semanal",
+	"biweekly": "Pagamento quinsenal"
 }

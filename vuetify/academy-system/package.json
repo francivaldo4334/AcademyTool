@@ -24,6 +24,7 @@
     "pinia": "^2.2.6",
     "roboto-fontface": "*",
     "uuid": "^11.0.3",
+    "v-money": "^0.8.1",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-cli": "^2.9.6",
