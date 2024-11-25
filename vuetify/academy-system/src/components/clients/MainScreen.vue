@@ -117,7 +117,7 @@ const menuOptions: MenuItem<any>[] = [
         isMonthlyPlan: z.boolean().default(true),
         startDate: z.string().date().transform(it => new Date(it)),
         endDate: z.string().date().transform(it => new Date(it)).nullable().default(null),
-        modality: z.number().nullable().default(null),
+        modality: z.string(),
         observation: z.string().default(""),
       }
     ),

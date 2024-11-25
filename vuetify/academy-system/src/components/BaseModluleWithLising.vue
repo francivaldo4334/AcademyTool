@@ -37,7 +37,7 @@
                     <slot name="new-item-modal-actions" :onClose="store.modules[title][opt.name].closeModalAddItem"
                       :formState="store.modules[title][opt.name].formModalAddItem"
                       :isValid="(action: Function) => onValidForm(action, `form${title}${opt.name}`)"
-                      :onSubmit="onSubmint">
+                      :onSubmit="onSubmit">
                     </slot>
                   </v-card-actions>
                 </v-form>
@@ -68,6 +68,7 @@ import { useMainStore } from '@/stores/MainStore'
 import IModelDomain from "@/composables/domain/models/IModelDomain";
 import { VForm } from "vuetify/components"
 import { useI18n } from "vue-i18n"
+import { onSubmit as locaOnSubmit } from "./BaseModluleWithLising"
 
 const { t } = useI18n()
 const formRefs = ref<Record<string, VForm | null>>({})
@@ -79,20 +80,20 @@ const props = defineProps({
     type: Array as PropType<MenuItem<IModelDomain>[]>,
   },
 })
-function onSubmint() {
+function onSubmit() {
   if (!props.menuOptions) return;
   const option = props.menuOptions[menuSelected.value];
   const repository = option.repository;
-  const scheme = option.scheme.safeParse(store.modules[props.title][option.name].formModalAddItem)
-  if (scheme.success) {
-    repository.add(scheme.data, (it) => {
+  const scheme = option.scheme
+  locaOnSubmit(
+    repository,
+    scheme,
+    store.modules[props.title][option.name].formModalAddItem,
+    (it) => {
       store.modules[props.title][option.name].items.push(it);
       store.modules[props.title][option.name].closeModalAddItem()
-    })
-  }
-  else {
-    console.error(scheme.error)
-  }
+    }
+  )
 }
 async function onValidForm(action: Function, refKey: string) {
   const formRef = formRefs.value[refKey]

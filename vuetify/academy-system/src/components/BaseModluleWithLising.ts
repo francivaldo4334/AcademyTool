@@ -10,3 +10,14 @@ export type MenuItem<IT extends IModelDomain> = {
 	scheme: ZodSchema;
 	tableScheme: ZodSchema;
 };
+export function onSubmit(repository: IRepository<IModelDomain>, scheme: ZodSchema, object: Object, onSuccess: (it: IModelDomain) => void) {
+	const data = scheme.safeParse(object)
+	if (data.success) {
+		repository.add(data.data, (it) => {
+			onSuccess(it);
+		})
+	}
+	else {
+		console.error(data.error)
+	}
+}

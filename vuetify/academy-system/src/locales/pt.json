@@ -1,6 +1,6 @@
 {
 	"client": "Cliente | Clientes",
-	"student": "Aluno | Alunos",
+	"student": "Aluno(a) | Alunos(as)",
 	"student-data": "Dados do Aluno",
 	"class": "Turma | Turmas",
 	"birthday": "Aniversariante | Aniversariantes",
@@ -57,7 +57,7 @@
 	"recurrent-help": "A matrícula será renovada dado um período de tempo seja mensal, anual ou semanal.",
 	"no-data": "Sem Dados",
 	"workout": "Treino | Treinos",
-	"add-new-item": "Acionar novo {item}",
+	"add-new-item": "Acionar novo(a) {item}",
 	"field-must-have-a-minimum": "O campo deve ter no minimo {count} caracteres",
 	"field-must-have-a-maximum": "O campo deve ter no maximo {count} caracteres",
 	"unique-payment": "Pagamento unico",

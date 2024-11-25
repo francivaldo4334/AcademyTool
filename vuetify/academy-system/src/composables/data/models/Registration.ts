@@ -9,7 +9,7 @@ export default class Registration implements IModel {
 	endDate?: Date;
 	isMonthlyPlan: boolean;
 	status: Status;
-	modality?: string;
+	modality: string;
 	observation: string;
 	constructor(data: {
 		active: boolean;
@@ -18,7 +18,7 @@ export default class Registration implements IModel {
 		startDate: Date;
 		endDate?: Date;
 		status: Status;
-		modality?: string;
+		modality: string;
 		observation: string;
 		isMonthlyPlan: boolean;
 	}) {

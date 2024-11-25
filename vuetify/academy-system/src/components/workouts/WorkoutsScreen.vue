@@ -45,7 +45,7 @@ const menuOptions: MenuItem<IModelDomain>[] = [
       createAt: z.date().transform(it => d(it, 'short', 'pt-BR')),
       modalityPayment: z.string().transform(it => t(it)),
       description: z.string(),
-      value: z.number().transform(it => n(it, 'currency', 'pt-BR')),
+      value: z.number().transform(it => n(it / 100, 'currency', 'pt-BR')),
     })
   },
 ]
