@@ -1,13 +1,13 @@
-import IDatabaseAdapter from "@/composables/data/interfaces/IDatabaseAdapter";
-import IModel from "@/composables/data/interfaces/IModel";
-import IRepository from "./IRepository";
-import Users from "@/composables/data/tables/Users";
+import IDatabaseAdapter from "@/core/composables/data/interfaces/IDatabaseAdapter";
+import IModel from "@/core/composables/data/interfaces/IModel";
+import IRepository from "@/core/composables/domain/repositories/IRepository";
+import Users from "@/core/composables/data/tables/Users";
 import StudentModel from "../models/StudentModel";
 import {
 	StudentDomainToModel,
 	StudentDomainToRegisterModel,
 	StudentModelToDomain,
-} from "../utils/Converter";
+} from "../utils/Converters";
 import Registrations from "@/composables/data/tables/Registrations";
 import Modalities from "@/composables/data/tables/Modalities";
 

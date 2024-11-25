@@ -1,4 +1,4 @@
-import IModel from "../interfaces/IModel";
+import IModel from "@/core/composables/data/interfaces/IModel";
 type Status = "debited" | "debitor";
 export default class Registration implements IModel {
 	id!: string;

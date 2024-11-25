@@ -1,17 +1,17 @@
 <template>
   <v-app theme="light">
     <v-main>
-      <menu-mdules />
+      <App/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import MenuMdules from "./components/MenuSideModules.vue"
+import App from "@/app/App.vue"
 export default {
   name: 'App',
   components: {
-    MenuMdules,
+    App,
   },
 
   data: () => ({

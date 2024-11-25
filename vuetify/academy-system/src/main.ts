@@ -1,11 +1,11 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import vuetify from "./plugins/vuetify";
-import { loadFonts } from "./plugins/webfontloader";
-import i18n from "./i18n";
+import vuetify from "./core/plugins/vuetify";
+import { loadFonts } from "./core/plugins/webfontloader";
+import i18n from "./core/plugins/i18n";
 import { createPinia } from "pinia";
-import LocalBaseAdapter from "./composables/data/LocalBaseAdapter";
-import Domain from "./composables/domain/Domain";
+import LocalBaseAdapter from "./core/composables/data/LocalBaseAdapter";
+import Domain from "./core/composables/domain/Domain";
 import { vMaska } from "maska/vue";
 // @ts-ignore
 import { VMoney } from "v-money";

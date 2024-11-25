@@ -53,11 +53,11 @@
 
 <script setup lang="ts">
 import { ref, reactive, inject, computed } from "vue";
-import { MenuItem } from "@/components/BaseModluleWithLising";
+import { MenuItem } from "@/core/components/BaseModluleWithLising";
 import BaseModluleWithLising from "@/components/BaseModluleWithLising.vue";
 import { Search, BookmarkX, BookmarkCheck, Cake, UserRoundX, UserRoundPlus, Undo } from "lucide-vue-next";
 import FilterSelection from "@/components/fields/FilterSelection.vue";
-import Domain from "@/composables/domain/Domain";
+import Domain from "@/core/composables/domain/Domain";
 import StudentForm from "./forms/StudentForm.vue";
 import AddressForm from "./forms/AddressForm.vue";
 import RegisterForm from "./forms/RegisterForm.vue";
