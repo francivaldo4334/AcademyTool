@@ -54,10 +54,10 @@
 import { HelpCircle, Plus } from "lucide-vue-next"
 import { onMounted } from "vue";
 import { defineProps, computed, inject, reactive, ref } from "vue"
-import Domain from "@/composables/domain/Domain"
-import { onSubmit as localOnSubmit } from "@/components/BaseModluleWithLising"
+import Domain from "@/core/composables/domain/Domain"
+import { onSubmit as localOnSubmit } from "@/core/components/BaseModluleWithLising"
 import { z } from "zod"
-import ModalityForm from "@/components/workouts/forms/ModalityForm.vue"
+import ModalityForm from "@/workouts/components/forms/ModalityForm.vue"
 import { VForm } from "vuetify/components"
 const domain = inject("domain") as Domain;
 const props = defineProps(["form"])

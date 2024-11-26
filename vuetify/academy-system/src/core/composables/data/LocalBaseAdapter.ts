@@ -1,11 +1,8 @@
 import Localbase from "localbase";
 import IDatabaseAdapter, { Constructor } from "./interfaces/IDatabaseAdapter";
 import IModel from "./interfaces/IModel";
-import Users from "./tables/Users";
-import ITable, { BaseTable } from "./interfaces/ITable";
-import Modalities from "./tables/Modalities";
-import Registrations from "./tables/Registrations";
 import { v4 as useUuid } from "uuid";
+import { BaseTable } from "./interfaces/ITable";
 
 export default class implements IDatabaseAdapter {
 	readonly DB_NAME = "academySystem";

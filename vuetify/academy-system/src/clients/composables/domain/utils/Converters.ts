@@ -1,5 +1,7 @@
 import User from "@/core/composables/data/models/User";
 import Registration from "../../data/models/Registration";
+import StudentModel from "../models/StudentModel";
+import { fileToBase64 } from "@/core/composables/domain/utils/Decoder";
 
 export const StudentModelToDomain = async (
   m: User,
@@ -34,7 +36,6 @@ export const StudentModelToDomain = async (
 export const StudentDomainToRegisterModel = (
   m: StudentModel,
   u: User,
-  modality: Modality,
 ) => {
   return new Registration({
     active: true,
@@ -42,7 +43,7 @@ export const StudentDomainToRegisterModel = (
     startDate: m.startDate,
     endDate: m.endDate,
     isMonthlyPlan: m.isMonthlyPlan,
-    modality: modality.id,
+    modality: m.modality,
     observation: m.observation,
     status: "debited",
     createAt: new Date(),

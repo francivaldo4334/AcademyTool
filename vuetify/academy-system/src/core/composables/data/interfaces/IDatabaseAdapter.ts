@@ -1,5 +1,5 @@
 import IModel from "./IModel";
-import ITable, { BaseTable } from "./ITable";
+import { BaseTable } from "./ITable";
 
 export type Constructor<T> = { new(...args: any[]): T };
 

@@ -64,8 +64,8 @@
 <script lang="ts" setup>
 import { PropType, onBeforeMount, onMounted, defineProps, ref } from "vue"
 import { MenuItem } from "./BaseModluleWithLising"
-import { useMainStore } from '@/stores/MainStore'
-import IModelDomain from "@/composables/domain/models/IModelDomain";
+import { useMainStore } from '@/core/stores/MainStore'
+import IModelDomain from "@/core/composables/domain/models/IModelDomain";
 import { VForm } from "vuetify/components"
 import { useI18n } from "vue-i18n"
 import { onSubmit as locaOnSubmit } from "./BaseModluleWithLising"

@@ -1,4 +1,3 @@
-import IDatabaseAdapter from "@/composables/data/interfaces/IDatabaseAdapter";
 import IModelDomain from "../models/IModelDomain";
 
 export default interface IRepository<M extends IModelDomain> {

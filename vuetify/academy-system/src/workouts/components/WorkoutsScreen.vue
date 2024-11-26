@@ -16,12 +16,12 @@
   </BaseModluleWithLising>
 </template>
 <script setup lang="ts">
-import IModelDomain from '@/composables/domain/models/IModelDomain';
-import { MenuItem } from '../BaseModluleWithLising';
-import BaseModluleWithLising from '../BaseModluleWithLising.vue';
+import IModelDomain from '@/core/composables/domain/models/IModelDomain';
+import { MenuItem } from '@/core/components/BaseModluleWithLising';
+import BaseModluleWithLising from '@/core/components/BaseModluleWithLising.vue';
 import { inject } from 'vue';
 import { z } from 'zod';
-import Domain from '@/composables/domain/Domain';
+import Domain from '@/core/composables/domain/Domain';
 import ModalityForm from "./forms/ModalityForm.vue"
 import { useI18n } from "vue-i18n"
 import { ClipboardPlus } from "lucide-vue-next"

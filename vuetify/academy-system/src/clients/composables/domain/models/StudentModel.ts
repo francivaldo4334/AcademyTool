@@ -1,4 +1,4 @@
-import IModelDomain from "./IModelDomain";
+import IModelDomain from "@/core/composables/domain/models/IModelDomain";
 
 export default class implements IModelDomain {
 	id?: string;

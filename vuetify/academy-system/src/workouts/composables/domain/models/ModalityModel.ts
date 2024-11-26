@@ -1,4 +1,5 @@
-import IModelDomain from "./IModelDomain";
+import IModelDomain from "@/core/composables/domain/models/IModelDomain";
+
 export type PaymentModality =
 	| "unique-payment"
 	| "monthly"

@@ -24,12 +24,12 @@
 
 <script setup lang="ts">
 import { Settings, Users, ChartNoAxesCombined, Dumbbell, HandCoins, ClipboardPenLine } from "lucide-vue-next";
-import ClientsScreen from "@/clients/MainScreen.vue"
-import WorkoutsScreen from "@/workouts/WorkoutsScreen.vue"
+import ClientsScreen from "@/clients/components/MainScreen.vue"
+import WorkoutsScreen from "@/workouts/components/WorkoutsScreen.vue"
 import AppBar from "./AppBar.vue"
 import { FunctionalComponent } from "vue"
 import { ref, reactive } from "vue"
-import BtnOption from "./fields/BtnOption.vue"
+import BtnOption from "@/core/components/fields/BtnOption.vue"
 const selected = ref(0)
 type Option = {
   icon: FunctionalComponent,

@@ -1,5 +1,4 @@
-import { date } from "zod";
-import IModel from "../interfaces/IModel";
+import IModel from "@/core/composables/data/interfaces/IModel";
 
 export default class Modality implements IModel {
 	id!: string;

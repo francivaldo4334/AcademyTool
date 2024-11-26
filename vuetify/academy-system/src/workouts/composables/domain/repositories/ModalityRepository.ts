@@ -1,12 +1,12 @@
-import IDatabaseAdapter from "@/composables/data/interfaces/IDatabaseAdapter";
+import IRepository from "@/core/composables/domain/repositories/IRepository";
 import ModalityModel from "../models/ModalityModel";
-import IRepository from "./IRepository";
-import IModel from "@/composables/data/interfaces/IModel";
-import Modalities from "@/composables/data/tables/Modalities";
 import {
 	ModalityDomainToModel,
 	ModalityModelToDomain,
-} from "../utils/Converter";
+} from "../utils/Converters";
+import Modalities from "../../tables/Modalities";
+import IDatabaseAdapter from "@/core/composables/data/interfaces/IDatabaseAdapter";
+import IModel from "@/core/composables/data/interfaces/IModel";
 
 export default class implements IRepository<ModalityModel> {
 	modalities: Modalities;
