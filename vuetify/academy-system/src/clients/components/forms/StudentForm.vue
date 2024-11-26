@@ -18,6 +18,12 @@
       <v-text-field variant="outlined" density="compact" :label="$t('birthday')" hide-details="auto"
         :prepend-inner-icon="Cake" type="date" style="max-width: 220px;" v-model="localForm.birthday"
         :rules="[rules.required]" />
+      <v-date-input
+            label="Date of birth"
+            prepend-icon=""
+            variant="outlined"
+            persistent-placeholder
+          ></v-date-input>
     </div>
     <v-autocomplete variant="outlined" density="compact" :label="$t('gender')" hide-details="auto"
       :prepend-inner-icon="Blend" type="gender" :placeholder="$t('enger')" v-model="localForm.gender" ref="gender"
