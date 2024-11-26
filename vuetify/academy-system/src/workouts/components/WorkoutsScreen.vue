@@ -26,6 +26,8 @@ import ModalityForm from "./forms/ModalityForm.vue"
 import ModalityRepository from "@/workouts/composables/domain/repositories/ModalityRepository"
 import { useI18n } from "vue-i18n"
 import { ClipboardPlus } from "lucide-vue-next"
+import { formModalityScheme } from "./WorkoutsScreen"
+
 const { t, d, n } = useI18n()
 const domain = inject("domain") as Domain;
 const menuOptions: MenuItem<IModelDomain>[] = [
@@ -34,13 +36,7 @@ const menuOptions: MenuItem<IModelDomain>[] = [
     name: "modality",
     filters: {},
     repository: domain.getRepository(ModalityRepository),
-    scheme: z.object({
-      title: z.string().min(5),
-      value: z.string().transform(it => parseInt(it.replace(/\D/g, '') || "0")),
-      description: z.string().default(""),
-      modalityPayment: z.enum(["unique-payment", "monthly", "weekly", "biweekly"]),
-      active: z.boolean().default(true),
-    }),
+    scheme: formModalityScheme,
     tableScheme: z.object({
       title: z.string().default(""),
       createAt: z.date().transform(it => d(it, 'short', 'pt-BR')),

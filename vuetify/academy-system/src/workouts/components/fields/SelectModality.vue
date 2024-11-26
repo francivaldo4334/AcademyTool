@@ -29,11 +29,11 @@
 <script setup lang="ts">
 import { computed, reactive, ref, inject, onMounted, defineProps } from 'vue'
 import { VForm } from "vuetify/components"
-import { z } from "zod"
 import { onSubmit as localOnSubmit } from "@/core/components/BaseModluleWithLising"
 import Domain from "@/core/composables/domain/Domain"
 import ModalityRepository from "@/workouts/composables/domain/repositories/ModalityRepository"
 import ModalityForm from "@/workouts/components/forms/ModalityForm.vue"
+import { formModalityScheme } from "../WorkoutsScreen"
 import { Plus } from "lucide-vue-next"
 const props = defineProps(["form"])
 const localForm = computed(() => props.form)
@@ -53,13 +53,7 @@ async function onSubmintModality() {
   if (valid) {
     localOnSubmit(
       domain.getRepository(ModalityRepository),
-      z.object({
-        title: z.string().min(5),
-        value: z.string().transform(it => parseInt(it.replace(/\D/g, '') || "0")),
-        description: z.string().default(""),
-        modalityPayment: z.enum(["unique-payment", "monthly", "weekly", "biweekly"]),
-        active: z.boolean().default(true),
-      }),
+      formModalityScheme,
       localForm.value.newModality || {},
       (it) => {
         const m = it as {title: string, id: string}
