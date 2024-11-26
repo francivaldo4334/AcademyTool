@@ -1,17 +1,17 @@
 <template>
   <v-app theme="light">
     <v-main>
-      <App/>
+      <MinApp/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import App from "@/app/App.vue"
+import MinApp from "@/app/MainApp.vue"
 export default {
   name: 'App',
   components: {
-    App,
+    MinApp,
   },
 
   data: () => ({

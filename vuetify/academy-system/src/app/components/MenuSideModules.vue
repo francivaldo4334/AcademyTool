@@ -13,11 +13,15 @@
   </v-navigation-drawer>
   <v-col class="px-0 py-0 pl-16 pr-2">
     <app-bar />
-    <clients-screen v-if="selected === 0" />
-    <metrics-screen v-else-if="selected === 1" />
-    <financial-screen v-else-if="selected === 2" />
-    <equipments-screen v-else-if="selected === 3" />
-    <equipments-screen v-else-if="selected === 4" />
+    <clients-screen v-if="selected === 0">
+      <template #modality-field="{ formState }">
+        <SelectModality :form="formState"/>
+      </template>
+    </clients-screen>
+    <!-- <metrics-screen v-else-if="selected === 1" /> -->
+    <!-- <financial-screen v-else-if="selected === 2" /> -->
+    <!-- <equipments-screen v-else-if="selected === 3" /> -->
+    <!-- <equipments-screen v-else-if="selected === 4" /> -->
     <workouts-screen v-else-if="selected === 5" />
   </v-col>
 </template>
@@ -30,6 +34,7 @@ import AppBar from "./AppBar.vue"
 import { FunctionalComponent } from "vue"
 import { ref, reactive } from "vue"
 import BtnOption from "@/core/components/fields/BtnOption.vue"
+import SelectModality from "@/workouts/components/fields/SelectModality.vue"
 const selected = ref(0)
 type Option = {
   icon: FunctionalComponent,

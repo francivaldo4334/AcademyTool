@@ -20,95 +20,27 @@
         </template>
       </v-checkbox>
     </div>
-    <v-select :label="$t('modality')" density="compact" variant="outlined" hide-details="auto"
-      v-model="localForm.modality" :items="modalitys" :rules="[it => !!it || $t('required-field')]" :no-data-text="$t('no-data')">
-      <template #append-item>
-        <div class="pa-2 d-flex align-center justify-space-between">
-          <span>{{$t('add-new-item', {item: $t('modality')})}}</span>
-          <v-btn :icon="Plus" :size="32" color="primary" rounded @click="openModalAddModality"/>
-        </div>
-      </template>
-    </v-select>
+    <slot name="modality-field" :formState="localForm">
+      <v-text-field :label="$t('modality')" density="compact" variant="outlined" hide-details="auto" v-model="localForm.modality"
+      :rules="[it => !!it || $t('required-field')]">
+      </v-text-field>
+    </slot>
     <v-textarea :label="$t('observation')" density="compact" variant="outlined" hide-details="auto" counter
       v-model="localForm.observation" />
   </v-col>
-  <v-dialog v-model="isOpenModalAddModality" width="600px" >
-    <v-card>
-      <v-form class="pa-2" ref="newModalityForm">
-        <v-card variant="outlined">
-          <div class="pa-3 text-on-background d-flex flex-column ga-2">
-            <ModalityForm :formState="localForm.newModality"/>
-          </div>
-        </v-card>
-      </v-form>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn variant="tonal" color="red-lighten-1" :text="$t('cancel')" @click="closeModalAddModality" />
-        <v-btn color="primary" variant="tonal" :text="$t('save')" @click="onSubmintModality"/>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
 </template>
 
 <script lang="ts" setup>
-import { HelpCircle, Plus } from "lucide-vue-next"
+import { HelpCircle } from "lucide-vue-next"
 import { onMounted } from "vue";
-import { defineProps, computed, inject, reactive, ref } from "vue"
-import Domain from "@/core/composables/domain/Domain"
-import { onSubmit as localOnSubmit } from "@/core/components/BaseModluleWithLising"
-import { z } from "zod"
-import ModalityForm from "@/workouts/components/forms/ModalityForm.vue"
-import { VForm } from "vuetify/components"
-const domain = inject("domain") as Domain;
+import { defineProps, computed } from "vue"
 const props = defineProps(["form"])
 const localForm = computed(() => props.form)
-const modalitys =reactive<{ title: string, value: string, }[]>([])
-const isOpenModalAddModality = ref(false)
-const newModalityForm = ref<VForm | null>(null)
 onMounted(() => {
   localForm.value.newModality = {};
   localForm.value.isMonthlyPlan = true;
   localForm.value.startDate = new Date().toISOString().substring(0, 10);
-  domain.modalities.getAll(list => {
-    const modalitiesDomain = list.map(it => ({
-      title:it.title,
-      value: it.id!!
-    }));
-    modalitys.splice(0, modalitys.length, ...modalitiesDomain)
-  })
 })
-function openModalAddModality() {
-  isOpenModalAddModality.value = true
-}
-function closeModalAddModality() {
-  isOpenModalAddModality.value = false
-}
-async function onSubmintModality() {
-  if (!newModalityForm.value) return;
-  const { valid } = await newModalityForm.value.validate()
-  if (valid) {
-    localOnSubmit(
-      domain.modalities,
-      z.object({
-        title: z.string().min(5),
-        value: z.string().transform(it => parseInt(it.replace(/\D/g, '') || "0")),
-        description: z.string().default(""),
-        modalityPayment: z.enum(["unique-payment", "monthly", "weekly", "biweekly"]),
-        active: z.boolean().default(true),
-      }),
-      localForm.value.newModality || {},
-      (it) => {
-        const m = it as {title: string, id: string}
-        localForm.value.modality = m.id
-        modalitys.push({
-          title: m.title,
-          value: m.id
-        })
-        closeModalAddModality()
-      }
-    )
-  }
-}
 </script>
 
 <style></style>

@@ -2,5 +2,5 @@
     <menu-mdules />
 </template>
 <script setup lang="ts">
-import MenuMdules from "./components/MenuSideModules.vue"
+import MenuMdules from "@/app/components/MenuSideModules.vue"
 </script>

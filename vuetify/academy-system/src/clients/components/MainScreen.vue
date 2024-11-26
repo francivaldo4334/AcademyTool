@@ -35,7 +35,11 @@
           <AddressForm :form="formState" />
         </v-window-item>
         <v-window-item :value="2">
-          <RegisterForm :form="formState" />
+          <RegisterForm :form="formState">
+            <template #modality-field="{ formState }">
+              <slot name="modality-field" :formState="formState"></slot>
+            </template>
+          </RegisterForm>
         </v-window-item>
       </v-window>
     </template>
@@ -64,6 +68,7 @@ import RegisterForm from "./forms/RegisterForm.vue";
 import { useI18n } from "vue-i18n"
 import { z } from "zod";
 import { Mask } from "maska"
+import StudentRepository from "@/clients/composables/domain/repositories/StudentRepository"
 
 const { d } = useI18n()
 
@@ -95,7 +100,7 @@ const menuOptions: MenuItem<any>[] = [
       "select-range-per-page": () => { },
       "select-filters": () => { },
     },
-    repository: domain.users,
+    repository: domain.getRepository(StudentRepository),
     scheme: z.object(
       {
         avatar: z.custom<File>().nullable(),
@@ -145,7 +150,7 @@ const menuOptions: MenuItem<any>[] = [
     key: 1,
     name: "class",
     filters: {},
-    repository: domain.users,
+    repository: domain.getRepository(StudentRepository),
     scheme: z.object({}),
     tableScheme: z.object({}),
   },
@@ -153,7 +158,7 @@ const menuOptions: MenuItem<any>[] = [
     key: 2,
     name: "birthday",
     filters: {},
-    repository: domain.users,
+    repository: domain.getRepository(StudentRepository),
     scheme: z.object({}),
     tableScheme: z.object({}),
   },

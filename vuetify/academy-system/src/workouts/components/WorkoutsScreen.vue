@@ -23,6 +23,7 @@ import { inject } from 'vue';
 import { z } from 'zod';
 import Domain from '@/core/composables/domain/Domain';
 import ModalityForm from "./forms/ModalityForm.vue"
+import ModalityRepository from "@/workouts/composables/domain/repositories/ModalityRepository"
 import { useI18n } from "vue-i18n"
 import { ClipboardPlus } from "lucide-vue-next"
 const { t, d, n } = useI18n()
@@ -32,7 +33,7 @@ const menuOptions: MenuItem<IModelDomain>[] = [
     key: 2,
     name: "modality",
     filters: {},
-    repository: domain.modalities,
+    repository: domain.getRepository(ModalityRepository),
     scheme: z.object({
       title: z.string().min(5),
       value: z.string().transform(it => parseInt(it.replace(/\D/g, '') || "0")),

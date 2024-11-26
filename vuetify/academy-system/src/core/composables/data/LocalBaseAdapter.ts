@@ -17,6 +17,7 @@ export default class implements IDatabaseAdapter {
 		for (const instance of this.tableInstances) {
 			if (instance instanceof classTable) {
 				returnInstance = instance;
+				break;
 			}
 		}
 		if (!returnInstance) {
